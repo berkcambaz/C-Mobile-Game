@@ -9,5 +9,5 @@ public class UserData
     public static int level;
 
     [System.NonSerialized]
-    public static bool isAlive = true;
+    public static bool isAlive = false;
 }

@@ -13,7 +13,7 @@ public class Game : MonoBehaviour
         userData = SaveSystem.ReadFile();
         Application.targetFrameRate = 60;   // TODO: Settings with settings.bin
 
-        Instantiate(player);    // TODO: Instantiate when pressed play
+        //Instantiate(player);    // TODO: Instantiate when pressed play
     }
 
     void Update()
@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
         // If player is dead, restart the game when touching to the screen
         if (!UserData.isAlive)
         {
-            if (Input.touchCount > 0 && !GameObject.Find("Obstacle(Clone)"))
+            if (Input.touchCount > 0 || Input.GetMouseButtonDown(0) && !GameObject.Find("Obstacle(Clone)"))
             {
                 Instantiate(player);
                 UserData.isAlive = true;

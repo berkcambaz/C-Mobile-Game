@@ -19,7 +19,6 @@ public class ObstacleManager : MonoBehaviour
 
     void Start()
     {
-        Setup();
         screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
@@ -34,6 +33,7 @@ public class ObstacleManager : MonoBehaviour
             {
                 removeObstacles = true;
                 timer = 0.0f;
+                obstacleSetTimeLimit = -1f;
             }
             if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
             {
@@ -48,6 +48,7 @@ public class ObstacleManager : MonoBehaviour
 
                     Destroy(child.gameObject);
                 }
+                SetupMapLevel();
             }
         }
         else
@@ -68,8 +69,10 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    void Setup()
+    void SetupMapLevel()
     {
+        // Set the random seed to player's map level, so every level is
+        // different but a level in different phones are same
         Random.InitState(UserData.mapLevel);
     }
 
