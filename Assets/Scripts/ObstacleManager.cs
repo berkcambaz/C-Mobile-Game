@@ -6,21 +6,31 @@ public class ObstacleManager : MonoBehaviour
 {
     public GameObject obstacle;
 
+    Vector2 screenSize;
+
     private int obstacleSet = -1;
 
-    private float timerLimit = 0.5f;    // TODO: Make it so it depends on obstacle set
+    private float obstacleSetTimeLimit; // Time until the obstacle set finishes
+    private float obstacleTimeLimit;    // Time until a new obstacle appears
     private float timer;
 
     void Start()
     {
         Setup();
+        screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
     void Update()
     {
         timer += Time.deltaTime;
+        obstacleSetTimeLimit -= Time.deltaTime;
 
-        if (timer > timerLimit)
+        if (obstacleSetTimeLimit < 0f)
+        {
+            GenerateObstacleSet();
+        }
+
+        if (timer > obstacleTimeLimit)
         {
             GenerateObstacles();
 
@@ -33,13 +43,22 @@ public class ObstacleManager : MonoBehaviour
         Random.InitState(Player.mapLevel);
     }
 
+    void GenerateObstacleSet()
+    {
+        // TODO: Use const max number of obstacle sets instead of "1"
+        obstacleSet = Random.Range(0, 1);
+        switch (obstacleSet)
+        {
+            case 0:
+                Debug.Log("new obstacle set");
+                obstacleSetTimeLimit = 5.0f;
+                obstacleTimeLimit = 0.5f;
+                break;
+        }
+    }
+
     void GenerateObstacles()
     {
-        if (obstacleSet == -1)
-            obstacleSet = Random.Range(0, 1);
-
-        Debug.Log(obstacleSet);
-
         switch (obstacleSet)
         {
             case 0:
@@ -52,8 +71,6 @@ public class ObstacleManager : MonoBehaviour
 
     void Randomized()
     {
-        Vector2 screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-
         // Generate random x for obstacle
         float obstacleX = Random.Range(-screenSize.x + 0.65f / 2.0f, screenSize.x - 0.65f / 2.0f);
 
