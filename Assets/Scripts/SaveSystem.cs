@@ -6,38 +6,38 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem
 {
-    public static Player ReadFile()
+    public static UserData ReadFile()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.bin";
-        Player player;
+        UserData userData;
 
         if (File.Exists(path))
         {
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            player = (Player)formatter.Deserialize(stream);
+            userData = (UserData)formatter.Deserialize(stream);
         }
         else
         {
             FileStream stream = new FileStream(path, FileMode.Create);
 
-            player = new Player();
+            userData = new UserData();
 
-            formatter.Serialize(stream, player);
+            formatter.Serialize(stream, userData);
         }
 
-        return player;
+        return userData;
     }
 
-    public static void WriteFile(Player player)
+    public static void WriteFile(UserData userData)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/player.bin";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        formatter.Serialize(stream, player);
+        formatter.Serialize(stream, userData);
         stream.Close();
     }
 }

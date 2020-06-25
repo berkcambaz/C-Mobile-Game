@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObstacleManager : MonoBehaviour
 {
     public GameObject obstacle;
+    public GameObject particle;
 
     Vector2 screenSize;
 
@@ -14,6 +15,7 @@ public class ObstacleManager : MonoBehaviour
     private float obstacleSetTimeLimit; // Time until the obstacle set finishes
     private float obstacleTimeLimit;    // Time until a new obstacle appears
     private float timer;
+    private bool removeObstacles;
 
     void Start()
     {
@@ -26,28 +28,54 @@ public class ObstacleManager : MonoBehaviour
         timer += Time.deltaTime;
         obstacleSetTimeLimit -= Time.deltaTime;
 
-        if (obstacleSetTimeLimit < 0f)
+        if (!UserData.isAlive)
         {
-            GenerateObstacleSet();
+            if (!removeObstacles)
+            {
+                removeObstacles = true;
+                timer = 0.0f;
+            }
+            if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
+            {
+                for (int i = 0; i < transform.childCount; ++i)
+                {
+                    Transform child = transform.GetChild(i);
+                    GameObject particleInstance = Instantiate(particle, child.transform.position, child.transform.rotation);
+
+                    // Set particle color to red, because obstacles are red
+                    ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
+                    psmain.startColor = Color.red;
+
+                    Destroy(child.gameObject);
+                }
+            }
         }
-
-        if (timer > obstacleTimeLimit)
+        else
         {
-            GenerateObstacles();
+            removeObstacles = false;
 
-            timer = 0.0f;
+            if (obstacleSetTimeLimit < 0f)
+            {
+                GenerateObstacleSet();
+            }
+
+            if (timer > obstacleTimeLimit)
+            {
+                GenerateObstacles();
+
+                timer = 0.0f;
+            }
         }
     }
 
     void Setup()
     {
-        Random.InitState(Player.mapLevel);
+        Random.InitState(UserData.mapLevel);
     }
 
     void GenerateObstacleSet()
     {
-        // TODO: Use const max number of obstacle sets instead of "1"
-        obstacleSet = Random.Range(0, maxObstacleSet);  //
+        obstacleSet = Random.Range(0, maxObstacleSet);
         switch (obstacleSet)
         {
             case 0:

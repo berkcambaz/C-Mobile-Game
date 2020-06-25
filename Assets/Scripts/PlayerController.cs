@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform particle;
+    public GameObject particle;
 
     private Vector2 moveableAreaBounds;
     private Vector2 playerSize;
@@ -38,8 +38,9 @@ public class PlayerController : MonoBehaviour
     {
         // When colliding with obstacle
         // TODO: Screen shake effect
-        particle.transform.position = transform.position;
-        particle.gameObject.GetComponent<ParticleSystem>().Play();
+        Instantiate(particle, transform.position, transform.rotation);
+
+        UserData.isAlive = false;
 
         Destroy(gameObject);
 
