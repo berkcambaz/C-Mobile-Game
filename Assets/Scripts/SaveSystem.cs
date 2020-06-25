@@ -9,7 +9,7 @@ public class SaveSystem
     public static UserData ReadFile()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.bin";
+        string path = Application.persistentDataPath + "/user.save";
         UserData userData;
 
         if (File.Exists(path))
@@ -34,7 +34,7 @@ public class SaveSystem
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/player.bin";
+        string path = Application.persistentDataPath + "/user.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, userData);

@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
     public GameObject player;
 
-    private UserData userData;
+    public Text mapLevelText;
 
     void Start()
     {
-        userData = SaveSystem.ReadFile();
-        Application.targetFrameRate = 60;   // TODO: Settings with settings.bin
+        UserData userData = SaveSystem.ReadFile();
+        Application.targetFrameRate = UserData.fps;
+        Debug.Log(Application.targetFrameRate);
+        Debug.Log(UserData.fps);
+
+        UpdateUI();
 
         //Instantiate(player);    // TODO: Instantiate when pressed play
     }
@@ -27,5 +32,10 @@ public class Game : MonoBehaviour
                 UserData.isAlive = true;
             }
         }
+    }
+
+    void UpdateUI()
+    {
+        mapLevelText.text = UserData.mapLevel.ToString();
     }
 }
