@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿#define DEBUG 
+//#define RELEASE
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,12 +26,21 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+#if RELEASE
         // If received at least 1 touch
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
             touchPos = Camera.main.ScreenToWorldPoint(touch.position);
         }
+#endif
+
+#if DEBUG
+        if (Input.GetMouseButton(0))
+        {
+            touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+#endif
 
         DragAndDropMovement();
         ClampPlayerToMoveableArea();
@@ -49,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     void DragAndDropMovement()
     {
+#if RELEASE
         // If touch has started
         if (touch.phase == TouchPhase.Began)
         {
@@ -57,12 +70,28 @@ public class PlayerController : MonoBehaviour
             dragStartPos.x = touchPos.x - transform.localPosition.x;
             dragStartPos.y = touchPos.y - transform.localPosition.y;
         }
+#endif
 
         // If touch has stopped
         if (touch.phase == TouchPhase.Ended)
         {
             isHeld = false;
         }
+
+#if DEBUG
+        if (Input.GetMouseButtonDown(0))
+        {
+            isHeld = true;
+
+            dragStartPos.x = touchPos.x - transform.localPosition.x;
+            dragStartPos.y = touchPos.y - transform.localPosition.y;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            isHeld = false;
+        }
+#endif
 
         // If touching
         if (isHeld)

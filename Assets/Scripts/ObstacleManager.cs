@@ -48,7 +48,7 @@ public class ObstacleManager : MonoBehaviour
 
                     Destroy(child.gameObject);
                 }
-                SetupMapLevel();
+                UI.playButton.gameObject.SetActive(true);
             }
         }
         else
@@ -69,7 +69,7 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    void SetupMapLevel()
+    public static void SetupMapLevel()
     {
         // Set the random seed to player's map level, so every level is
         // different but a level in different phones are same

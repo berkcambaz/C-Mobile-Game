@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: Add user settings to this class
 [System.Serializable]
 public class UserData
 {
+    // --- SAVE FILE STUFF --- //
     public static int mapLevel;
     public static int level;
 
+    // --- NON-SAVE FILE STUFF --- //
     [System.NonSerialized]
     public static bool isAlive = false;
 
