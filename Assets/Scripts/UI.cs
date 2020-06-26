@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class UI
 {
     public static Button playButton;
+    public static Text mapLevelText;
 
     public static void Update()
     {
-        // TODO: Do UI updates here
+        mapLevelText.text = UserData.mapLevel.ToString();
     }
 }

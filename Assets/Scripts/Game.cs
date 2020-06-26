@@ -20,9 +20,11 @@ public class Game : MonoBehaviour
         UserData userData = SaveSystem.ReadFile();
         Application.targetFrameRate = UserData.fps;
 
+        // --- SETUP UI SYSTEM --- //
         UI.playButton = playButton;
+        UI.mapLevelText = mapLevelText;
 
-        UpdateUI();
+        UI.Update();
     }
 
     void Update()
@@ -45,11 +47,6 @@ public class Game : MonoBehaviour
         //        UserData.isAlive = true;
         //    }
         //}
-    }
-
-    void UpdateUI()
-    {
-        mapLevelText.text = UserData.mapLevel.ToString();
     }
 
     private void Play()

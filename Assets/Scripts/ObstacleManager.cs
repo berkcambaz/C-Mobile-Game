@@ -12,6 +12,7 @@ public class ObstacleManager : MonoBehaviour
     private const int maxObstacleSet = 2;
     private int obstacleSet = -1;
 
+    private static float mapTimeLimit;  // Time until player finishes a level
     private float obstacleSetTimeLimit; // Time until the obstacle set finishes
     private float obstacleTimeLimit;    // Time until a new obstacle appears
     private float timer;
@@ -26,6 +27,12 @@ public class ObstacleManager : MonoBehaviour
     {
         timer += Time.deltaTime;
         obstacleSetTimeLimit -= Time.deltaTime;
+
+        if (UserData.isAlive && mapTimeLimit <= 0f)
+        {
+            UserData.isAlive = false;
+            ++UserData.mapLevel;
+        }
 
         if (!UserData.isAlive)
         {
@@ -49,6 +56,7 @@ public class ObstacleManager : MonoBehaviour
                     Destroy(child.gameObject);
                 }
                 UI.playButton.gameObject.SetActive(true);
+                UI.Update();
             }
         }
         else
@@ -74,6 +82,27 @@ public class ObstacleManager : MonoBehaviour
         // Set the random seed to player's map level, so every level is
         // different but a level in different phones are same
         Random.InitState(UserData.mapLevel);
+
+        // Set map time limit,
+        // when map level is   0, time is 10 seconds,
+        // when map level is 100, time is 20 seconds
+        float timeLimit = 10f + UserData.mapLevel * 0.1f;
+        mapTimeLimit = (timeLimit > 20f) ? 20f : timeLimit;
+    }
+
+    private void SetObstacleTimers(float _setTimeLimit, float _timeLimit)
+    {
+        if (mapTimeLimit >= _setTimeLimit)
+        {
+            mapTimeLimit -= _setTimeLimit;
+            obstacleSetTimeLimit = _setTimeLimit;
+        }
+        else
+        {
+            obstacleSetTimeLimit = (mapTimeLimit - _setTimeLimit > 0f) ? mapTimeLimit - _setTimeLimit : 0f;
+        }
+
+        obstacleTimeLimit = _timeLimit;
     }
 
     void GenerateObstacleSet()
@@ -82,12 +111,10 @@ public class ObstacleManager : MonoBehaviour
         switch (obstacleSet)
         {
             case 0:
-                obstacleSetTimeLimit = 10.0f;
-                obstacleTimeLimit = 0.5f;
+                SetObstacleTimers(2.0f, 0.5f);
                 break;
             case 1:
-                obstacleSetTimeLimit = 5.0f;
-                obstacleTimeLimit = 0.6f;
+                SetObstacleTimers(2.0f, 0.6f);
                 break;
         }
     }
