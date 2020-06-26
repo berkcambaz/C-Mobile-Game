@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class UserData
 {
     // --- SAVE FILE STUFF --- //
@@ -10,9 +9,19 @@ public class UserData
     public static int level;
 
     // --- NON-SAVE FILE STUFF --- //
-    [System.NonSerialized]
     public static bool isAlive = false;
 
     // --- SETTINGS --- //
     public static int fps = 60;
+}
+
+[System.Serializable]
+public class SaveData
+{
+    // --- SAVE FILE STUFF --- //
+    public int mapLevel;
+    public int level;
+
+    // --- SETTINGS --- //
+    public int fps = 60;
 }

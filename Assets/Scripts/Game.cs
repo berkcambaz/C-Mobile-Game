@@ -12,21 +12,29 @@ public class Game : MonoBehaviour
     public Button playButton;
     public Text mapLevelText;
 
-    private UserData userData;
+    private SaveData saveData;
 
     private float durationLimit;
     private float timer;
 
     void Start()
     {
-        userData = SaveSystem.ReadFile();
+        // Read "user.save" & write into "SaveData" class
+        saveData = SaveSystem.ReadFile();
 
+        // --- SETUP USERDATA --- //
+        UserData.mapLevel = saveData.mapLevel;
+        UserData.level = saveData.level;
+        UserData.fps = saveData.fps;
+
+        // --- SETUP SETTINGS --- //
         Application.targetFrameRate = UserData.fps;
 
         // --- SETUP UI SYSTEM --- //
         UI.playButton = playButton;
         UI.mapLevelText = mapLevelText;
 
+        // Update UI with data from save file
         UI.Update();
     }
 
@@ -40,16 +48,6 @@ public class Game : MonoBehaviour
             Play();
             durationLimit = 0f;
         }
-
-        // If player is dead, restart the game when touching to the screen
-        //if (!UserData.isAlive)
-        //{
-        //    if (Input.touchCount > 0 || Input.GetMouseButtonDown(0) && !GameObject.Find("Obstacle(Clone)"))
-        //    {
-        //        Instantiate(player);
-        //        UserData.isAlive = true;
-        //    }
-        //}
     }
 
     private void Play()
@@ -70,6 +68,6 @@ public class Game : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        SaveSystem.WriteFile(userData);
+        SaveSystem.WriteFile(saveData);
     }
 }

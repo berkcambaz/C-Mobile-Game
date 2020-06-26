@@ -1,5 +1,5 @@
-﻿#define DEBUG       // To play game on pc
-//#define RELEASE   // To play game on mobile, specifically android
+﻿//#define DEBUG       // To play game on pc
+#define RELEASE   // To play game on mobile, specifically android
 
 using System.Collections;
 using System.Collections.Generic;

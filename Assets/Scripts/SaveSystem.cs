@@ -6,40 +6,40 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem
 {
-    public static UserData ReadFile()
+    public static SaveData ReadFile()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/user.save";
-        UserData userData;
+        SaveData saveData;
         FileStream stream;
 
         if (File.Exists(path))
         {
             stream = new FileStream(path, FileMode.Open);
 
-            userData = (UserData)formatter.Deserialize(stream);
+            saveData = (SaveData)formatter.Deserialize(stream);
         }
         else
         {
             stream = new FileStream(path, FileMode.Create);
 
-            userData = new UserData();
+            saveData = new SaveData();
 
-            formatter.Serialize(stream, userData);
+            formatter.Serialize(stream, saveData);
         }
         stream.Close();
 
-        return userData;
+        return saveData;
     }
 
-    public static void WriteFile(UserData userData)
+    public static void WriteFile(SaveData saveData)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/user.save";
         FileStream stream = new FileStream(path, FileMode.Open);
 
-        formatter.Serialize(stream, userData);
+        formatter.Serialize(stream, saveData);
         stream.Close();
     }
 }
