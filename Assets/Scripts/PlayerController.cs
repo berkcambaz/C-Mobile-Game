@@ -48,15 +48,28 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        // When colliding with obstacle
         // TODO: Screen shake effect
+
+        // When colliding with obstacle
+        KillPlayer();
+
+        // When colliding with power-up
+    }
+
+    // Is only called when player finishes a level
+    void OnDestroy()
+    {
+        KillPlayer();
+    }
+
+    void KillPlayer()
+    {
         Instantiate(particle, transform.position, transform.rotation);
 
         UserData.isAlive = false;
+        ObstacleManager.mapTimeLimit = 0f;  // Stops spawning new obstacles
 
         Destroy(gameObject);
-
-        // When colliding with power-up
     }
 
     void DragAndDropMovement()

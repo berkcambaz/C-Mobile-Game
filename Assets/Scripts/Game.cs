@@ -12,12 +12,15 @@ public class Game : MonoBehaviour
     public Button playButton;
     public Text mapLevelText;
 
+    private UserData userData;
+
     private float durationLimit;
     private float timer;
 
     void Start()
     {
-        UserData userData = SaveSystem.ReadFile();
+        userData = SaveSystem.ReadFile();
+
         Application.targetFrameRate = UserData.fps;
 
         // --- SETUP UI SYSTEM --- //
@@ -54,8 +57,8 @@ public class Game : MonoBehaviour
         if (!UserData.isAlive)
         {
             ObstacleManager.SetupMapLevel();
-            Instantiate(player);
             UserData.isAlive = true;
+            Instantiate(player);
         }
     }
 
@@ -63,5 +66,10 @@ public class Game : MonoBehaviour
     {
         timer = 0f;
         durationLimit = duration;
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveSystem.WriteFile(userData);
     }
 }

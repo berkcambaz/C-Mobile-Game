@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
+    public GameObject particle;
+
     public float speed;
     public Vector2 size;
 
@@ -24,5 +26,17 @@ public class ObstacleController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    // If obstacle & player are collided, destroy both of them
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
+
+        // Set particle color to red, because obstacles are red
+        ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
+        psmain.startColor = Color.red;
+
+        Destroy(gameObject);
     }
 }

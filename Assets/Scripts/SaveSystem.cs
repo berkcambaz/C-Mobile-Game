@@ -11,21 +11,23 @@ public class SaveSystem
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/user.save";
         UserData userData;
+        FileStream stream;
 
         if (File.Exists(path))
         {
-            FileStream stream = new FileStream(path, FileMode.Open);
+            stream = new FileStream(path, FileMode.Open);
 
             userData = (UserData)formatter.Deserialize(stream);
         }
         else
         {
-            FileStream stream = new FileStream(path, FileMode.Create);
+            stream = new FileStream(path, FileMode.Create);
 
             userData = new UserData();
 
             formatter.Serialize(stream, userData);
         }
+        stream.Close();
 
         return userData;
     }
@@ -35,7 +37,7 @@ public class SaveSystem
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/user.save";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        FileStream stream = new FileStream(path, FileMode.Open);
 
         formatter.Serialize(stream, userData);
         stream.Close();

@@ -12,11 +12,11 @@ public class ObstacleManager : MonoBehaviour
     private const int maxObstacleSet = 2;
     private int obstacleSet = -1;
 
-    private static float mapTimeLimit;  // Time until player finishes a level
+    public static float mapTimeLimit;  // Time until player finishes a level
     private float obstacleSetTimeLimit; // Time until the obstacle set finishes
     private float obstacleTimeLimit;    // Time until a new obstacle appears
     private float timer;
-    private bool removeObstacles;
+    private bool removeObstacles = false;
 
     void Start()
     {
@@ -28,52 +28,74 @@ public class ObstacleManager : MonoBehaviour
         timer += Time.deltaTime;
         obstacleSetTimeLimit -= Time.deltaTime;
 
-        if (UserData.isAlive && mapTimeLimit <= 0f)
+        if (UserData.isAlive)
         {
-            UserData.isAlive = false;
-            ++UserData.mapLevel;
-        }
+            // If player has finished the level
+            if (mapTimeLimit <= 0f)
+            {
+                if (!removeObstacles)
+                {
+                    removeObstacles = true;
+                    timer = 0.0f;
 
-        if (!UserData.isAlive)
+                    ++UserData.mapLevel;
+                    DeleteObstacles();  // Destroy obstacles when level is finished
+                }
+                if (timer > 1f) // Wait some time after the level is finished, then destroy the player
+                {
+                    Destroy(GameObject.Find("Player(Clone)"));
+                }
+            }
+            else // If player hasn't finished the level, but still alive
+            {
+                removeObstacles = false;
+
+                // If current obstacle set is finished, generate new one
+                if (obstacleSetTimeLimit < 0f)
+                {
+                    GenerateObstacleSet();
+                }
+
+                // If ready to instantiate a new obstacle, instantiate obstacle
+                if (timer > obstacleTimeLimit)
+                {
+                    GenerateObstacles();
+
+                    timer = 0.0f;
+                }
+            }
+        }
+        else // If player is dead
         {
             if (!removeObstacles)
             {
                 removeObstacles = true;
                 timer = 0.0f;
-                obstacleSetTimeLimit = -1f;
             }
             if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
             {
-                for (int i = 0; i < transform.childCount; ++i)
-                {
-                    Transform child = transform.GetChild(i);
-                    GameObject particleInstance = Instantiate(particle, child.transform.position, child.transform.rotation);
+                DeleteObstacles();
 
-                    // Set particle color to red, because obstacles are red
-                    ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
-                    psmain.startColor = Color.red;
+                removeObstacles = false;    // Obstacles are deleted, so set it to "false"
 
-                    Destroy(child.gameObject);
-                }
                 UI.playButton.gameObject.SetActive(true);
                 UI.Update();
             }
         }
-        else
+    }
+
+    void DeleteObstacles()
+    {
+        for (int i = 0; i < transform.childCount; ++i)
         {
-            removeObstacles = false;
+            Transform child = transform.GetChild(i);
+            GameObject particleInstance = Instantiate(particle, child.transform.position, child.transform.rotation);
 
-            if (obstacleSetTimeLimit < 0f)
-            {
-                GenerateObstacleSet();
-            }
+            // Set particle color to red, because obstacles are red
+            ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
+            psmain.startColor = Color.red;
 
-            if (timer > obstacleTimeLimit)
-            {
-                GenerateObstacles();
-
-                timer = 0.0f;
-            }
+            Destroy(child.gameObject);
         }
     }
 
@@ -99,6 +121,7 @@ public class ObstacleManager : MonoBehaviour
         }
         else
         {
+            mapTimeLimit = 0f;
             obstacleSetTimeLimit = (mapTimeLimit - _setTimeLimit > 0f) ? mapTimeLimit - _setTimeLimit : 0f;
         }
 
@@ -134,6 +157,9 @@ public class ObstacleManager : MonoBehaviour
 
     // --- OBSTACLE SETS --- //
 
+    // TODO: When obstacles first appear, set a const variable to hold the gap between,
+    // visible & invinsible part of the screen
+
     /* Random obstacles appear */
     void Randomized()
     {
@@ -141,11 +167,11 @@ public class ObstacleManager : MonoBehaviour
         Vector2 obstacleSize = new Vector2(0.65f, 0.65f);
 
         // Generate random x for the obstacle
-        float obstacleX = Random.Range(-screenSize.x + obstacleSize.x / 2.0f, screenSize.x - obstacleSize.y / 2.0f);
+        float obstacleX = Random.Range(-screenSize.x + obstacleSize.x / 2f, screenSize.x - obstacleSize.y / 2f);
 
         // Set obstacle position
         obstaclePos.x = obstacleX;
-        obstaclePos.y = screenSize.y + 2.0f;
+        obstaclePos.y = screenSize.y + 2f;
         obstaclePos.z = 0f;
 
         // Instantiate obstacle
