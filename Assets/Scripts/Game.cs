@@ -68,6 +68,13 @@ public class Game : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        UserData.isQuitting = true;
+
+        // --- UPDATE SAVEDATA --- //
+        saveData.mapLevel = UserData.mapLevel;
+        saveData.level = UserData.level;
+        saveData.fps = UserData.fps;
+
         SaveSystem.WriteFile(saveData);
     }
 }

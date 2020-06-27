@@ -37,7 +37,7 @@ public class SaveSystem
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/user.save";
-        FileStream stream = new FileStream(path, FileMode.Open);
+        FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, saveData);
         stream.Close();

@@ -10,9 +10,10 @@ public class UserData
 
     // --- NON-SAVE FILE STUFF --- //
     public static bool isAlive = false;
+    public static bool isQuitting = false;
 
     // --- SETTINGS --- //
-    public static int fps = 60;
+    public static int fps;
 }
 
 [System.Serializable]
@@ -23,5 +24,5 @@ public class SaveData
     public int level;
 
     // --- SETTINGS --- //
-    public int fps = 60;
+    public int fps;
 }

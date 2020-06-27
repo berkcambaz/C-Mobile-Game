@@ -1,5 +1,5 @@
-﻿//#define DEBUG       // To play game on pc
-#define RELEASE   // To play game on mobile, specifically android
+﻿#define DEBUG       // To play game on pc
+//#define RELEASE   // To play game on mobile, specifically android
 
 using System.Collections;
 using System.Collections.Generic;
@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
         // When colliding with obstacle
         KillPlayer();
 
+        Destroy(gameObject);
+
         // When colliding with power-up
     }
 
@@ -64,12 +66,13 @@ public class PlayerController : MonoBehaviour
 
     void KillPlayer()
     {
-        Instantiate(particle, transform.position, transform.rotation);
+        if (!UserData.isQuitting)
+        {
+            Instantiate(particle, transform.position, transform.rotation);
+        }
 
         UserData.isAlive = false;
         ObstacleManager.mapTimeLimit = 0f;  // Stops spawning new obstacles
-
-        Destroy(gameObject);
     }
 
     void DragAndDropMovement()
