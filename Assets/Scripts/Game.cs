@@ -18,6 +18,8 @@ public class Game : MonoBehaviour
     public Text qualityText;
     public Text fpsText;
 
+    public GameObject pauseButton;
+
     private SaveData saveData;
 
     private float durationLimit = -1f;
@@ -29,11 +31,13 @@ public class Game : MonoBehaviour
 
         // Read "user.save" & write into "SaveData" class
         saveData = SaveSystem.ReadFile();
-        if (!saveData.Checksum())   // If true, user has cheated or opened the for the first time
+        if (!saveData.Checksum())   // If true, user has cheated
         {
             saveData.mapLevel = 0;
             saveData.level = 0;
         }
+        if (saveData.fps == 0)  // If first time opening the game, set fps to phone's refresh rate
+            saveData.fps = Screen.currentResolution.refreshRate;
 
         // --- SETUP USERDATA --- //
         UserData.mapLevel = saveData.mapLevel;
@@ -53,6 +57,8 @@ public class Game : MonoBehaviour
 
         UI.qualityText = qualityText;
         UI.fpsText = fpsText;
+
+        UI.pauseButton = pauseButton;
 
         // Init UI with data from save file
         UI.Init();
@@ -74,7 +80,7 @@ public class Game : MonoBehaviour
 
     public void ButtonClick(int index)
     {
-        timer = 0f;
+        timer = 0.001f;
         durationLimit = 0f;
 
         buttonIndex = index;
@@ -83,7 +89,7 @@ public class Game : MonoBehaviour
             case 0:
             case 1:
             case 6:
-                durationLimit = 0.35f;
+                durationLimit = 0.35f * Time.timeScale;
                 break;
         }
     }
@@ -94,6 +100,9 @@ public class Game : MonoBehaviour
         {
             case 0: // Play button 
                 UI.mainMenu.SetActive(false);
+                UI.pauseButton.SetActive(true);
+                Time.timeScale = 1f;
+                UserData.isPlaying = true;
 
                 Play();
                 break;
@@ -180,6 +189,14 @@ public class Game : MonoBehaviour
                 Application.targetFrameRate = UserData.fps;
                 break;
             case 6: // Back to "main menu" button
+                UI.mainMenu.SetActive(true);
+                UI.settingsMenu.SetActive(false);
+                break;
+            case 7: // Pause button
+                UI.pauseButton.SetActive(false);
+                Time.timeScale = 0f;
+                UserData.isPlaying = false;
+
                 UI.mainMenu.SetActive(true);
                 UI.settingsMenu.SetActive(false);
                 break;

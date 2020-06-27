@@ -1,5 +1,5 @@
-﻿//#define DEBUG       // To play game on pc
-#define RELEASE   // To play game on mobile, specifically android
+﻿#define DEBUG       // To play game on pc
+//#define RELEASE   // To play game on mobile, specifically android
 
 using System.Collections;
 using System.Collections.Generic;
@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
             touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
 #endif
-
-        DragAndDropMovement();
+        if (UserData.isPlaying)
+            DragAndDropMovement();
         ClampPlayerToMoveableArea();
     }
 
@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
             // Set particle color to red, because obstacles are red
             ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
             psmain.maxParticles = UserData.quality;
+
+            UI.pauseButton.SetActive(false);    // Disable pause button when player is deleted
         }
 
         UserData.isAlive = false;

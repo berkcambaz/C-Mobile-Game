@@ -27,7 +27,7 @@ public class SaveData
 
     // --- SETTINGS --- //
     public int quality = 10; // Number of particles, 10 - high, 5 - medium, 3 - low
-    public int fps = 30;
+    public int fps;
 
     // --- CHECKSUM --- //
     public int checksum;

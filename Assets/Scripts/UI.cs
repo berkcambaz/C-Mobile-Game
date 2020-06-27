@@ -14,6 +14,8 @@ public class UI
     public static Text qualityText;
     public static Text fpsText;
 
+    public static GameObject pauseButton;
+
     public static void Init()
     {
         RefreshSettings();
