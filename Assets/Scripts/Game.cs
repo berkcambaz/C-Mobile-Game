@@ -26,6 +26,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+
         // Read "user.save" & write into "SaveData" class
         saveData = SaveSystem.ReadFile();
         if (!saveData.Checksum())   // If true, user has cheated or opened the for the first time
@@ -41,7 +42,8 @@ public class Game : MonoBehaviour
         UserData.fps = saveData.fps;
 
         // --- SETUP SETTINGS --- //
-        Application.targetFrameRate = (UserData.fps) ? 60 : 30;
+        QualitySettings.vSyncCount = -1;
+        Application.targetFrameRate = UserData.fps;
 
         // --- SETUP UI SYSTEM --- //
         UI.hud = hud;
@@ -80,10 +82,9 @@ public class Game : MonoBehaviour
         {
             case 0:
             case 1:
-            case 4:
+            case 6:
                 durationLimit = 0.35f;
                 break;
-
         }
     }
 
@@ -100,19 +101,85 @@ public class Game : MonoBehaviour
                 UI.mainMenu.SetActive(false);
                 UI.settingsMenu.SetActive(true);
                 break;
-            case 2: // Quality increase&decrease button
-                UserData.quality = !UserData.quality;
-                // TODO: Set quality
+            case 2: // Quality increase button
+                switch (UserData.quality)
+                {
+                    case 10:
+                        UserData.quality = 3;
+                        break;
+                    case 5:
+                        UserData.quality = 10;
+                        break;
+                    case 3:
+                        UserData.quality = 5;
+                        break;
+                }
 
                 UI.RefreshSettings();
                 break;
-            case 3: // Fps increase&decrease button
-                UserData.fps = !UserData.fps;
-                Application.targetFrameRate = (UserData.fps) ? 60 : 30;
+            case 3: // Quality decrease button
+                switch (UserData.quality)
+                {
+                    case 10:
+                        UserData.quality = 5;
+                        break;
+                    case 5:
+                        UserData.quality = 3;
+                        break;
+                    case 3:
+                        UserData.quality = 10;
+                        break;
+                }
 
                 UI.RefreshSettings();
                 break;
-            case 4: // Back to "main menu" button
+            case 4: // Fps increase button
+                switch (UserData.fps)
+                {
+                    case 15:
+                        UserData.fps = 30;
+                        break;
+                    case 30:
+                        UserData.fps = 60;
+                        break;
+                    case 60:
+                        UserData.fps = 90;
+                        break;
+                    case 90:
+                        UserData.fps = 120;
+                        break;
+                    case 120:
+                        UserData.fps = 15;
+                        break;
+                }
+
+                UI.RefreshSettings();    // Refresh first, otherwise game freezes for a second
+                Application.targetFrameRate = UserData.fps;
+                break;
+            case 5: // Fps decrease button
+                switch (UserData.fps)
+                {
+                    case 15:
+                        UserData.fps = 120;
+                        break;
+                    case 30:
+                        UserData.fps = 15;
+                        break;
+                    case 60:
+                        UserData.fps = 30;
+                        break;
+                    case 90:
+                        UserData.fps = 60;
+                        break;
+                    case 120:
+                        UserData.fps = 90;
+                        break;
+                }
+
+                UI.RefreshSettings();   // Refresh first, otherwise game freezes for a second
+                Application.targetFrameRate = UserData.fps;
+                break;
+            case 6: // Back to "main menu" button
                 UI.mainMenu.SetActive(true);
                 UI.settingsMenu.SetActive(false);
                 break;
@@ -137,6 +204,7 @@ public class Game : MonoBehaviour
         // --- UPDATE SAVEDATA --- //
         saveData.mapLevel = UserData.mapLevel;
         saveData.level = UserData.level;
+        saveData.quality = UserData.quality;
         saveData.fps = UserData.fps;
 
         // Write checksum

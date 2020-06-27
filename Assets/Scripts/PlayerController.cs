@@ -51,14 +51,11 @@ public class PlayerController : MonoBehaviour
         // TODO: Screen shake effect
 
         // When colliding with obstacle
-        KillPlayer();
-
         Destroy(gameObject);
 
         // When colliding with power-up
     }
 
-    // Is only called when player finishes a level
     void OnDestroy()
     {
         KillPlayer();
@@ -68,7 +65,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!UserData.isQuitting)
         {
-            Instantiate(particle, transform.position, transform.rotation);
+            GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
+
+            // Set particle color to red, because obstacles are red
+            ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
+            psmain.maxParticles = UserData.quality;
         }
 
         UserData.isAlive = false;

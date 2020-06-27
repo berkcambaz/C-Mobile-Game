@@ -14,8 +14,8 @@ public class UserData
     public static bool isQuitting = false;
 
     // --- SETTINGS --- //
-    public static bool quality; // "bool", because there is only "high" & "low" setting, false = low, true = high
-    public static bool fps;     // "bool", because there is only "60" & "30" setting, false = 30, true = 60
+    public static int quality; // Number of particles, 10 - high, 5 - medium, 3 - low
+    public static int fps;
 }
 
 [System.Serializable]
@@ -26,8 +26,8 @@ public class SaveData
     public int level;
 
     // --- SETTINGS --- //
-    public bool quality = true; // "bool", because there is only "high" & "low" setting, false = low, true = high
-    public bool fps = true;     // "bool", because there is only "60" & "30" setting, false = 30, true = 60
+    public int quality = 10; // Number of particles, 10 - high, 5 - medium, 3 - low
+    public int fps = 30;
 
     // --- CHECKSUM --- //
     public int checksum;

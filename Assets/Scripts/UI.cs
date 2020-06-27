@@ -26,7 +26,23 @@ public class UI
 
     public static void RefreshSettings()
     {
-        qualityText.text = (UserData.quality) ? "high" : "low";
-        fpsText.text = (UserData.fps) ? "60" : "30";
+        RefreshQualityText();
+        fpsText.text = UserData.fps.ToString();
+    }
+
+    private static void RefreshQualityText()
+    {
+        switch (UserData.quality)
+        {
+            case 3:
+                qualityText.text = "low";
+                break;
+            case 5:
+                qualityText.text = "medium";
+                break;
+            case 10:
+                qualityText.text = "high";
+                break;
+        }
     }
 }
