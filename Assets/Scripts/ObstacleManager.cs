@@ -47,6 +47,10 @@ public class ObstacleManager : MonoBehaviour
                         UserData.isPlaying = false; // Player is not playing anymore
 
                         Destroy(GameObject.Find("Player(Clone)"));
+
+                        // Open main menu & update score
+                        UI.mainMenu.SetActive(true);
+                        UI.Update();
                     }
                 }
                 else // If player hasn't finished the level, but still alive
@@ -83,8 +87,8 @@ public class ObstacleManager : MonoBehaviour
 
                     removeObstacles = false;    // Obstacles are deleted, so set it to "false"
 
+                    // Open main menu & update score
                     UI.mainMenu.SetActive(true);
-
                     UI.Update();
                 }
             }

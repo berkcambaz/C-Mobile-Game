@@ -28,4 +28,21 @@ public class SaveData
     // --- SETTINGS --- //
     public bool quality = true; // "bool", because there is only "high" & "low" setting, false = low, true = high
     public bool fps = true;     // "bool", because there is only "60" & "30" setting, false = 30, true = 60
+
+    // --- CHECKSUM --- //
+    public int checksum;
+
+    public bool Checksum()
+    {
+        bool isEqual = false;
+
+        int sum = mapLevel + level;
+
+        if (checksum == sum)
+            isEqual = true;
+
+        checksum = sum;
+
+        return isEqual;
+    }
 }

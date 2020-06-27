@@ -28,6 +28,11 @@ public class Game : MonoBehaviour
     {
         // Read "user.save" & write into "SaveData" class
         saveData = SaveSystem.ReadFile();
+        if (!saveData.Checksum())   // If true, user has cheated or opened the for the first time
+        {
+            saveData.mapLevel = 0;
+            saveData.level = 0;
+        }
 
         // --- SETUP USERDATA --- //
         UserData.mapLevel = saveData.mapLevel;
@@ -94,8 +99,6 @@ public class Game : MonoBehaviour
             case 1: // Settings button
                 UI.mainMenu.SetActive(false);
                 UI.settingsMenu.SetActive(true);
-
-                GoToSettings();
                 break;
             case 2: // Quality increase&decrease button
                 UserData.quality = !UserData.quality;
@@ -127,11 +130,6 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void GoToSettings()
-    {
-
-    }
-
     void OnApplicationQuit()
     {
         UserData.isQuitting = true;
@@ -140,6 +138,9 @@ public class Game : MonoBehaviour
         saveData.mapLevel = UserData.mapLevel;
         saveData.level = UserData.level;
         saveData.fps = UserData.fps;
+
+        // Write checksum
+        saveData.Checksum();
 
         SaveSystem.WriteFile(saveData);
     }
