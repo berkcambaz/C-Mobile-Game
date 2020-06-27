@@ -10,20 +10,25 @@ public class SaveSystem
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/user.save";
-        SaveData saveData;
+        SaveData saveData = new SaveData();
         FileStream stream;
 
         if (File.Exists(path))
         {
             stream = new FileStream(path, FileMode.Open);
 
-            saveData = (SaveData)formatter.Deserialize(stream);
+            try
+            {
+                saveData = (SaveData)formatter.Deserialize(stream);
+            }
+            catch
+            {
+                stream = new FileStream(path, FileMode.Create);
+            }
         }
         else
         {
             stream = new FileStream(path, FileMode.Create);
-
-            saveData = new SaveData();
 
             formatter.Serialize(stream, saveData);
         }
