@@ -27,59 +27,66 @@ public class ObstacleManager : MonoBehaviour
     {
         timer += Time.deltaTime;
         obstacleSetTimeLimit -= Time.deltaTime;
-
-        if (UserData.isAlive)
+        if (UserData.isPlaying)
         {
-            // If player has finished the level
-            if (mapTimeLimit <= 0f)
+            if (UserData.isAlive)
+            {
+                // If player has finished the level
+                if (mapTimeLimit <= 0f)
+                {
+                    if (!removeObstacles)
+                    {
+                        removeObstacles = true;
+                        timer = 0.0f;
+
+                        ++UserData.mapLevel;
+                        DeleteObstacles();  // Destroy obstacles when level is finished
+                    }
+                    if (timer > 1.5f) // Wait some time after the level is finished, then destroy the player
+                    {
+                        UserData.isPlaying = false; // Player is not playing anymore
+
+                        Destroy(GameObject.Find("Player(Clone)"));
+                    }
+                }
+                else // If player hasn't finished the level, but still alive
+                {
+                    removeObstacles = false;
+
+                    // If current obstacle set is finished, generate new one
+                    if (obstacleSetTimeLimit < 0f)
+                    {
+                        GenerateObstacleSet();
+                    }
+
+                    // If ready to instantiate a new obstacle, instantiate obstacle
+                    if (timer > obstacleTimeLimit)
+                    {
+                        GenerateObstacles();
+
+                        timer = 0.0f;
+                    }
+                }
+            }
+            else // If player is dead
             {
                 if (!removeObstacles)
                 {
                     removeObstacles = true;
                     timer = 0.0f;
-
-                    ++UserData.mapLevel;
-                    DeleteObstacles();  // Destroy obstacles when level is finished
                 }
-                if (timer > 1.5f) // Wait some time after the level is finished, then destroy the player
+                if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
                 {
-                    Destroy(GameObject.Find("Player(Clone)"));
+                    UserData.isPlaying = false; // Player is not playing anymore
+
+                    DeleteObstacles();
+
+                    removeObstacles = false;    // Obstacles are deleted, so set it to "false"
+
+                    UI.mainMenu.SetActive(true);
+
+                    UI.Update();
                 }
-            }
-            else // If player hasn't finished the level, but still alive
-            {
-                removeObstacles = false;
-
-                // If current obstacle set is finished, generate new one
-                if (obstacleSetTimeLimit < 0f)
-                {
-                    GenerateObstacleSet();
-                }
-
-                // If ready to instantiate a new obstacle, instantiate obstacle
-                if (timer > obstacleTimeLimit)
-                {
-                    GenerateObstacles();
-
-                    timer = 0.0f;
-                }
-            }
-        }
-        else // If player is dead
-        {
-            if (!removeObstacles)
-            {
-                removeObstacles = true;
-                timer = 0.0f;
-            }
-            if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
-            {
-                DeleteObstacles();
-
-                removeObstacles = false;    // Obstacles are deleted, so set it to "false"
-
-                UI.playButton.gameObject.SetActive(true);
-                UI.Update();
             }
         }
     }

@@ -9,13 +9,20 @@ public class Game : MonoBehaviour
 {
     public GameObject player;
 
-    public Button playButton;
+    // --- UI STUFF --- //
+    public GameObject hud;
+    public GameObject mainMenu;
+    public GameObject settingsMenu;
+
     public Text mapLevelText;
+    public Text qualityText;
+    public Text fpsText;
 
     private SaveData saveData;
 
-    private float durationLimit;
+    private float durationLimit = -1f;
     private float timer;
+    private int buttonIndex;
 
     void Start()
     {
@@ -25,14 +32,23 @@ public class Game : MonoBehaviour
         // --- SETUP USERDATA --- //
         UserData.mapLevel = saveData.mapLevel;
         UserData.level = saveData.level;
+        UserData.quality = saveData.quality;
         UserData.fps = saveData.fps;
 
         // --- SETUP SETTINGS --- //
-        Application.targetFrameRate = UserData.fps;
+        Application.targetFrameRate = (UserData.fps) ? 60 : 30;
 
         // --- SETUP UI SYSTEM --- //
-        UI.playButton = playButton;
+        UI.hud = hud;
+        UI.mainMenu = mainMenu;
+        UI.settingsMenu = settingsMenu;
         UI.mapLevelText = mapLevelText;
+
+        UI.qualityText = qualityText;
+        UI.fpsText = fpsText;
+
+        // Init UI with data from save file
+        UI.Init();
 
         // Update UI with data from save file
         UI.Update();
@@ -42,11 +58,61 @@ public class Game : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > durationLimit && durationLimit != 0f)
+        if (timer > durationLimit && durationLimit >= 0f)
         {
-            UI.playButton.gameObject.SetActive(false);
-            Play();
-            durationLimit = 0f;
+            ButtonEvent();
+            durationLimit = -1f;
+        }
+    }
+
+    public void ButtonClick(int index)
+    {
+        timer = 0f;
+        durationLimit = 0f;
+
+        buttonIndex = index;
+        switch (index)
+        {
+            case 0:
+            case 1:
+            case 4:
+                durationLimit = 0.35f;
+                break;
+
+        }
+    }
+
+    private void ButtonEvent()
+    {
+        switch (buttonIndex)
+        {
+            case 0: // Play button 
+                UI.mainMenu.SetActive(false);
+
+                Play();
+                break;
+            case 1: // Settings button
+                UI.mainMenu.SetActive(false);
+                UI.settingsMenu.SetActive(true);
+
+                GoToSettings();
+                break;
+            case 2: // Quality increase&decrease button
+                UserData.quality = !UserData.quality;
+                // TODO: Set quality
+
+                UI.RefreshSettings();
+                break;
+            case 3: // Fps increase&decrease button
+                UserData.fps = !UserData.fps;
+                Application.targetFrameRate = (UserData.fps) ? 60 : 30;
+
+                UI.RefreshSettings();
+                break;
+            case 4: // Back to "main menu" button
+                UI.mainMenu.SetActive(true);
+                UI.settingsMenu.SetActive(false);
+                break;
         }
     }
 
@@ -55,15 +121,15 @@ public class Game : MonoBehaviour
         if (!UserData.isAlive)
         {
             ObstacleManager.SetupMapLevel();
+            UserData.isPlaying = true;
             UserData.isAlive = true;
             Instantiate(player);
         }
     }
 
-    public void PlayButtonClick(float duration)
+    private void GoToSettings()
     {
-        timer = 0f;
-        durationLimit = duration;
+
     }
 
     void OnApplicationQuit()
