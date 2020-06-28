@@ -26,10 +26,10 @@ public class ObstacleManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        obstacleSetTimeLimit -= Time.deltaTime;
 
         if (UserData.isPlaying)
         {
+
             if (UserData.isAlive)
             {
                 // If player has finished the level
@@ -39,15 +39,16 @@ public class ObstacleManager : MonoBehaviour
                     {
                         removeObstacles = true;
                         timer = 0.0f;
+                        obstacleSetTimeLimit = 0f;
 
                         ++UserData.mapLevel;
                         DeleteObstacles();  // Destroy obstacles when level is finished
                     }
                     if (timer > 1.5f) // Wait some time after the level is finished, then destroy the player
                     {
-                        UserData.isPlaying = false; // Player is not playing anymore
-
                         Destroy(GameObject.Find("Player(Clone)"));
+
+                        UserData.isPlaying = false; // Player is not playing anymore
 
                         // Open main menu & update score
                         UI.mainMenu.SetActive(true);
@@ -63,11 +64,12 @@ public class ObstacleManager : MonoBehaviour
                     {
                         GenerateObstacles();
 
-                        timer = 0.0f;
+                        obstacleSetTimeLimit -= obstacleTimeLimit;
+                        timer -= obstacleTimeLimit;
                     }
 
                     // If current obstacle set is finished, generate new one
-                    if (obstacleSetTimeLimit < 0f)
+                    if (obstacleSetTimeLimit <= 0f)
                     {
                         GenerateObstacleSet();
                     }
@@ -78,7 +80,8 @@ public class ObstacleManager : MonoBehaviour
                 if (!removeObstacles)
                 {
                     removeObstacles = true;
-                    timer = 0.0f;
+                    timer = 0f;
+                    obstacleSetTimeLimit = 0f;
                 }
                 if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
                 {
@@ -93,6 +96,10 @@ public class ObstacleManager : MonoBehaviour
                     UI.Update();
                 }
             }
+        }
+        else if (!UserData.isAlive)
+        {
+            timer = 0f;
         }
     }
 
@@ -116,7 +123,7 @@ public class ObstacleManager : MonoBehaviour
     {
         // Set the random seed to player's map level, so every level is
         // different but a level in different phones are same
-        Random.InitState(UserData.mapLevel);
+        Rand.InitState(UserData.mapLevel);
 
         // Set map time limit,
         // when map level is   0, time is 10 seconds,
@@ -143,7 +150,8 @@ public class ObstacleManager : MonoBehaviour
 
     void GenerateObstacleSet()
     {
-        obstacleSet = Random.Range(0, maxObstacleSet);
+        obstacleSet = Rand.Range(0, maxObstacleSet);
+
         switch (obstacleSet)
         {
             case 0: // Randomized
@@ -189,7 +197,7 @@ public class ObstacleManager : MonoBehaviour
         Vector2 obstacleSize = new Vector2(0.65f, 0.65f);
 
         // Generate random x for the obstacle
-        float obstacleX = Random.Range(-screenSize.x + obstacleSize.x / 2f, screenSize.x - obstacleSize.y / 2f);
+        float obstacleX = Rand.Range(-screenSize.x + obstacleSize.x / 2f, screenSize.x - obstacleSize.y / 2f);
 
         // Set obstacle position
         obstaclePos.x = obstacleX;
@@ -214,7 +222,7 @@ public class ObstacleManager : MonoBehaviour
 
         // Generate random size to obstacles
         // Gap between 2 obstcles is 1.5f (minLength + maxLength - screenSize.x)
-        obstacleSize[0].x = Random.Range(minLength, maxLength);
+        obstacleSize[0].x = Rand.Range(minLength, maxLength);
         obstacleSize[1].x = minLength + maxLength - obstacleSize[0].x;
 
         obstacleSize[0].y = 0.625f;
@@ -246,7 +254,7 @@ public class ObstacleManager : MonoBehaviour
         Vector2 obstacleSize = new Vector2(0.65f, 2.6f);
 
         // Generate random x for the obstacle
-        float obstacleX = Random.Range(-screenSize.x + obstacleSize.x / 2f, screenSize.x - obstacleSize.y / 2f);
+        float obstacleX = Rand.Range(-screenSize.x + obstacleSize.x / 2f, screenSize.x - obstacleSize.y / 2f);
 
         // Set obstacle position
         obstaclePos.x = obstacleX;
@@ -266,7 +274,7 @@ public class ObstacleManager : MonoBehaviour
         Vector2 obstacleSize = new Vector2(2.6f, 0.65f);
 
         // Generate random x for the obstacle
-        float obstacleX = Random.Range(-screenSize.x + obstacleSize.x / 2f, screenSize.x - obstacleSize.y / 2f);
+        float obstacleX = Rand.Range(-screenSize.x + obstacleSize.x / 2f, screenSize.x - obstacleSize.y / 2f);
 
         // Set obstacle position
         obstaclePos.x = obstacleX;

@@ -102,7 +102,6 @@ public class Game : MonoBehaviour
                 UI.mainMenu.SetActive(false);
                 UI.pauseButton.SetActive(true);
                 Time.timeScale = 1f;
-                UserData.isPlaying = true;
 
                 Play();
                 break;
@@ -205,10 +204,11 @@ public class Game : MonoBehaviour
 
     private void Play()
     {
+        UserData.isPlaying = true;
+
         if (!UserData.isAlive)
         {
             ObstacleManager.SetupMapLevel();
-            UserData.isPlaying = true;
             UserData.isAlive = true;
             Instantiate(player);
         }
