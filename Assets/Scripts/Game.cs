@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -12,6 +13,8 @@ public class Game : MonoBehaviour
     // --- UI STUFF --- //
     public GameObject hud;
     public GameObject mainMenu;
+    public GameObject upgradesMenu;
+    public GameObject customizeMenu;
     public GameObject settingsMenu;
 
     public Text mapLevelText;
@@ -24,7 +27,8 @@ public class Game : MonoBehaviour
 
     private float durationLimit = -1f;
     private float timer;
-    private int buttonIndex;
+
+    private int selectedIndex = -1;
 
     void Start()
     {
@@ -52,7 +56,10 @@ public class Game : MonoBehaviour
         // --- SETUP UI SYSTEM --- //
         UI.hud = hud;
         UI.mainMenu = mainMenu;
+        UI.upgradesMenu = upgradesMenu;
+        UI.customizeMenu = customizeMenu;
         UI.settingsMenu = settingsMenu;
+
         UI.mapLevelText = mapLevelText;
 
         UI.qualityText = qualityText;
@@ -83,12 +90,14 @@ public class Game : MonoBehaviour
         timer = 0.001f;
         durationLimit = 0f;
 
-        buttonIndex = index;
+        selectedIndex = index;
         switch (index)
         {
             case 0:
             case 1:
             case 6:
+            case 8:
+            case 9:
                 durationLimit = 0.35f * Time.timeScale;
                 break;
         }
@@ -96,108 +105,38 @@ public class Game : MonoBehaviour
 
     private void ButtonEvent()
     {
-        switch (buttonIndex)
+        switch (selectedIndex)
         {
-            case 0: // Play button 
-                UI.mainMenu.SetActive(false);
-                UI.pauseButton.SetActive(true);
-                Time.timeScale = 1f;
-
+            case 0:
+                Menu.PlayButton();
                 Play();
                 break;
-            case 1: // Settings button
-                UI.mainMenu.SetActive(false);
-                UI.settingsMenu.SetActive(true);
+            case 1:
+                Menu.SettingsButton();
                 break;
-            case 2: // Quality increase button
-                switch (UserData.quality)
-                {
-                    case 10:
-                        UserData.quality = 3;
-                        break;
-                    case 5:
-                        UserData.quality = 10;
-                        break;
-                    case 3:
-                        UserData.quality = 5;
-                        break;
-                }
-
-                UI.RefreshSettings();
+            case 2:
+                Menu.QualityIncreaseButton();
                 break;
-            case 3: // Quality decrease button
-                switch (UserData.quality)
-                {
-                    case 10:
-                        UserData.quality = 5;
-                        break;
-                    case 5:
-                        UserData.quality = 3;
-                        break;
-                    case 3:
-                        UserData.quality = 10;
-                        break;
-                }
-
-                UI.RefreshSettings();
+            case 3:
+                Menu.QualityDecreaseButton();
                 break;
-            case 4: // Fps increase button
-                switch (UserData.fps)
-                {
-                    case 15:
-                        UserData.fps = 30;
-                        break;
-                    case 30:
-                        UserData.fps = 60;
-                        break;
-                    case 60:
-                        UserData.fps = 90;
-                        break;
-                    case 90:
-                        UserData.fps = 120;
-                        break;
-                    case 120:
-                        UserData.fps = 15;
-                        break;
-                }
-
-                UI.RefreshSettings();    // Refresh first, otherwise game freezes for a second
-                Application.targetFrameRate = UserData.fps;
+            case 4:
+                Menu.FpsIncreaseButton();
                 break;
-            case 5: // Fps decrease button
-                switch (UserData.fps)
-                {
-                    case 15:
-                        UserData.fps = 120;
-                        break;
-                    case 30:
-                        UserData.fps = 15;
-                        break;
-                    case 60:
-                        UserData.fps = 30;
-                        break;
-                    case 90:
-                        UserData.fps = 60;
-                        break;
-                    case 120:
-                        UserData.fps = 90;
-                        break;
-                }
-
-                UI.RefreshSettings();   // Refresh first, otherwise game freezes for a second
-                Application.targetFrameRate = UserData.fps;
+            case 5:
+                Menu.FpsDecreaseButton();
                 break;
-            case 6: // Back to "main menu" button
-                UI.mainMenu.SetActive(true);
-                UI.settingsMenu.SetActive(false);
+            case 6:
+                Menu.BackToMenuButton();
                 break;
-            case 7: // Pause button
-                UI.pauseButton.SetActive(false);
-                Time.timeScale = 0f;
-                UserData.isPlaying = false;
-
-                UI.mainMenu.SetActive(true);
-                UI.settingsMenu.SetActive(false);
+            case 7:
+                Menu.PauseButton();
+                break;
+            case 8:
+                Menu.UpgradesButton();
+                break;
+            case 9:
+                Menu.CustomizeButton();
                 break;
         }
     }

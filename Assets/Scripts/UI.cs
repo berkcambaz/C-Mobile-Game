@@ -8,6 +8,8 @@ public class UI
 {
     public static GameObject hud;
     public static GameObject mainMenu;
+    public static GameObject upgradesMenu;
+    public static GameObject customizeMenu;
     public static GameObject settingsMenu;
 
     public static Text mapLevelText;
