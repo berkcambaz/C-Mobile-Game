@@ -123,6 +123,7 @@ public class ObstacleManager : MonoBehaviour
     {
         // Set the random seed to player's map level, so every level is
         // different but a level in different phones are same
+        Rand.Init();
         Rand.InitState(UserData.mapLevel);
 
         // Set map time limit,

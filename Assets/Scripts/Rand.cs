@@ -7,8 +7,14 @@ public class Rand
     private static int seed;
 
     // To calculate random seed
-    private static int sign = -1;
+    private static int sign;
     private static int number;  // least 0, max 10
+
+    public static void Init()
+    {
+        sign = -1;
+        number = 0;
+    }
 
     public static void InitState(int _seed)
     {
@@ -21,7 +27,7 @@ public class Rand
         float result = Random.Range(min, max);
         sign *= -1;
         number = (number + 1) % 10 * sign;
-        InitState(seed + 10);
+        InitState(seed + 10 * number);
 
         return result;
     }
