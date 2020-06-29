@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
 
 public class Game : MonoBehaviour
 {
     public GameObject player;
+
+    public Sprite[] skinSprites;
 
     // --- UI STUFF --- //
     public GameObject hud;
@@ -32,20 +29,39 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-
         // Read "user.save" & write into "SaveData" class
         saveData = SaveSystem.ReadFile();
         if (!saveData.Checksum())   // If true, user has cheated
         {
+            // TODO: Upgrade it so it also works with skins
             saveData.mapLevel = 0;
             saveData.level = 0;
         }
         if (saveData.fps == 0)  // If first time opening the game, set fps to phone's refresh rate
             saveData.fps = Screen.currentResolution.refreshRate;
 
+        // --- INIT SAVEDATA ---//
+        saveData.skins[0] = true;   // Unlock default skin
+        saveData.skins[1] = true;
+        saveData.skins[2] = true;
+        saveData.skins[3] = true;
+
         // --- SETUP USERDATA --- //
         UserData.mapLevel = saveData.mapLevel;
         UserData.level = saveData.level;
+
+        UserData.skins = saveData.skins;
+        UserData.upgrades = saveData.upgrades;
+
+        UserData.skinSprites = skinSprites;
+
+        UserData.playerSkinIndex = saveData.playerSkinIndex;
+        UserData.selectedSkinIndex = UserData.playerSkinIndex;  // Set the selected skin
+
+        /* - Init selected skin - */
+        customizeMenu.GetComponentInChildren<CustomizeMenu>().InitSelectedSkin();
+        /* - Init selected skin - */
+
         UserData.quality = saveData.quality;
         UserData.fps = saveData.fps;
 
@@ -160,6 +176,12 @@ public class Game : MonoBehaviour
         // --- UPDATE SAVEDATA --- //
         saveData.mapLevel = UserData.mapLevel;
         saveData.level = UserData.level;
+
+        saveData.skins = UserData.skins;
+        saveData.upgrades = UserData.upgrades;
+
+        saveData.playerSkinIndex = UserData.playerSkinIndex;
+
         saveData.quality = UserData.quality;
         saveData.fps = UserData.fps;
 

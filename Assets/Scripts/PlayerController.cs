@@ -67,7 +67,8 @@ public class PlayerController : MonoBehaviour
         {
             GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
 
-            // Set particle color to red, because obstacles are red
+            particleInstance.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(0, UserData.skinSprites[UserData.playerSkinIndex]);
+
             ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
             psmain.maxParticles = UserData.quality;
 
@@ -89,13 +90,13 @@ public class PlayerController : MonoBehaviour
             dragStartPos.x = touchPos.x - transform.localPosition.x;
             dragStartPos.y = touchPos.y - transform.localPosition.y;
         }
-#endif
 
         // If touch has stopped
         if (touch.phase == TouchPhase.Ended)
         {
             isHeld = false;
         }
+#endif
 
 #if DEBUG
         if (Input.GetMouseButtonDown(0))

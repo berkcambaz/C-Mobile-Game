@@ -1375,13 +1375,13 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 0
       scalar: 0.9999
       minScalar: 0.9999
       maxCurve:
