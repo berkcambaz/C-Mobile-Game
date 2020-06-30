@@ -22,6 +22,8 @@ public class UserData
     public static GameObject[] customizables = new GameObject[4];
     public static Sprite[] skinSprites = new Sprite[4];
 
+    public static int lastOpenedSkin;
+
     // --- SETTINGS --- //
     public static int quality; // Number of particles, 10 - high, 5 - medium, 3 - low
     public static int fps;

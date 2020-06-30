@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UI
 {
+    public static GameObject notification;
     public static GameObject hud;
     public static GameObject mainMenu;
     public static GameObject upgradesMenu;

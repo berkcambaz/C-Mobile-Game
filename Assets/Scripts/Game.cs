@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
     public Sprite[] skinSprites;
 
     // --- UI STUFF --- //
+    public GameObject notification;
     public GameObject hud;
     public GameObject mainMenu;
     public GameObject upgradesMenu;
@@ -83,6 +84,7 @@ public class Game : MonoBehaviour
         Application.targetFrameRate = UserData.fps;
 
         // --- SETUP UI SYSTEM --- //
+        UI.notification = notification;
         UI.hud = hud;
         UI.mainMenu = mainMenu;
         UI.upgradesMenu = upgradesMenu;

@@ -142,7 +142,7 @@ public class CustomizeMenu : MonoBehaviour
         int skinIndex = -1;
         switch (UserData.mapLevel)
         {
-            case 5:
+            case 1:
                 skinIndex = 1;
                 break;
             case 10:
@@ -159,17 +159,20 @@ public class CustomizeMenu : MonoBehaviour
                 break;
         }
 
-        if (skinIndex != -1)
+        // If skin index is not -1 & the skin is not unlocked
+        if (skinIndex != -1 && !UserData.skins[skinIndex])
         {
-            // TODO: A screen notification
-
             // Activate skin from user data
             UserData.skins[skinIndex] = true;
+            UserData.lastOpenedSkin = skinIndex;
 
             // Activates skin's description
             UserData.customizables[skinIndex].transform.GetChild(2).gameObject.SetActive(true);
             // Deactivates skin's unlock text
             UserData.customizables[skinIndex].transform.GetChild(3).gameObject.SetActive(false);
+
+            // Send a notification
+            UI.notification.SetActive(true);
         }
     }
 }
