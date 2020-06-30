@@ -7,8 +7,6 @@ public class CustomizeMenu : MonoBehaviour
 {
     public GameObject player;
 
-    public GameObject[] customizables;
-
     private Touch touch;
     private Vector3 touchPos;
 
@@ -86,8 +84,8 @@ public class CustomizeMenu : MonoBehaviour
             // Clamp the index
             if (index < 0)
                 index = 0;
-            else if (index > customizables.Length - 1)
-                index = customizables.Length - 1;
+            else if (index > UserData.customizables.Length - 1)
+                index = UserData.customizables.Length - 1;
 
             UserData.selectedSkinIndex = index;
         }
@@ -97,12 +95,12 @@ public class CustomizeMenu : MonoBehaviour
             if (Mathf.RoundToInt(transform.localPosition.y / 650f) == UserData.selectedSkinIndex)
                 isChanging = false;
 
-            for (int i = 0; i < customizables.Length; ++i)
+            for (int i = 0; i < UserData.customizables.Length; ++i)
             {
                 if (i == UserData.selectedSkinIndex)
-                    customizables[i].transform.localScale = Vector3.Lerp(customizables[i].transform.localScale, new Vector3(1f, 1f, 1f), 0.1f);
+                    UserData.customizables[i].transform.localScale = Vector3.Lerp(UserData.customizables[i].transform.localScale, new Vector3(1f, 1f, 1f), 0.1f);
                 else
-                    customizables[i].transform.localScale = Vector3.Lerp(customizables[i].transform.localScale, new Vector3(0.85f, 0.85f, 1f), 0.1f);
+                    UserData.customizables[i].transform.localScale = Vector3.Lerp(UserData.customizables[i].transform.localScale, new Vector3(0.85f, 0.85f, 1f), 0.1f);
             }
         }
     }
@@ -114,8 +112,8 @@ public class CustomizeMenu : MonoBehaviour
         // If skin is unlocked, select the skin
         if (UserData.skins[index])
         {
-            customizables[UserData.playerSkinIndex].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);  // Disable last selected one
-            customizables[index].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);  // Enable newly selected one
+            UserData.customizables[UserData.playerSkinIndex].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);  // Disable last selected one
+            UserData.customizables[index].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);  // Enable newly selected one
             player.GetComponent<SpriteRenderer>().sprite = UserData.skinSprites[index]; // Change player's skin
             UserData.playerSkinIndex = index;   // Change index to selected skin's index
         }
@@ -123,19 +121,55 @@ public class CustomizeMenu : MonoBehaviour
         UserData.selectedSkinIndex = index;
     }
 
-    public void InitSelectedSkin()
+    public void InitSkins()
     {
         player.GetComponent<SpriteRenderer>().sprite = UserData.skinSprites[UserData.selectedSkinIndex];
-        customizables[UserData.selectedSkinIndex].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        UserData.customizables[UserData.selectedSkinIndex].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
 
-        for (int i = 1; i < customizables.Length; ++i)
+        for (int i = 1; i < UserData.customizables.Length; ++i)
         {
             // If skin is unlocked
             if (UserData.skins[i])
             {
-                customizables[i].transform.GetChild(2).gameObject.SetActive(true);  // Activates skin's description
-                customizables[i].transform.GetChild(3).gameObject.SetActive(false); // Deactivates skin's unlock text
+                UserData.customizables[i].transform.GetChild(2).gameObject.SetActive(true);  // Activates skin's description
+                UserData.customizables[i].transform.GetChild(3).gameObject.SetActive(false); // Deactivates skin's unlock text
             }
+        }
+    }
+
+    public static void CheckSkinUnlockFromMapLevel()
+    {
+        int skinIndex = -1;
+        switch (UserData.mapLevel)
+        {
+            case 5:
+                skinIndex = 1;
+                break;
+            case 10:
+                skinIndex = 2;
+                break;
+            case 25:
+                skinIndex = 3;
+                break;
+            case 50:
+                skinIndex = 4;
+                break;
+            case 100:
+                skinIndex = 5;
+                break;
+        }
+
+        if (skinIndex != -1)
+        {
+            // TODO: A screen notification
+
+            // Activate skin from user data
+            UserData.skins[skinIndex] = true;
+
+            // Activates skin's description
+            UserData.customizables[skinIndex].transform.GetChild(2).gameObject.SetActive(true);
+            // Deactivates skin's unlock text
+            UserData.customizables[skinIndex].transform.GetChild(3).gameObject.SetActive(false);
         }
     }
 }

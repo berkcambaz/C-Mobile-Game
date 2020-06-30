@@ -8,6 +8,7 @@ public class Game : MonoBehaviour
 {
     public GameObject player;
 
+    public GameObject[] customizables;
     public Sprite[] skinSprites;
 
     // --- UI STUFF --- //
@@ -64,13 +65,14 @@ public class Game : MonoBehaviour
         UserData.skins = saveData.skins;
         UserData.upgrades = saveData.upgrades;
 
+        UserData.customizables = customizables;
         UserData.skinSprites = skinSprites;
 
         UserData.playerSkinIndex = saveData.playerSkinIndex;
         UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
 
         /* - Init selected skin - */
-        customizeMenu.transform.GetChild(1).GetComponent<CustomizeMenu>().InitSelectedSkin();
+        customizeMenu.transform.GetChild(1).GetComponent<CustomizeMenu>().InitSkins();
         /* - Init selected skin - */
 
         UserData.quality = saveData.quality;

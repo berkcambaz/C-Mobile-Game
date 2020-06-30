@@ -19,6 +19,7 @@ public class UserData
     public static bool isAlive = false;
     public static bool isQuitting = false;
 
+    public static GameObject[] customizables = new GameObject[4];
     public static Sprite[] skinSprites = new Sprite[4];
 
     // --- SETTINGS --- //

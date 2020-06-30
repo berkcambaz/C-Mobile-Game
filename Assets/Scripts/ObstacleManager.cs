@@ -50,6 +50,9 @@ public class ObstacleManager : MonoBehaviour
 
                         UserData.isPlaying = false; // Player is not playing anymore
 
+                        // Update customizables 
+                        CustomizeMenu.CheckSkinUnlockFromMapLevel();
+
                         // Open main menu & update score
                         UI.upgradesButton.SetActive(true);
                         UI.customizeButton.SetActive(true);
@@ -92,6 +95,9 @@ public class ObstacleManager : MonoBehaviour
                     DeleteObstacles();
 
                     removeObstacles = false;    // Obstacles are deleted, so set it to "false"
+
+                    // Update customizables 
+                    CustomizeMenu.CheckSkinUnlockFromMapLevel();
 
                     // Open main menu & update score
                     UI.upgradesButton.SetActive(true);
