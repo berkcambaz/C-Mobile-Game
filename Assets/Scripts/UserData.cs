@@ -12,6 +12,7 @@ public class UserData
     public static int[] upgrades;
 
     public static int playerSkinIndex = 0;
+    public static int selectedSkinIndex = 0;
 
     // --- NON-SAVE FILE STUFF --- //
     public static bool isPlaying = false;
@@ -19,7 +20,6 @@ public class UserData
     public static bool isQuitting = false;
 
     public static Sprite[] skinSprites = new Sprite[4];
-    public static int selectedSkinIndex;
 
     // --- SETTINGS --- //
     public static int quality; // Number of particles, 10 - high, 5 - medium, 3 - low

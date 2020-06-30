@@ -1,4 +1,7 @@
-﻿using System;
+﻿#define DEBUG       // To play game on pc
+//#define RELEASE   // To play game on mobile, specifically android
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +13,14 @@ public class CustomizeMenu : MonoBehaviour
 
     public GameObject[] customizables;
     public GameObject[] icons;
+    public string[] unlockText;
 
     private Touch touch;
     private Vector3 touchPos;
 
     private Vector2 dragStartPos;
     private bool isHeld = false;
-    private bool isChanging = false;
+    private bool isChanging = true;
 
     void Update()
     {

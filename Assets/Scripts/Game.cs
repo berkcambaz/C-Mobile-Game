@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿#define DEBUG       // To play game on pc
+//#define RELEASE   // To play game on mobile, specifically android
+
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Game : MonoBehaviour
@@ -56,7 +59,7 @@ public class Game : MonoBehaviour
         UserData.skinSprites = skinSprites;
 
         UserData.playerSkinIndex = saveData.playerSkinIndex;
-        UserData.selectedSkinIndex = UserData.playerSkinIndex;  // Set the selected skin
+        UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
 
         /* - Init selected skin - */
         customizeMenu.GetComponentInChildren<CustomizeMenu>().InitSelectedSkin();
@@ -169,7 +172,21 @@ public class Game : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit()
+#if DEBUG
+    void OnApplicationQuit()    // Runs when the game is quitting on pc
+    {
+        Save();
+    }
+#endif
+
+#if RELEASE
+    void OnApplicationPause()   // Runs when pressed to home button on android
+    {
+        Save();
+    }
+#endif
+
+    void Save()
     {
         UserData.isQuitting = true;
 
