@@ -12,7 +12,7 @@ public class ObstacleManager : MonoBehaviour
     private const int maxObstacleSet = 4;
     private int obstacleSet = -1;
 
-    public static float mapTimeLimit;  // Time until player finishes a level
+    public static float mapTimeLimit;   // Time until player finishes a level
     private float obstacleSetTimeLimit; // Time until the obstacle set finishes
     private float obstacleTimeLimit;    // Time until a new obstacle appears
     private float timer;
@@ -51,6 +51,8 @@ public class ObstacleManager : MonoBehaviour
                         UserData.isPlaying = false; // Player is not playing anymore
 
                         // Open main menu & update score
+                        UI.upgradesButton.SetActive(true);
+                        UI.customizeButton.SetActive(true);
                         UI.mainMenu.SetActive(true);
                         UI.Update();
                     }
@@ -92,6 +94,8 @@ public class ObstacleManager : MonoBehaviour
                     removeObstacles = false;    // Obstacles are deleted, so set it to "false"
 
                     // Open main menu & update score
+                    UI.upgradesButton.SetActive(true);
+                    UI.customizeButton.SetActive(true);
                     UI.mainMenu.SetActive(true);
                     UI.Update();
                 }

@@ -121,8 +121,10 @@ public class Menu
         Time.timeScale = 0f;
         UserData.isPlaying = false;
 
+        UI.upgradesButton.SetActive(false);
+        UI.customizeButton.SetActive(false);
+
         UI.mainMenu.SetActive(true);
-        UI.settingsMenu.SetActive(false);
     }
 
     public static void UpgradesButton()

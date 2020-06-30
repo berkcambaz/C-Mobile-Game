@@ -18,10 +18,14 @@ public class Game : MonoBehaviour
     public GameObject settingsMenu;
 
     public Text mapLevelText;
+
     public Text qualityText;
     public Text fpsText;
 
     public GameObject pauseButton;
+
+    public GameObject upgradesButton;
+    public GameObject customizeButton;
 
     private SaveData saveData;
 
@@ -36,18 +40,22 @@ public class Game : MonoBehaviour
         saveData = SaveSystem.ReadFile();
         if (!saveData.Checksum())   // If true, user has cheated
         {
-            // TODO: Upgrade it so it also works with skins
             saveData.mapLevel = 0;
             saveData.level = 0;
+
+            for (int i = 0; i < 64; ++i)
+            {
+                saveData.skins[i] = false;
+                saveData.upgrades[i] = 0;
+            }
+
+            saveData.playerSkinIndex = 0;
         }
         if (saveData.fps == 0)  // If first time opening the game, set fps to phone's refresh rate
             saveData.fps = Screen.currentResolution.refreshRate;
 
         // --- INIT SAVEDATA ---//
         saveData.skins[0] = true;   // Unlock default skin
-        saveData.skins[1] = true;
-        saveData.skins[2] = true;
-        saveData.skins[3] = true;
 
         // --- SETUP USERDATA --- //
         UserData.mapLevel = saveData.mapLevel;
@@ -62,7 +70,7 @@ public class Game : MonoBehaviour
         UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
 
         /* - Init selected skin - */
-        customizeMenu.GetComponentInChildren<CustomizeMenu>().InitSelectedSkin();
+        customizeMenu.transform.GetChild(1).GetComponent<CustomizeMenu>().InitSelectedSkin();
         /* - Init selected skin - */
 
         UserData.quality = saveData.quality;
@@ -85,6 +93,9 @@ public class Game : MonoBehaviour
         UI.fpsText = fpsText;
 
         UI.pauseButton = pauseButton;
+
+        UI.upgradesButton = upgradesButton;
+        UI.customizeButton = customizeButton;
 
         // Init UI with data from save file
         UI.Init();

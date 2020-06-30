@@ -1,19 +1,13 @@
 ﻿#define DEBUG       // To play game on pc
 //#define RELEASE   // To play game on mobile, specifically android
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CustomizeMenu : MonoBehaviour
 {
     public GameObject player;
 
     public GameObject[] customizables;
-    public GameObject[] icons;
-    public string[] unlockText;
 
     private Touch touch;
     private Vector3 touchPos;
@@ -120,8 +114,8 @@ public class CustomizeMenu : MonoBehaviour
         // If skin is unlocked, select the skin
         if (UserData.skins[index])
         {
-            icons[UserData.playerSkinIndex].SetActive(false);  // Disable last selected one
-            icons[index].SetActive(true);           // Enable newly selected one
+            customizables[UserData.playerSkinIndex].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);  // Disable last selected one
+            customizables[index].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);  // Enable newly selected one
             player.GetComponent<SpriteRenderer>().sprite = UserData.skinSprites[index]; // Change player's skin
             UserData.playerSkinIndex = index;   // Change index to selected skin's index
         }
@@ -132,6 +126,16 @@ public class CustomizeMenu : MonoBehaviour
     public void InitSelectedSkin()
     {
         player.GetComponent<SpriteRenderer>().sprite = UserData.skinSprites[UserData.selectedSkinIndex];
-        icons[UserData.selectedSkinIndex].SetActive(true);
+        customizables[UserData.selectedSkinIndex].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+
+        for (int i = 1; i < customizables.Length; ++i)
+        {
+            // If skin is unlocked
+            if (UserData.skins[i])
+            {
+                customizables[i].transform.GetChild(2).gameObject.SetActive(true);  // Activates skin's description
+                customizables[i].transform.GetChild(3).gameObject.SetActive(false); // Deactivates skin's unlock text
+            }
+        }
     }
 }

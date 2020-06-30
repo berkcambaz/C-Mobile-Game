@@ -13,10 +13,14 @@ public class UI
     public static GameObject settingsMenu;
 
     public static Text mapLevelText;
+
     public static Text qualityText;
     public static Text fpsText;
 
     public static GameObject pauseButton;
+
+    public static GameObject upgradesButton;
+    public static GameObject customizeButton;
 
     public static void Init()
     {
