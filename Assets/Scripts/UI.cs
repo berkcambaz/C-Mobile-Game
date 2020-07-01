@@ -16,6 +16,7 @@ public class UI
     public static Text mapLevelText;
 
     public static Text qualityText;
+    public static Text particleText;
     public static Text fpsText;
 
     public static GameObject pauseButton;
@@ -36,22 +37,47 @@ public class UI
     public static void RefreshSettings()
     {
         RefreshQualityText();
-        fpsText.text = UserData.fps.ToString();
+        RefreshParticleText();
+        RefreshFpsText();
     }
 
     private static void RefreshQualityText()
     {
         switch (UserData.quality)
         {
-            case 3:
-                qualityText.text = "low";
-                break;
-            case 5:
-                qualityText.text = "medium";
-                break;
-            case 10:
+            case true:
                 qualityText.text = "high";
                 break;
+            case false:
+                qualityText.text = "low";
+                break;
         }
+    }
+
+    private static void RefreshParticleText()
+    {
+        switch (UserData.particles)
+        {
+            case 3:
+                particleText.text = "low";
+                break;
+            case 5:
+                particleText.text = "medium";
+                break;
+            case 10:
+                particleText.text = "high";
+                break;
+        }
+    }
+
+    private static void RefreshFpsText()
+    {
+        if (UserData.fps == Screen.currentResolution.refreshRate)
+        {
+            fpsText.text = "default";
+            return;
+        }
+
+        fpsText.text = UserData.fps.ToString();
     }
 }

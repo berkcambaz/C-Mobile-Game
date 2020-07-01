@@ -25,7 +25,8 @@ public class UserData
     public static int lastOpenedSkin;
 
     // --- SETTINGS --- //
-    public static int quality; // Number of particles, 10 - high, 5 - medium, 3 - low
+    public static bool quality;     // Quality of the game, false - low, true - high
+    public static int particles;    // Number of particles, 10 - high, 5 - medium, 3 - low
     public static int fps;
 }
 
@@ -42,7 +43,8 @@ public class SaveData
     public int playerSkinIndex;
 
     // --- SETTINGS --- //
-    public int quality = 10; // Number of particles, 10 - high, 5 - medium, 3 - low
+    public bool quality = true; // Quality of the game, false - low, true - high
+    public int particles = 10;  // Number of particles, 10 - high, 5 - medium, 3 - low
     public int fps;
 
     // --- CHECKSUM --- //

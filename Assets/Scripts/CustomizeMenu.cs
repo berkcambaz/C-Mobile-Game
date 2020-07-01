@@ -9,9 +9,13 @@ public class CustomizeMenu : MonoBehaviour
 
     private Touch touch;
     private Vector3 touchPos;
+    private Vector3 touchPosOld;
+    private float scrollSensitivity = 1f;
+    private float move;
 
     private Vector2 dragStartPos;
     private bool isHeld = false;
+
     private bool isChanging = true;
 
     void Update()
@@ -59,7 +63,8 @@ public class CustomizeMenu : MonoBehaviour
         {
             isHeld = true;
 
-            dragStartPos.y = touchPos.y - transform.localPosition.y;
+            //dragStartPos.y = touchPos.y - transform.localPosition.y;
+            dragStartPos.y = touchPos.y;
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -71,7 +76,18 @@ public class CustomizeMenu : MonoBehaviour
         // If touching
         if (isHeld)
         {
-            transform.localPosition = new Vector3(0f, touchPos.y - dragStartPos.y, transform.position.z);
+            move = 0f;
+            if (touchPos.y > dragStartPos.y)
+                move = touchPos.y - dragStartPos.y;
+            else if (touchPos.y < dragStartPos.y)
+                move = touchPos.y - dragStartPos.y;
+            //transform.localPosition = new Vector3(0f, touchPos.y - dragStartPos.y, 0f);
+            if (!Mathf.Approximately(touchPos.y, touchPosOld.y))
+            {
+                touchPosOld.y = touchPos.y;
+                transform.localPosition = new Vector3(0f, transform.localPosition.y + move * scrollSensitivity, 0f);
+            }
+            dragStartPos = touchPos;
         }
     }
 
@@ -156,6 +172,15 @@ public class CustomizeMenu : MonoBehaviour
                 break;
             case 100:
                 skinIndex = 5;
+                break;
+            case 250:
+                skinIndex = 6;
+                break;
+            case 500:
+                skinIndex = 7;
+                break;
+            case 1000:
+                skinIndex = 8;
                 break;
         }
 

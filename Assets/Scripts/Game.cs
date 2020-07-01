@@ -22,6 +22,7 @@ public class Game : MonoBehaviour
     public Text mapLevelText;
 
     public Text qualityText;
+    public Text particleText;
     public Text fpsText;
 
     public GameObject pauseButton;
@@ -72,11 +73,8 @@ public class Game : MonoBehaviour
         UserData.playerSkinIndex = saveData.playerSkinIndex;
         UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
 
-        /* - Init selected skin - */
-        customizeMenu.transform.GetChild(1).GetComponent<CustomizeMenu>().InitSkins();
-        /* - Init selected skin - */
-
         UserData.quality = saveData.quality;
+        UserData.particles = saveData.particles;
         UserData.fps = saveData.fps;
 
         // --- SETUP SETTINGS --- //
@@ -94,6 +92,7 @@ public class Game : MonoBehaviour
         UI.mapLevelText = mapLevelText;
 
         UI.qualityText = qualityText;
+        UI.particleText = particleText;
         UI.fpsText = fpsText;
 
         UI.pauseButton = pauseButton;
@@ -106,6 +105,10 @@ public class Game : MonoBehaviour
 
         // Update UI with data from save file
         UI.Update();
+
+        /* - Init selected skin - */
+        customizeMenu.transform.GetChild(1).GetComponent<CustomizeMenu>().InitSkins();
+        /* - Init selected skin - */
     }
 
     void Update()
@@ -127,11 +130,11 @@ public class Game : MonoBehaviour
         selectedIndex = index;
         switch (index)
         {
-            case 0:
-            case 1:
-            case 6:
-            case 8:
-            case 9:
+            case 0:     // Play button
+            case 1:     // Settings button
+            case 8:     // Back to menu button
+            case 10:    // Upgrades button
+            case 11:    // Customize button
                 durationLimit = 0.35f * Time.timeScale;
                 break;
         }
@@ -155,21 +158,27 @@ public class Game : MonoBehaviour
                 Menu.QualityDecreaseButton();
                 break;
             case 4:
-                Menu.FpsIncreaseButton();
+                Menu.ParticleIncreaseButton();
                 break;
             case 5:
-                Menu.FpsDecreaseButton();
+                Menu.ParticleDecreaseButton();
                 break;
             case 6:
-                Menu.BackToMenuButton();
+                Menu.FpsIncreaseButton();
                 break;
             case 7:
-                Menu.PauseButton();
+                Menu.FpsDecreaseButton();
                 break;
             case 8:
-                Menu.UpgradesButton();
+                Menu.BackToMenuButton();
                 break;
             case 9:
+                Menu.PauseButton();
+                break;
+            case 10:
+                Menu.UpgradesButton();
+                break;
+            case 11:
                 Menu.CustomizeButton();
                 break;
         }
@@ -214,7 +223,7 @@ public class Game : MonoBehaviour
 
         saveData.playerSkinIndex = UserData.playerSkinIndex;
 
-        saveData.quality = UserData.quality;
+        saveData.particles = UserData.particles;
         saveData.fps = UserData.fps;
 
         // Write checksum

@@ -122,7 +122,7 @@ public class ObstacleManager : MonoBehaviour
 
             // Set particle color to red, because obstacles are red
             ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
-            psmain.maxParticles = UserData.quality;
+            psmain.maxParticles = UserData.particles;
             psmain.startColor = Color.red;
 
             Destroy(child.gameObject);

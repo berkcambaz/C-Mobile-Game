@@ -21,34 +21,48 @@ public class Menu
 
     public static void QualityIncreaseButton()
     {
-        switch (UserData.quality)
-        {
-            case 10:
-                UserData.quality = 3;
-                break;
-            case 5:
-                UserData.quality = 10;
-                break;
-            case 3:
-                UserData.quality = 5;
-                break;
-        }
+        UserData.quality = !UserData.quality;
 
         UI.RefreshSettings();
     }
 
     public static void QualityDecreaseButton()
     {
-        switch (UserData.quality)
+        UserData.quality = !UserData.quality;
+
+        UI.RefreshSettings();
+    }
+
+    public static void ParticleIncreaseButton()
+    {
+        switch (UserData.particles)
         {
             case 10:
-                UserData.quality = 5;
+                UserData.particles = 3;
                 break;
             case 5:
-                UserData.quality = 3;
+                UserData.particles = 10;
                 break;
             case 3:
-                UserData.quality = 10;
+                UserData.particles = 5;
+                break;
+        }
+
+        UI.RefreshSettings();
+    }
+
+    public static void ParticleDecreaseButton()
+    {
+        switch (UserData.particles)
+        {
+            case 10:
+                UserData.particles = 5;
+                break;
+            case 5:
+                UserData.particles = 3;
+                break;
+            case 3:
+                UserData.particles = 10;
                 break;
         }
 
@@ -57,24 +71,10 @@ public class Menu
 
     public static void FpsIncreaseButton()
     {
-        switch (UserData.fps)
-        {
-            case 15:
-                UserData.fps = 30;
-                break;
-            case 30:
-                UserData.fps = 60;
-                break;
-            case 60:
-                UserData.fps = 90;
-                break;
-            case 90:
-                UserData.fps = 120;
-                break;
-            case 120:
-                UserData.fps = 15;
-                break;
-        }
+        if (UserData.fps == 30)
+            UserData.fps = Screen.currentResolution.refreshRate;
+        else if (UserData.fps == Screen.currentResolution.refreshRate)
+            UserData.fps = 30;
 
         UI.RefreshSettings();
         Application.targetFrameRate = UserData.fps;
@@ -82,24 +82,10 @@ public class Menu
 
     public static void FpsDecreaseButton()
     {
-        switch (UserData.fps)
-        {
-            case 15:
-                UserData.fps = 120;
-                break;
-            case 30:
-                UserData.fps = 15;
-                break;
-            case 60:
-                UserData.fps = 30;
-                break;
-            case 90:
-                UserData.fps = 60;
-                break;
-            case 120:
-                UserData.fps = 90;
-                break;
-        }
+        if (UserData.fps == 30)
+            UserData.fps = Screen.currentResolution.refreshRate;
+        else if (UserData.fps == Screen.currentResolution.refreshRate)
+            UserData.fps = 30;
 
         UI.RefreshSettings();
         Application.targetFrameRate = UserData.fps;

@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
             particleInstance.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(0, UserData.skinSprites[UserData.playerSkinIndex]);
 
             ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
-            psmain.maxParticles = UserData.quality;
+            psmain.maxParticles = UserData.particles;
 
             UI.pauseButton.SetActive(false);    // Disable pause button when player is deleted
         }
