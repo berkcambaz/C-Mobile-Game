@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public GameObject obstacle;
+    public GameObject[] obstacleSets;
     public GameObject particle;
 
     Vector2 screenSize;
 
-    private const int maxObstacleSet = 4;
+    private int obstacleSetNumber;
     private int obstacleSet = -1;
 
     public static float mapTimeLimit;   // Time until player finishes a level
@@ -21,6 +21,7 @@ public class ObstacleManager : MonoBehaviour
     void Start()
     {
         screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        obstacleSetNumber = obstacleSets.Length;
     }
 
     void Update()
@@ -118,12 +119,6 @@ public class ObstacleManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; ++i)
         {
             Transform child = transform.GetChild(i);
-            GameObject particleInstance = Instantiate(particle, child.transform.position, child.transform.rotation);
-
-            // Set particle color to red, because obstacles are red
-            ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
-            psmain.maxParticles = UserData.particles;
-            psmain.startColor = Color.red;
 
             Destroy(child.gameObject);
         }
@@ -161,48 +156,45 @@ public class ObstacleManager : MonoBehaviour
 
     void GenerateObstacleSet()
     {
-        obstacleSet = Rand.Range(0, maxObstacleSet);
+        obstacleSet = Rand.Range(0, obstacleSetNumber);
 
         switch (obstacleSet)
         {
-            case 0: // Randomized
-                SetObstacleTimers(2f, 0.5f);
+            case 0:
                 break;
-            case 1: // Double tubes
-                SetObstacleTimers(2f, 0.5f);
+            case 1:
                 break;
-            case 2: // Long obstacles
-                SetObstacleTimers(3f, 0.75f);
+            case 2:
                 break;
-            case 3: // Wide obstacles
-                SetObstacleTimers(3f, 0.75f);
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+
+            default:
                 break;
         }
     }
 
     void GenerateObstacles()
     {
-        switch (obstacleSet)
-        {
-            case 0:
-                Randomized();
-                break;
-            case 1:
-                DoubleTubes();
-                break;
-            case 2:
-                LongObstacles();
-                break;
-            case 3:
-                WideObstacles();
-                break;
-        }
+        Instantiate(obstacleSets[1], transform);
     }
 
     // --- OBSTACLE SETS --- //
 
     /* Random obstacles appear */
-    void Randomized()
+    /*void Randomized()
     {
         Vector3 obstaclePos;
         Vector2 obstacleSize = new Vector2(0.65f, 0.65f);
@@ -219,10 +211,10 @@ public class ObstacleManager : MonoBehaviour
         GameObject obstacleInstance = Instantiate(obstacle, obstaclePos, Quaternion.Euler(0f, 0f, 0f), transform);
         obstacleInstance.GetComponent<ObstacleController>().speed = 5f;
         obstacleInstance.GetComponent<ObstacleController>().size = obstacleSize;
-    }
+    }*/
 
     /* 2 random length tube obstacle appear */
-    void DoubleTubes()
+    /*void DoubleTubes()
     {
         Vector3[] obstaclePos = new Vector3[2];
         Vector2[] obstacleSize = new Vector2[2];
@@ -256,10 +248,10 @@ public class ObstacleManager : MonoBehaviour
         obstacleInstance = Instantiate(obstacle, obstaclePos[1], Quaternion.Euler(0f, 0f, 0f), transform);
         obstacleInstance.GetComponent<ObstacleController>().speed = 5f;
         obstacleInstance.GetComponent<ObstacleController>().size = obstacleSize[1];
-    }
+    }*/
 
     /* Normal obstacles but they are longer */
-    void LongObstacles()
+    /*void LongObstacles()
     {
         Vector3 obstaclePos;
         Vector2 obstacleSize = new Vector2(0.65f, 2.6f);
@@ -276,10 +268,10 @@ public class ObstacleManager : MonoBehaviour
         GameObject obstacleInstance = Instantiate(obstacle, obstaclePos, Quaternion.Euler(0f, 0f, 0f), transform);
         obstacleInstance.GetComponent<ObstacleController>().speed = 5f;
         obstacleInstance.GetComponent<ObstacleController>().size = obstacleSize;
-    }
+    }*/
 
     /* Normal obstacles but they are wider */
-    void WideObstacles()
+    /*void WideObstacles()
     {
         Vector3 obstaclePos;
         Vector2 obstacleSize = new Vector2(2.6f, 0.65f);
@@ -296,5 +288,5 @@ public class ObstacleManager : MonoBehaviour
         GameObject obstacleInstance = Instantiate(obstacle, obstaclePos, Quaternion.Euler(0f, 0f, 0f), transform);
         obstacleInstance.GetComponent<ObstacleController>().speed = 5f;
         obstacleInstance.GetComponent<ObstacleController>().size = obstacleSize;
-    }
+    }*/
 }

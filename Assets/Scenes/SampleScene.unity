@@ -6165,8 +6165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8376beef8e82489499cb145956d72ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 1664574006913533936, guid: fa495176e8f44084dba4ef423c480237,
-    type: 3}
+  obstacleSets:
+  - {fileID: 5141566918213298203, guid: 7b5a7f0dfaf14774ba12de927f623be1, type: 3}
+  - {fileID: 2784041533255859949, guid: 8cc290b1c50bcb54cb24406b93c4bfda, type: 3}
+  - {fileID: 6534117974072218313, guid: 0b2dfc0381a115d469eec09b9e62408e, type: 3}
+  - {fileID: 1122997926931006943, guid: eaca1a8dbe11f24459977c41b8d37c29, type: 3}
+  - {fileID: 6091392481739620800, guid: 5451dfc9bb814544c854b3e2441d8a4a, type: 3}
+  - {fileID: 1789006646304758987, guid: 0a741196443ae294d8246af25b848532, type: 3}
+  - {fileID: 2452176466441452877, guid: d3c9656f46b4dc449a378debac11a982, type: 3}
+  - {fileID: 5320721851962362910, guid: 26f4367504cfbc84983807a39a04f55d, type: 3}
+  - {fileID: 7986122033117882836, guid: 2f77ba189d308e347b3a104808d939a3, type: 3}
+  - {fileID: 875041639584058978, guid: 1ed8c96979b27034997d15f307aaf2c1, type: 3}
   particle: {fileID: 721331045885733163, guid: 7f1ce9fad25e8204ba0ecde12167222c, type: 3}
 --- !u!4 &8845367637024102653
 Transform:
