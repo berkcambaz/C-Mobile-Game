@@ -58,6 +58,8 @@ public class ObstacleManager : MonoBehaviour
                 {
                     removeObstacles = false;
 
+                    mapTimeLimit -= Time.deltaTime;
+
                     // If current obstacle set is finished, generate new one
                     if (UserData.isObstacleSetFinished)
                         GenerateObstacleSet();

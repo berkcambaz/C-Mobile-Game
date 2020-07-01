@@ -1,5 +1,5 @@
-﻿//#define DEBUG       // To play game on pc
-#define RELEASE   // To play game on mobile, specifically android
+﻿#define DEBUG       // To play game on pc
+//#define RELEASE   // To play game on mobile, specifically android
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,76 +39,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        // Read "user.save" & write into "SaveData" class
-        saveData = SaveSystem.ReadFile();
-        if (!saveData.Checksum())   // If true, user has cheated
-        {
-            saveData.mapLevel = 0;
-            saveData.level = 0;
-
-            for (int i = 0; i < 64; ++i)
-            {
-                saveData.skins[i] = false;
-                saveData.upgrades[i] = 0;
-            }
-
-            saveData.playerSkinIndex = 0;
-        }
-        if (saveData.fps == 0)  // If first time opening the game, set fps to phone's refresh rate
-            saveData.fps = Screen.currentResolution.refreshRate;
-
-        // --- INIT SAVEDATA ---//
-        saveData.skins[0] = true;   // Unlock default skin
-
-        // --- SETUP USERDATA --- //
-        UserData.mapLevel = saveData.mapLevel;
-        UserData.level = saveData.level;
-
-        UserData.skins = saveData.skins;
-        UserData.upgrades = saveData.upgrades;
-
-        UserData.customizables = customizables;
-        UserData.skinSprites = skinSprites;
-
-        UserData.playerSkinIndex = saveData.playerSkinIndex;
-        UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
-
-        UserData.quality = saveData.quality;
-        UserData.particles = saveData.particles;
-        UserData.fps = saveData.fps;
-
-        // --- SETUP SETTINGS --- //
-        QualitySettings.vSyncCount = -1;
-        Application.targetFrameRate = UserData.fps;
-
-        // --- SETUP UI SYSTEM --- //
-        UI.notification = notification;
-        UI.hud = hud;
-        UI.mainMenu = mainMenu;
-        UI.upgradesMenu = upgradesMenu;
-        UI.customizeMenu = customizeMenu;
-        UI.settingsMenu = settingsMenu;
-
-        UI.mapLevelText = mapLevelText;
-
-        UI.qualityText = qualityText;
-        UI.particleText = particleText;
-        UI.fpsText = fpsText;
-
-        UI.pauseButton = pauseButton;
-
-        UI.upgradesButton = upgradesButton;
-        UI.customizeButton = customizeButton;
-
-        // Init UI with data from save file
-        UI.Init();
-
-        // Update UI with data from save file
-        UI.Update();
-
-        /* - Init selected skin - */
-        customizeMenu.transform.GetChild(1).GetComponent<CustomizeMenu>().InitSkins();
-        /* - Init selected skin - */
+        InitGame();
     }
 
     void Update()
@@ -208,8 +139,84 @@ public class Game : MonoBehaviour
     {
         if (pauseStatus)
             Save();
+        else if (!pauseStatus)
+            InitGame();
     }
 #endif
+
+    void InitGame()
+    {
+        // Read "user.save" & write into "SaveData" class
+        saveData = SaveSystem.ReadFile();
+        if (!saveData.Checksum())   // If true, user has cheated
+        {
+            saveData.mapLevel = 0;
+            saveData.level = 0;
+
+            for (int i = 0; i < 64; ++i)
+            {
+                saveData.skins[i] = false;
+                saveData.upgrades[i] = 0;
+            }
+
+            saveData.playerSkinIndex = 0;
+        }
+        if (saveData.fps == 0)  // If first time opening the game, set fps to phone's refresh rate
+            saveData.fps = Screen.currentResolution.refreshRate;
+
+        // --- INIT SAVEDATA ---//
+        saveData.skins[0] = true;   // Unlock default skin
+
+        // --- SETUP USERDATA --- //
+        UserData.mapLevel = saveData.mapLevel;
+        UserData.level = saveData.level;
+
+        UserData.skins = saveData.skins;
+        UserData.upgrades = saveData.upgrades;
+
+        UserData.customizables = customizables;
+        UserData.skinSprites = skinSprites;
+
+        UserData.playerSkinIndex = saveData.playerSkinIndex;
+        UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
+
+        UserData.quality = saveData.quality;
+        UserData.particles = saveData.particles;
+        UserData.fps = saveData.fps;
+
+        // --- SETUP SETTINGS --- //
+        QualitySettings.vSyncCount = -1;
+        Application.targetFrameRate = UserData.fps;
+
+        // --- SETUP UI SYSTEM --- //
+        UI.notification = notification;
+        UI.hud = hud;
+        UI.mainMenu = mainMenu;
+        UI.upgradesMenu = upgradesMenu;
+        UI.customizeMenu = customizeMenu;
+        UI.settingsMenu = settingsMenu;
+
+        UI.mapLevelText = mapLevelText;
+
+        UI.qualityText = qualityText;
+        UI.particleText = particleText;
+        UI.fpsText = fpsText;
+
+        UI.pauseButton = pauseButton;
+
+        UI.upgradesButton = upgradesButton;
+        UI.customizeButton = customizeButton;
+
+        // Init UI with data from save file
+        UI.Init();
+
+        // Update UI with data from save file
+        UI.Update();
+
+        /* - Init selected skin - */
+        customizeMenu.transform.GetChild(1).GetComponent<CustomizeMenu>().InitSkins();
+        /* - Init selected skin - */
+    }
 
     void Save()
     {

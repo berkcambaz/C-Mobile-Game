@@ -1,5 +1,5 @@
-﻿//#define DEBUG       // To play game on pc
-#define RELEASE   // To play game on mobile, specifically android
+﻿#define DEBUG       // To play game on pc
+//#define RELEASE   // To play game on mobile, specifically android
 
 using UnityEngine;
 
@@ -15,6 +15,7 @@ public class CustomizeMenu : MonoBehaviour
 
     private Vector2 dragStartPos;
     private bool isHeld = false;
+    private bool isMoved = false;
 
     private bool isChanging = true;
 
@@ -55,6 +56,7 @@ public class CustomizeMenu : MonoBehaviour
         if (touch.phase == TouchPhase.Ended)
         {
             isHeld = false;
+            isMoved = false;
         }
 #endif
 
@@ -69,6 +71,7 @@ public class CustomizeMenu : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isHeld = false;
+            isMoved = false;
         }
 #endif
 
@@ -80,6 +83,10 @@ public class CustomizeMenu : MonoBehaviour
                 move = touchPos.y - dragStartPos.y;
             else if (touchPos.y < dragStartPos.y)
                 move = touchPos.y - dragStartPos.y;
+
+            if (move != 0f)
+                isMoved = true;
+
 
             if (!Mathf.Approximately(touchPos.y, touchPosOld.y))
             {
@@ -122,18 +129,21 @@ public class CustomizeMenu : MonoBehaviour
 
     public void Select(int index)
     {
-        isChanging = true;
-
-        // If skin is unlocked, select the skin
-        if (UserData.skins[index])
+        if (!isMoved)
         {
-            UserData.customizables[UserData.playerSkinIndex].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);  // Disable last selected one
-            UserData.customizables[index].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);  // Enable newly selected one
-            player.GetComponent<SpriteRenderer>().sprite = UserData.skinSprites[index]; // Change player's skin
-            UserData.playerSkinIndex = index;   // Change index to selected skin's index
-        }
+            isChanging = true;
 
-        UserData.selectedSkinIndex = index;
+            // If skin is unlocked, select the skin
+            if (UserData.skins[index])
+            {
+                UserData.customizables[UserData.playerSkinIndex].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);  // Disable last selected one
+                UserData.customizables[index].transform.GetChild(0).GetChild(0).gameObject.SetActive(true);  // Enable newly selected one
+                player.GetComponent<SpriteRenderer>().sprite = UserData.skinSprites[index]; // Change player's skin
+                UserData.playerSkinIndex = index;   // Change index to selected skin's index
+            }
+
+            UserData.selectedSkinIndex = index;
+        }
     }
 
     public void InitSkins()
