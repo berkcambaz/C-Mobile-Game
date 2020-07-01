@@ -10,7 +10,7 @@ public class CustomizeMenu : MonoBehaviour
     private Touch touch;
     private Vector3 touchPos;
     private Vector3 touchPosOld;
-    private float scrollSensitivity = 1f;
+    private float scrollSensitivity = 2f;
     private float move;
 
     private Vector2 dragStartPos;
@@ -48,7 +48,7 @@ public class CustomizeMenu : MonoBehaviour
         {
             isHeld = true;
 
-            dragStartPos.y = touchPos.y - transform.localPosition.y;
+            dragStartPos.y = touchPos.y;
         }
 
         // If touch has stopped
@@ -63,7 +63,6 @@ public class CustomizeMenu : MonoBehaviour
         {
             isHeld = true;
 
-            //dragStartPos.y = touchPos.y - transform.localPosition.y;
             dragStartPos.y = touchPos.y;
         }
 
@@ -81,7 +80,7 @@ public class CustomizeMenu : MonoBehaviour
                 move = touchPos.y - dragStartPos.y;
             else if (touchPos.y < dragStartPos.y)
                 move = touchPos.y - dragStartPos.y;
-            //transform.localPosition = new Vector3(0f, touchPos.y - dragStartPos.y, 0f);
+
             if (!Mathf.Approximately(touchPos.y, touchPosOld.y))
             {
                 touchPosOld.y = touchPos.y;
@@ -158,7 +157,7 @@ public class CustomizeMenu : MonoBehaviour
         int skinIndex = -1;
         switch (UserData.mapLevel)
         {
-            case 1:
+            case 5:
                 skinIndex = 1;
                 break;
             case 10:
