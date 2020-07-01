@@ -14,7 +14,6 @@ public class ObstacleManager : MonoBehaviour
 
     public static float mapTimeLimit;   // Time until player finishes a level
     private float obstacleSetTimeLimit; // Time until the obstacle set finishes
-    private float obstacleTimeLimit;    // Time until a new obstacle appears
     private float timer;
     private bool removeObstacles = false;
 
@@ -34,7 +33,7 @@ public class ObstacleManager : MonoBehaviour
             if (UserData.isAlive)
             {
                 // If player has finished the level
-                if (mapTimeLimit <= 0f)
+                if (mapTimeLimit < 0f)
                 {
                     if (!removeObstacles)
                     {
@@ -65,14 +64,7 @@ public class ObstacleManager : MonoBehaviour
                 {
                     removeObstacles = false;
 
-                    // If ready to instantiate a new obstacle, instantiate obstacle
-                    if (timer > obstacleTimeLimit)
-                    {
-                        GenerateObstacles();
-
-                        obstacleSetTimeLimit -= obstacleTimeLimit;
-                        timer -= obstacleTimeLimit;
-                    }
+                    obstacleSetTimeLimit -= Time.deltaTime;
 
                     // If current obstacle set is finished, generate new one
                     if (obstacleSetTimeLimit <= 0f)
@@ -134,60 +126,71 @@ public class ObstacleManager : MonoBehaviour
         // Set map time limit,
         // when map level is   0, time is 10 seconds,
         // when map level is 100, time is 20 seconds
-        float timeLimit = 10f + UserData.mapLevel * 0.1f;
-        mapTimeLimit = (timeLimit > 20f) ? 20f : timeLimit;
+        float timeLimit = 15f + UserData.mapLevel * 0.1f;
+        mapTimeLimit = (timeLimit > 25f) ? 25f : timeLimit;
     }
 
-    private void SetObstacleTimers(float _setTimeLimit, float _timeLimit)
+    private void SetObstacleTimers(float _setTimeLimit)
     {
         if (mapTimeLimit >= _setTimeLimit)
         {
             mapTimeLimit -= _setTimeLimit;
             obstacleSetTimeLimit = _setTimeLimit;
         }
+        else if (mapTimeLimit == 0f)
+        {
+            mapTimeLimit = -1f;
+        }
         else
         {
             mapTimeLimit = 0f;
             obstacleSetTimeLimit = (mapTimeLimit - _setTimeLimit > 0f) ? mapTimeLimit - _setTimeLimit : 0f;
         }
-
-        obstacleTimeLimit = _timeLimit;
     }
 
     void GenerateObstacleSet()
     {
+        // Generate a random obstacle set number
         obstacleSet = Rand.Range(0, obstacleSetNumber);
 
         switch (obstacleSet)
         {
             case 0:
+                SetObstacleTimers(7.5f);
                 break;
             case 1:
+                SetObstacleTimers(7.5f);
                 break;
             case 2:
+                SetObstacleTimers(7.5f);
                 break;
             case 3:
+                SetObstacleTimers(7.5f);
                 break;
             case 4:
+                SetObstacleTimers(7.5f);
                 break;
             case 5:
+                SetObstacleTimers(7.5f);
                 break;
             case 6:
+                SetObstacleTimers(7.5f);
                 break;
             case 7:
+                SetObstacleTimers(7.5f);
                 break;
             case 8:
+                SetObstacleTimers(7.5f);
                 break;
             case 9:
+                SetObstacleTimers(7.5f);
                 break;
 
             default:
                 break;
         }
-    }
 
-    void GenerateObstacles()
-    {
+        // Generate obstacle set
         Instantiate(obstacleSets[1], transform);
     }
 

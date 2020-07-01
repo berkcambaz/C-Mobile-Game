@@ -7,6 +7,7 @@ public class ObstacleController : MonoBehaviour
     public GameObject particle;
 
     private const float speed = 5f;
+    private bool isKilledItself = false;
 
     private Vector2 screenSize; // TODO: Create a static helper class that contains this
 
@@ -22,18 +23,23 @@ public class ObstacleController : MonoBehaviour
         // If out of the screen
         if (transform.position.y < -screenSize.y - 1f)
         {
+            isKilledItself = true;
             Destroy(gameObject);
         }
     }
 
     void OnDestroy()
     {
-        GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
+        // If it killed itself, it means it went out of the screen
+        if (!isKilledItself && screenSize.y > transform.position.y + transform.localScale.y / 2f)
+        {
+            GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
 
-        // Set particle color to red, because obstacles are red
-        ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
-        psmain.maxParticles = UserData.particles;
-        psmain.startColor = Color.red;
+            // Set particle color to red, because obstacles are red
+            ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
+            psmain.maxParticles = UserData.particles;
+            psmain.startColor = Color.red;
+        }
     }
 
     // If obstacle & player are collided, destroy both of them
