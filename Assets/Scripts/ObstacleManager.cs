@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
     public GameObject[] obstacleSets;
     public GameObject particle;
-
-    Vector2 screenSize;
 
     private int obstacleSetNumber;
     private int obstacleSet = -1;
@@ -18,7 +14,6 @@ public class ObstacleManager : MonoBehaviour
 
     void Start()
     {
-        screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         obstacleSetNumber = obstacleSets.Length;
     }
 

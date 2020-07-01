@@ -21,7 +21,7 @@ public class ObstacleController : MonoBehaviour
         transform.Translate(0f, -speed * Time.deltaTime, 0f);
 
         // If out of the screen
-        if (transform.position.y < -screenSize.y - 1f)
+        if (transform.position.y + transform.localScale.y / 2f < -screenSize.y - 1f)
         {
             isKilledItself = true;
             Destroy(gameObject);
