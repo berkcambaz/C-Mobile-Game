@@ -31,7 +31,7 @@ public class ObstacleController : MonoBehaviour
     void OnDestroy()
     {
         // If it killed itself, it means it went out of the screen
-        if (!isKilledItself && screenSize.y > transform.position.y + transform.localScale.y / 2f)
+        if (!UserData.isQuitting && !isKilledItself && screenSize.y > transform.position.y + transform.localScale.y / 2f)
         {
             GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
 
@@ -40,6 +40,10 @@ public class ObstacleController : MonoBehaviour
             psmain.maxParticles = UserData.particles;
             psmain.startColor = Color.red;
         }
+
+        // If this obstacle is the last obstacle left in this obstacle set
+        if (transform.parent.childCount == 1)
+            UserData.isObstacleSetFinished = true;
     }
 
     // If obstacle & player are collided, destroy both of them
