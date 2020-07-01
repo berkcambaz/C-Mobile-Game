@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -15,10 +13,9 @@ public class SaveSystem
 
         if (File.Exists(path))
         {
-            stream = new FileStream(path, FileMode.Open);
-
             try
             {
+                stream = new FileStream(path, FileMode.Open);
                 saveData = (SaveData)formatter.Deserialize(stream);
             }
             catch
