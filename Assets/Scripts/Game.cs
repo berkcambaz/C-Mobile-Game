@@ -1,5 +1,5 @@
-﻿#define DEBUG       // To play game on pc
-//#define RELEASE   // To play game on mobile, specifically android
+﻿//#define DEBUG       // To play game on pc
+#define RELEASE   // To play game on mobile, specifically android
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -184,6 +184,8 @@ public class Game : MonoBehaviour
         UserData.particles = saveData.particles;
         UserData.fps = saveData.fps;
 
+        UserData.isQuitting = false;
+
         // --- SETUP SETTINGS --- //
         QualitySettings.vSyncCount = -1;
         Application.targetFrameRate = UserData.fps;
@@ -231,6 +233,7 @@ public class Game : MonoBehaviour
 
         saveData.playerSkinIndex = UserData.playerSkinIndex;
 
+        saveData.quality = UserData.quality;
         saveData.particles = UserData.particles;
         saveData.fps = UserData.fps;
 
