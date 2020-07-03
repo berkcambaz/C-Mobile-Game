@@ -1,5 +1,5 @@
-﻿//#define DEBUG       // To play game on pc
-#define RELEASE   // To play game on mobile, specifically android
+﻿#define DEBUG       // To play game on pc
+//#define RELEASE   // To play game on mobile, specifically android
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,13 +19,18 @@ public class Game : MonoBehaviour
     public GameObject customizeMenu;
     public GameObject settingsMenu;
 
+    public GameObject levelContent;
+
     public Text mapLevelText;
+    public Text levelText;
+    public Text moneyText;
 
     public Text qualityText;
     public Text particleText;
     public Text fpsText;
 
     public GameObject pauseButton;
+    public GameObject goBackButton;
 
     public GameObject upgradesButton;
     public GameObject customizeButton;
@@ -150,8 +155,10 @@ public class Game : MonoBehaviour
         saveData = SaveSystem.ReadFile();
         if (!saveData.Checksum())   // If true, user has cheated
         {
-            saveData.mapLevel = 0;
-            saveData.level = 0;
+            saveData.mapLevel = 1;
+            saveData.level = 1;
+            saveData.money = 25;
+            saveData.exp = 0;
 
             for (int i = 0; i < 64; ++i)
             {
@@ -170,6 +177,8 @@ public class Game : MonoBehaviour
         // --- SETUP USERDATA --- //
         UserData.mapLevel = saveData.mapLevel;
         UserData.level = saveData.level;
+        UserData.money = saveData.money;
+        UserData.exp = saveData.exp;
 
         UserData.skins = saveData.skins;
         UserData.upgrades = saveData.upgrades;
@@ -198,13 +207,18 @@ public class Game : MonoBehaviour
         UI.customizeMenu = customizeMenu;
         UI.settingsMenu = settingsMenu;
 
+        UI.levelContent = levelContent;
+
         UI.mapLevelText = mapLevelText;
+        UI.levelText = levelText;
+        UI.moneyText = moneyText;
 
         UI.qualityText = qualityText;
         UI.particleText = particleText;
         UI.fpsText = fpsText;
 
         UI.pauseButton = pauseButton;
+        UI.goBackButton = goBackButton;
 
         UI.upgradesButton = upgradesButton;
         UI.customizeButton = customizeButton;
@@ -216,7 +230,7 @@ public class Game : MonoBehaviour
         UI.Update();
 
         /* - Init selected skin - */
-        customizeMenu.transform.GetChild(1).GetComponent<CustomizeMenu>().InitSkins();
+        customizeMenu.transform.GetChild(0).GetComponent<CustomizeMenu>().InitSkins();
         /* - Init selected skin - */
     }
 
@@ -227,6 +241,8 @@ public class Game : MonoBehaviour
         // --- UPDATE SAVEDATA --- //
         saveData.mapLevel = UserData.mapLevel;
         saveData.level = UserData.level;
+        saveData.money = UserData.money;
+        saveData.exp = UserData.exp;
 
         saveData.skins = UserData.skins;
         saveData.upgrades = UserData.upgrades;

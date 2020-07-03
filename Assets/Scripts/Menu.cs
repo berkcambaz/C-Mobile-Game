@@ -9,7 +9,10 @@ public class Menu
     public static void PlayButton()
     {
         UI.mainMenu.SetActive(false);
+        UI.levelContent.SetActive(false);
+
         UI.pauseButton.SetActive(true);
+
         Time.timeScale = 1f;
     }
 
@@ -96,6 +99,8 @@ public class Menu
         UI.hud.SetActive(true);
         UI.mainMenu.SetActive(true);
 
+        UI.goBackButton.SetActive(false);
+
         UI.upgradesMenu.SetActive(false);
         UI.customizeMenu.SetActive(false);
         UI.settingsMenu.SetActive(false);
@@ -115,16 +120,18 @@ public class Menu
 
     public static void UpgradesButton()
     {
-        UI.hud.SetActive(false);
         UI.mainMenu.SetActive(false);
+
+        UI.goBackButton.SetActive(true);
 
         UI.upgradesMenu.SetActive(true);
     }
 
     public static void CustomizeButton()
     {
-        UI.hud.SetActive(false);
         UI.mainMenu.SetActive(false);
+
+        UI.goBackButton.SetActive(true);
 
         UI.customizeMenu.SetActive(true);
     }

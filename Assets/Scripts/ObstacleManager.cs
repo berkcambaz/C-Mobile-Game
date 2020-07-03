@@ -23,7 +23,6 @@ public class ObstacleManager : MonoBehaviour
 
         if (UserData.isPlaying)
         {
-
             if (UserData.isAlive)
             {
                 // If player has finished the level
@@ -35,7 +34,11 @@ public class ObstacleManager : MonoBehaviour
                         timer = 0.0f;
                         UserData.isObstacleSetFinished = true;
 
+                        UserData.exp += UserData.mapLevel;
                         ++UserData.mapLevel;
+
+                        UserData.gainedExp = true;
+
                         DeleteObstacles();  // Destroy obstacles when level is finished
                     }
                     if (timer > 1.5f) // Wait some time after the level is finished, then destroy the player
@@ -51,6 +54,8 @@ public class ObstacleManager : MonoBehaviour
                         UI.upgradesButton.SetActive(true);
                         UI.customizeButton.SetActive(true);
                         UI.mainMenu.SetActive(true);
+
+                        UI.levelContent.SetActive(true);
                         UI.Update();
                     }
                 }
@@ -88,6 +93,8 @@ public class ObstacleManager : MonoBehaviour
                     UI.upgradesButton.SetActive(true);
                     UI.customizeButton.SetActive(true);
                     UI.mainMenu.SetActive(true);
+
+                    UI.levelContent.SetActive(true);
                     UI.Update();
                 }
             }
@@ -118,8 +125,8 @@ public class ObstacleManager : MonoBehaviour
         // Set map time limit,
         // when map level is   0, time is 10 seconds,
         // when map level is 100, time is 20 seconds
-        float timeLimit = 15f + UserData.mapLevel * 0.1f;
-        mapTimeLimit = (timeLimit > 25f) ? 25f : timeLimit;
+        float timeLimit = 10f + UserData.mapLevel * 0.1f;
+        mapTimeLimit = (timeLimit > 15f) ? 15f : timeLimit;
     }
 
     void GenerateObstacleSet()

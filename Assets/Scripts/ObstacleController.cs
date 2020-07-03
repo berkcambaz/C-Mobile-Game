@@ -29,7 +29,7 @@ public class ObstacleController : MonoBehaviour
     void OnDestroy()
     {
         // If it killed itself, it means it went out of the screen
-        if (!UserData.isQuitting && !isKilledItself && screenSize.y > transform.position.y + transform.localScale.y / 2f)
+        if (!UserData.isQuitting && !isKilledItself && screenSize.y > transform.position.y - transform.localScale.y / 2f)
         {
             GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
 
