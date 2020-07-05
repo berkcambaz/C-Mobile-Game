@@ -19,6 +19,7 @@ public class Game : MonoBehaviour
     public GameObject customizeMenu;
     public GameObject settingsMenu;
 
+    public GameObject background;
     public GameObject levelContent;
 
     public Text mapLevelText;
@@ -207,6 +208,7 @@ public class Game : MonoBehaviour
         UI.customizeMenu = customizeMenu;
         UI.settingsMenu = settingsMenu;
 
+        UI.background = background;
         UI.levelContent = levelContent;
 
         UI.mapLevelText = mapLevelText;

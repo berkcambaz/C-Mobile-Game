@@ -10,6 +10,7 @@ public class Rand
     private static int sign;
     private static int number;  // least 0, max 10
 
+
     public static void Init()
     {
         sign = -1;

@@ -40,8 +40,8 @@ public class ObstacleController : MonoBehaviour
         }
 
         // If this obstacle is the last obstacle left in this obstacle set
-        if (transform.parent.childCount == 1)
-            UserData.isObstacleSetFinished = true;
+        //if (transform.parent.childCount == 1) 
+        //    UserData.isObstacleSetFinished = true;
     }
 
     // If obstacle & player are collided, destroy both of them

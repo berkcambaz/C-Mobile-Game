@@ -9,7 +9,8 @@ public class Menu
     public static void PlayButton()
     {
         UI.mainMenu.SetActive(false);
-        UI.levelContent.SetActive(false);
+
+        UI.background.SetActive(false);
 
         UI.pauseButton.SetActive(true);
 
@@ -99,6 +100,7 @@ public class Menu
         UI.hud.SetActive(true);
         UI.mainMenu.SetActive(true);
 
+        UI.background.SetActive(false);
         UI.goBackButton.SetActive(false);
 
         UI.upgradesMenu.SetActive(false);
@@ -122,6 +124,7 @@ public class Menu
     {
         UI.mainMenu.SetActive(false);
 
+        UI.background.SetActive(true);
         UI.goBackButton.SetActive(true);
 
         UI.upgradesMenu.SetActive(true);
@@ -131,6 +134,7 @@ public class Menu
     {
         UI.mainMenu.SetActive(false);
 
+        UI.background.SetActive(true);
         UI.goBackButton.SetActive(true);
 
         UI.customizeMenu.SetActive(true);

@@ -3,7 +3,11 @@
 public class ObstacleManager : MonoBehaviour
 {
     public GameObject[] obstacleSets;
+
     public GameObject particle;
+    public GameObject money;
+
+    private Vector2 screenSize;
 
     private int obstacleSetNumber;
     private int obstacleSet = -1;
@@ -14,6 +18,7 @@ public class ObstacleManager : MonoBehaviour
 
     void Start()
     {
+        screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         obstacleSetNumber = obstacleSets.Length;
     }
 
@@ -123,10 +128,10 @@ public class ObstacleManager : MonoBehaviour
         Rand.InitState(UserData.mapLevel);
 
         // Set map time limit,
-        // when map level is   0, time is 10 seconds,
-        // when map level is 100, time is 20 seconds
-        float timeLimit = 10f + UserData.mapLevel * 0.1f;
-        mapTimeLimit = (timeLimit > 15f) ? 15f : timeLimit;
+        // when map level is   0, time is 15 seconds,
+        // when map level is 50, time is 20 seconds
+        float timeLimit = 15f + UserData.mapLevel * 0.1f;
+        mapTimeLimit = (timeLimit > 20f) ? 20f : timeLimit;
     }
 
     void GenerateObstacleSet()

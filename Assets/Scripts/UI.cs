@@ -10,6 +10,7 @@ public class UI
     public static GameObject customizeMenu;
     public static GameObject settingsMenu;
 
+    public static GameObject background;
     public static GameObject levelContent;
 
     public static Text mapLevelText;
