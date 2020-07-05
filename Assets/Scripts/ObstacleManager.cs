@@ -91,9 +91,6 @@ public class ObstacleManager : MonoBehaviour
 
                     removeObstacles = false;    // Obstacles are deleted, so set it to "false"
 
-                    // Update customizables 
-                    CustomizeMenu.CheckSkinUnlockFromMapLevel();
-
                     // Open main menu & update score
                     UI.upgradesButton.SetActive(true);
                     UI.customizeButton.SetActive(true);

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Menu
 {
@@ -26,6 +23,7 @@ public class Menu
     public static void QualityIncreaseButton()
     {
         UserData.quality = !UserData.quality;
+        Camera.main.GetComponent<PostProcessVolume>().enabled = UserData.quality;
 
         UI.RefreshSettings();
     }
@@ -33,6 +31,7 @@ public class Menu
     public static void QualityDecreaseButton()
     {
         UserData.quality = !UserData.quality;
+        Camera.main.GetComponent<PostProcessVolume>().enabled = UserData.quality;
 
         UI.RefreshSettings();
     }

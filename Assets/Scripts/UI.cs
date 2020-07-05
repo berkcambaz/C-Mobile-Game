@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class UI
 {
@@ -40,7 +41,6 @@ public class UI
         {
             UserData.leveledUp = true;
         }
-
 
         // Refresh the texts
         mapLevelText.text = UserData.mapLevel.ToString();
