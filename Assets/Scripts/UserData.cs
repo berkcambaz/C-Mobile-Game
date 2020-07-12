@@ -20,7 +20,7 @@ public class UserData
     public static bool isQuitting = false;
 
     public static bool leveledUp = false;
-    public static bool gainedExp = false;
+    public static bool gainedExp = true;
 
     public static bool isObstacleSetFinished = true;
 
