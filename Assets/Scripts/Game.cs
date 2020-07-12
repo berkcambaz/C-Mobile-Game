@@ -1,7 +1,4 @@
-﻿#define DEBUG       // To play game on pc
-//#define RELEASE   // To play game on mobile, specifically android
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -139,9 +136,9 @@ public class Game : MonoBehaviour
     {
         Save();
     }
-#endif
 
-#if RELEASE
+#else
+
     void OnApplicationPause(bool pauseStatus)   // Runs when pressed to home button on android
     {
         if (pauseStatus)

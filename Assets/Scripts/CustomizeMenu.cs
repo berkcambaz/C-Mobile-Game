@@ -1,7 +1,4 @@
-﻿#define DEBUG       // To play game on pc
-//#define RELEASE   // To play game on mobile, specifically android
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CustomizeMenu : MonoBehaviour
 {
@@ -28,9 +25,9 @@ public class CustomizeMenu : MonoBehaviour
             touch = Input.GetTouch(0);
             touchPos = touch.position;
         }
-#endif
 
-#if DEBUG
+#else
+
         if (Input.GetMouseButton(0))
         {
             touchPos = Input.mousePosition;
@@ -58,9 +55,9 @@ public class CustomizeMenu : MonoBehaviour
             isHeld = false;
             isMoved = false;
         }
-#endif
 
-#if DEBUG
+#else
+
         if (Input.GetMouseButtonDown(0))
         {
             isHeld = true;

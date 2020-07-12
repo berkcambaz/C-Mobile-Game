@@ -1,7 +1,4 @@
-﻿#define DEBUG       // To play game on pc
-//#define RELEASE   // To play game on mobile, specifically android
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,9 +28,9 @@ public class PlayerController : MonoBehaviour
             touch = Input.GetTouch(0);
             touchPos = Camera.main.ScreenToWorldPoint(touch.position);
         }
-#endif
+        
+#else
 
-#if DEBUG
         if (Input.GetMouseButton(0))
         {
             touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -94,9 +91,9 @@ public class PlayerController : MonoBehaviour
         {
             isHeld = false;
         }
-#endif
 
-#if DEBUG
+#else
+
         if (Input.GetMouseButtonDown(0))
         {
             isHeld = true;
