@@ -23,15 +23,31 @@ public class UI
     public static Text particleText;
     public static Text fpsText;
 
-    public static GameObject pauseButton;
-    public static GameObject goBackButton;
-
+    public static GameObject playButton;
     public static GameObject upgradesButton;
     public static GameObject customizeButton;
+    public static GameObject settingsButton;
+
+    public static GameObject pauseButton;
+    public static GameObject goBackButton;
+    public static GameObject backButton;
+
+    public static Vector3 settingsButtonPos;
 
     public static void Init()
     {
         RefreshSettings();
+
+        settingsButtonPos = settingsButton.transform.localPosition;  // Get settings button's start position
+
+        playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+        upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+        customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+        settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+
+        pauseButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+        goBackButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+        backButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
     }
 
     public static void Update()
@@ -46,6 +62,20 @@ public class UI
         mapLevelText.text = UserData.mapLevel.ToString();
         levelText.text = UserData.level.ToString();
         moneyText.text = UserData.money.ToString();
+    }
+
+    public static void LevelEnded()
+    {
+        // Open main menu & update score
+        playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+        settingsButton.transform.localPosition = settingsButtonPos; // Reset settings button's pos to original one
+
+        upgradesButton.SetActive(true);
+        customizeButton.SetActive(true);
+        mainMenu.SetActive(true);
+
+        levelContent.SetActive(true);
+        Update();
     }
 
     public static void RefreshSettings()

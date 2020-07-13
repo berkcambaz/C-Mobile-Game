@@ -55,13 +55,7 @@ public class ObstacleManager : MonoBehaviour
                         // Update customizables 
                         CustomizeMenu.CheckSkinUnlockFromMapLevel();
 
-                        // Open main menu & update score
-                        UI.upgradesButton.SetActive(true);
-                        UI.customizeButton.SetActive(true);
-                        UI.mainMenu.SetActive(true);
-
-                        UI.levelContent.SetActive(true);
-                        UI.Update();
+                        UI.LevelEnded();
                     }
                 }
                 else // If player hasn't finished the level, but still alive
@@ -91,13 +85,7 @@ public class ObstacleManager : MonoBehaviour
 
                     removeObstacles = false;    // Obstacles are deleted, so set it to "false"
 
-                    // Open main menu & update score
-                    UI.upgradesButton.SetActive(true);
-                    UI.customizeButton.SetActive(true);
-                    UI.mainMenu.SetActive(true);
-
-                    UI.levelContent.SetActive(true);
-                    UI.Update();
+                    UI.LevelEnded();
                 }
             }
         }

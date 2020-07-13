@@ -5,9 +5,9 @@ public class Menu
 {
     public static void PlayButton()
     {
-        UI.mainMenu.SetActive(false);
-
         UI.background.SetActive(false);
+        UI.levelContent.SetActive(false);
+        UI.mainMenu.SetActive(false);
 
         UI.pauseButton.SetActive(true);
 

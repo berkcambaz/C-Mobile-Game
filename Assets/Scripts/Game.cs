@@ -28,11 +28,14 @@ public class Game : MonoBehaviour
     public Text particleText;
     public Text fpsText;
 
-    public GameObject pauseButton;
-    public GameObject goBackButton;
-
+    public GameObject playButton;
     public GameObject upgradesButton;
     public GameObject customizeButton;
+    public GameObject settingsButton;
+
+    public GameObject pauseButton;
+    public GameObject goBackButton;
+    public GameObject backButton;
 
     private SaveData saveData;
 
@@ -66,11 +69,38 @@ public class Game : MonoBehaviour
         switch (index)
         {
             case 0:     // Play button
+                durationLimit = 0.35f * Time.timeScale;
+                UI.playButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+
+                UI.pauseButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                break;
             case 1:     // Settings button
+                durationLimit = 0.35f * Time.timeScale;
+                UI.settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+
+                UI.backButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                break;
             case 8:     // Back to menu button
+                durationLimit = 0.35f * Time.timeScale;
+                UI.goBackButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+                UI.backButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+
+                UI.playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                break;
             case 10:    // Upgrades button
+                durationLimit = 0.35f * Time.timeScale;
+                UI.upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+
+                UI.goBackButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                break;
             case 11:    // Customize button
                 durationLimit = 0.35f * Time.timeScale;
+                UI.customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+
+                UI.goBackButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 break;
         }
     }
@@ -109,6 +139,9 @@ public class Game : MonoBehaviour
                 break;
             case 9:
                 Menu.PauseButton();
+
+                UI.playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.settingsButton.transform.position = UI.upgradesButton.transform.position;
                 break;
             case 10:
                 Menu.UpgradesButton();
@@ -218,11 +251,14 @@ public class Game : MonoBehaviour
         UI.particleText = particleText;
         UI.fpsText = fpsText;
 
-        UI.pauseButton = pauseButton;
-        UI.goBackButton = goBackButton;
-
+        UI.playButton = playButton;
         UI.upgradesButton = upgradesButton;
         UI.customizeButton = customizeButton;
+        UI.settingsButton = settingsButton;
+
+        UI.pauseButton = pauseButton;
+        UI.goBackButton = goBackButton;
+        UI.backButton = backButton;
 
         // Init UI with data from save file
         UI.Init();
