@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        moveableAreaBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        moveableAreaBounds = Utility.camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Utility.camera.transform.position.z));
         playerSize = new Vector2(transform.localScale.x / 2.0f, transform.localScale.y / 2.0f);
     }
 
@@ -26,14 +26,14 @@ public class PlayerController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPos = Utility.camera.ScreenToWorldPoint(touch.position);
         }
         
 #else
 
         if (Input.GetMouseButton(0))
         {
-            touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            touchPos = Utility.camera.ScreenToWorldPoint(Input.mousePosition);
         }
 #endif
         if (UserData.isPlaying)

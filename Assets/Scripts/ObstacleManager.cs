@@ -7,8 +7,6 @@ public class ObstacleManager : MonoBehaviour
     public GameObject particle;
     public GameObject money;
 
-    private Vector2 screenSize;
-
     private int obstacleSetNumber;
     private int obstacleSet = -1;
 
@@ -18,7 +16,6 @@ public class ObstacleManager : MonoBehaviour
 
     void Start()
     {
-        screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         obstacleSetNumber = obstacleSets.Length;
     }
 
@@ -76,6 +73,8 @@ public class ObstacleManager : MonoBehaviour
                     removeObstacles = true;
                     timer = 0f;
                     UserData.isObstacleSetFinished = true;
+
+                    StartCoroutine(Utility.CameraShake(0.5f, 0.2f));
                 }
                 if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
                 {

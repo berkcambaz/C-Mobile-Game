@@ -7,19 +7,12 @@ public class ObstacleController : MonoBehaviour
     private const float speed = 5f;
     private bool isKilledItself = false;
 
-    private Vector2 screenSize; // TODO: Create a static helper class that contains this
-
-    void Start()
-    {
-        screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-    }
-
     void Update()
     {
         transform.Translate(0f, -speed * Time.deltaTime, 0f);
 
         // If out of the screen
-        if (transform.position.y + transform.localScale.y / 2f < -screenSize.y - 1f)
+        if (transform.position.y + transform.localScale.y / 2f < -Utility.screenSize.y - 1f)
         {
             isKilledItself = true;
             Destroy(gameObject);
@@ -29,7 +22,7 @@ public class ObstacleController : MonoBehaviour
     void OnDestroy()
     {
         // If it killed itself, it means it went out of the screen
-        if (!UserData.isQuitting && !isKilledItself && screenSize.y > transform.position.y - transform.localScale.y / 2f)
+        if (!UserData.isQuitting && !isKilledItself && Utility.screenSize.y > transform.position.y - transform.localScale.y / 2f)
         {
             GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
 

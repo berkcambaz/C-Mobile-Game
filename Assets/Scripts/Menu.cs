@@ -23,7 +23,7 @@ public class Menu
     public static void QualityIncreaseButton()
     {
         UserData.quality = !UserData.quality;
-        Camera.main.GetComponent<PostProcessVolume>().enabled = UserData.quality;
+        Utility.camera.GetComponent<PostProcessVolume>().enabled = UserData.quality;
 
         UI.RefreshSettings();
     }
@@ -31,7 +31,7 @@ public class Menu
     public static void QualityDecreaseButton()
     {
         UserData.quality = !UserData.quality;
-        Camera.main.GetComponent<PostProcessVolume>().enabled = UserData.quality;
+        Utility.camera.GetComponent<PostProcessVolume>().enabled = UserData.quality;
 
         UI.RefreshSettings();
     }

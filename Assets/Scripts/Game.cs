@@ -229,7 +229,7 @@ public class Game : MonoBehaviour
         // --- SETUP SETTINGS --- //
         QualitySettings.vSyncCount = -1;
         Application.targetFrameRate = UserData.fps;
-        Camera.main.GetComponent<PostProcessVolume>().enabled = UserData.quality;
+        Utility.camera.GetComponent<PostProcessVolume>().enabled = UserData.quality;
 
         // --- SETUP UI SYSTEM --- //
         UI.notification = notification;
