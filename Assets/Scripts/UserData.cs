@@ -24,8 +24,8 @@ public class UserData
 
     public static bool isObstacleSetFinished = true;
 
-    public static GameObject[] customizables = new GameObject[5];
-    public static Sprite[] skinSprites = new Sprite[5];
+    public static GameObject[] customizables;
+    public static Sprite[] skinSprites;
 
     public static int lastOpenedSkin;
 

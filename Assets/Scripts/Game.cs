@@ -6,8 +6,7 @@ public class Game : MonoBehaviour
 {
     public GameObject player;
 
-    public GameObject[] customizables;
-    public Sprite[] skinSprites;
+    public GameObject customizeContent;
 
     // --- UI STUFF --- //
     public GameObject notification;
@@ -215,8 +214,8 @@ public class Game : MonoBehaviour
         UserData.skins = saveData.skins;
         UserData.upgrades = saveData.upgrades;
 
-        UserData.customizables = customizables;
-        UserData.skinSprites = skinSprites;
+        UserData.customizables = GetCustomizables();
+        UserData.skinSprites = GetSkinSprites();
 
         UserData.playerSkinIndex = saveData.playerSkinIndex;
         UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
@@ -269,6 +268,26 @@ public class Game : MonoBehaviour
         /* - Init selected skin - */
         customizeMenu.transform.GetChild(0).GetComponent<CustomizeMenu>().InitSkins();
         /* - Init selected skin - */
+    }
+
+    GameObject[] GetCustomizables()
+    {
+        GameObject[] customizables = new GameObject[customizeContent.transform.childCount];
+
+        for (int i = 0; i < customizables.Length; ++i)
+            customizables[i] = customizeContent.transform.GetChild(i).gameObject;
+
+        return customizables;
+    }
+
+    Sprite[] GetSkinSprites()
+    {
+        Sprite[] sprites = new Sprite[UserData.customizables.Length];
+
+        for (int i = 0; i < sprites.Length; ++i)
+            sprites[i] = UserData.customizables[i].transform.GetChild(0).GetComponent<Image>().sprite;
+
+        return sprites;
     }
 
     void Save()

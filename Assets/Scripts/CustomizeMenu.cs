@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class CustomizeMenu : MonoBehaviour
 {
     public GameObject player;
+
+    public Sprite questionMark;
 
     private Touch touch;
     private Vector3 touchPos;
@@ -156,6 +159,11 @@ public class CustomizeMenu : MonoBehaviour
                 UserData.customizables[i].transform.GetChild(2).gameObject.SetActive(true);  // Activates skin's description
                 UserData.customizables[i].transform.GetChild(3).gameObject.SetActive(false); // Deactivates skin's unlock text
             }
+            else
+            {
+                // Hide skin by making it's image question mark
+                UserData.customizables[i].transform.GetChild(0).GetComponent<Image>().sprite = questionMark;
+            }
         }
     }
 
@@ -179,13 +187,13 @@ public class CustomizeMenu : MonoBehaviour
             case 100:
                 skinIndex = 5;
                 break;
-            case 250:
+            case 150:
                 skinIndex = 6;
                 break;
-            case 500:
+            case 200:
                 skinIndex = 7;
                 break;
-            case 1000:
+            case 250:
                 skinIndex = 8;
                 break;
         }
@@ -197,6 +205,8 @@ public class CustomizeMenu : MonoBehaviour
             UserData.skins[skinIndex] = true;
             UserData.lastOpenedSkin = skinIndex;
 
+            // Activate skin's image
+            UserData.customizables[skinIndex].transform.GetChild(0).GetComponent<Image>().sprite = UserData.skinSprites[skinIndex];
             // Activates skin's description
             UserData.customizables[skinIndex].transform.GetChild(2).gameObject.SetActive(true);
             // Deactivates skin's unlock text
