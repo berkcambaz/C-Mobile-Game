@@ -18,6 +18,7 @@ public class CustomizeMenu : MonoBehaviour
     private bool isMoved = false;
 
     private bool isChanging = true;
+    private int skinIndex = 0;
 
     void Update()
     {
@@ -101,15 +102,15 @@ public class CustomizeMenu : MonoBehaviour
     {
         if (!isChanging)
         {
-            int index = Mathf.RoundToInt(transform.localPosition.y / 650f);
+            skinIndex = Mathf.RoundToInt(transform.localPosition.y / 650f);
 
             // Clamp the index
-            if (index < 0)
-                index = 0;
-            else if (index > UserData.customizables.Length - 1)
-                index = UserData.customizables.Length - 1;
+            if (skinIndex < 0)
+                skinIndex = 0;
+            else if (skinIndex > UserData.customizables.Length - 1)
+                skinIndex = UserData.customizables.Length - 1;
 
-            UserData.selectedSkinIndex = index;
+            UserData.selectedSkinIndex = skinIndex;
         }
         if (!isHeld)
         {
@@ -141,6 +142,8 @@ public class CustomizeMenu : MonoBehaviour
                 player.GetComponent<SpriteRenderer>().sprite = UserData.skinSprites[index]; // Change player's skin
                 UserData.playerSkinIndex = index;   // Change index to selected skin's index
             }
+            else if (skinIndex == index)
+                SoundManager.PlaySound("cantSelect");
 
             UserData.selectedSkinIndex = index;
         }

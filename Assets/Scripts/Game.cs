@@ -74,12 +74,13 @@ public class Game : MonoBehaviour
                 UI.pauseButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 break;
             case 1:     // Settings button
+                SoundManager.PlaySound("textButtonSelect");
                 durationLimit = 0.35f * Time.timeScale;
                 UI.settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
 
                 UI.backButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 break;
-            case 8:     // Back to menu button
+            case 8:     // Back to menu button without text
                 durationLimit = 0.35f * Time.timeScale;
                 UI.goBackButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
                 UI.backButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
@@ -89,13 +90,26 @@ public class Game : MonoBehaviour
                 UI.customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 UI.settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 break;
-            case 10:    // Upgrades button
+            case 9:     // Back to menu button with text
+                SoundManager.PlaySound("textButtonSelect");
+                durationLimit = 0.35f * Time.timeScale;
+                UI.goBackButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+                UI.backButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+
+                UI.playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                break;
+            case 11:    // Upgrades button
+                SoundManager.PlaySound("textButtonSelect");
                 durationLimit = 0.35f * Time.timeScale;
                 UI.upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
 
                 UI.goBackButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 break;
-            case 11:    // Customize button
+            case 12:    // Customize button
+                SoundManager.PlaySound("textButtonSelect");
                 durationLimit = 0.35f * Time.timeScale;
                 UI.customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
 
@@ -117,35 +131,44 @@ public class Game : MonoBehaviour
                 break;
             case 2:
                 Menu.QualityIncreaseButton();
+                SoundManager.PlaySound("settingChange");
                 break;
             case 3:
                 Menu.QualityDecreaseButton();
+                SoundManager.PlaySound("settingChange");
                 break;
             case 4:
                 Menu.ParticleIncreaseButton();
+                SoundManager.PlaySound("settingChange");
                 break;
             case 5:
                 Menu.ParticleDecreaseButton();
+                SoundManager.PlaySound("settingChange");
                 break;
             case 6:
                 Menu.FpsIncreaseButton();
+                SoundManager.PlaySound("settingChange");
                 break;
             case 7:
                 Menu.FpsDecreaseButton();
+                SoundManager.PlaySound("settingChange");
                 break;
-            case 8:
+            case 8: // Back button without text
                 Menu.BackToMenuButton();
                 break;
-            case 9:
+            case 9: // Back button with text
+                Menu.BackToMenuButton();
+                break;
+            case 10:
                 Menu.PauseButton();
 
                 UI.playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 UI.settingsButton.transform.position = UI.upgradesButton.transform.position;
                 break;
-            case 10:
+            case 11:
                 Menu.UpgradesButton();
                 break;
-            case 11:
+            case 12:
                 Menu.CustomizeButton();
                 break;
         }

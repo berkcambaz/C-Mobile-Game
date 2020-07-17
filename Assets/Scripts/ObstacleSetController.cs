@@ -9,7 +9,7 @@ public class ObstacleSetController : MonoBehaviour
 
     void Update()
     {
-        if (!isReset)
+        if (!isReset && child != null)
         {
             if (child.position.y < 0)
             {

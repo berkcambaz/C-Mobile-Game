@@ -74,7 +74,8 @@ public class ObstacleManager : MonoBehaviour
                     timer = 0f;
                     UserData.isObstacleSetFinished = true;
 
-                    StartCoroutine(Utility.CameraShake(0.5f, 0.2f));
+                    SoundManager.PlaySound("explosion");
+                    StartCoroutine(Utility.CameraShake(0.5f, 0.1f));    // Shake the camera
                 }
                 if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
                 {
@@ -96,6 +97,7 @@ public class ObstacleManager : MonoBehaviour
 
     void DeleteObstacles()
     {
+        SoundManager.PlaySound("obstacleExplosion");
         for (int i = 0; i < transform.childCount; ++i)
         {
             Transform child = transform.GetChild(i);
