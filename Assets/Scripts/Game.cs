@@ -45,6 +45,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+        ConfigAspectRatio();
         InitGame();
     }
 
@@ -253,6 +254,7 @@ public class Game : MonoBehaviour
         QualitySettings.vSyncCount = -1;
         Application.targetFrameRate = UserData.fps;
         Utility.camera.GetComponent<PostProcessVolume>().enabled = UserData.quality;
+        Utility.camera.GetComponent<PostProcessLayer>().enabled = UserData.quality;
 
         // --- SETUP UI SYSTEM --- //
         UI.notification = notification;
@@ -336,5 +338,18 @@ public class Game : MonoBehaviour
         saveData.Checksum();
 
         SaveSystem.WriteFile(saveData);
+    }
+
+    void ConfigAspectRatio()
+    {
+        float size = 5f;
+
+        Vector2 defRes = new Vector2(1080f, 1920f);
+        Vector2 currRes = new Vector2(Screen.width, Screen.height);
+        float dt = size * (defRes.x / defRes.y);
+
+        Utility.camera.orthographicSize = dt / (currRes.x / currRes.y);
+        //  (dt / ( defRes.x / defRes.y )   Native resolution of the game
+        //  (dt / (currRes.x / currRes.y)   Phone's resolution
     }
 }

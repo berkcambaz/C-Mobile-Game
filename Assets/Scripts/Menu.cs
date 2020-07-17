@@ -24,6 +24,7 @@ public class Menu
     {
         UserData.quality = !UserData.quality;
         Utility.camera.GetComponent<PostProcessVolume>().enabled = UserData.quality;
+        Utility.camera.GetComponent<PostProcessLayer>().enabled = UserData.quality;
 
         UI.RefreshSettings();
     }
@@ -32,6 +33,7 @@ public class Menu
     {
         UserData.quality = !UserData.quality;
         Utility.camera.GetComponent<PostProcessVolume>().enabled = UserData.quality;
+        Utility.camera.GetComponent<PostProcessLayer>().enabled = UserData.quality;
 
         UI.RefreshSettings();
     }

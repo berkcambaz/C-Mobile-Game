@@ -2973,7 +2973,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
+  finalBlitToCameraTarget: 1
   antialiasingMode: 0
   temporalAntialiasing:
     jitterSpread: 0.75
@@ -3088,7 +3088,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: c6b40b2eb0fb63a44b24933ab313856e, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0.5
   priority: 0
 --- !u!1 &522168846
 GameObject:
@@ -4995,7 +4995,7 @@ MonoBehaviour:
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
+  m_PhysicalUnit: 0
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
@@ -8438,8 +8438,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 1
     m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 99999
 --- !u!222 &1983655367

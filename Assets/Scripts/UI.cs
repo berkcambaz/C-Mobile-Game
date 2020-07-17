@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.EventSystems;
 
 public class UI
 {
@@ -67,6 +68,7 @@ public class UI
     public static void LevelEnded()
     {
         // Open main menu & update score
+        EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(null);    // Reset selected button
         playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
         settingsButton.transform.localPosition = settingsButtonPos; // Reset settings button's pos to original one
 
