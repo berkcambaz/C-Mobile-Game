@@ -309,8 +309,19 @@ public class Game : MonoBehaviour
     {
         Sprite[] sprites = new Sprite[UserData.customizables.Length];
 
-        for (int i = 0; i < sprites.Length; ++i)
-            sprites[i] = UserData.customizables[i].transform.GetChild(0).GetComponent<Image>().sprite;
+        string path = "Sprites/players/";
+        sprites[0] = Resources.Load<Sprite>(path + "default");
+        sprites[1] = Resources.Load<Sprite>(path + "rainbox");
+        sprites[2] = Resources.Load<Sprite>(path + "checkerboard");
+        sprites[3] = Resources.Load<Sprite>(path + "patterned");
+        sprites[4] = Resources.Load<Sprite>(path + "symmetry");
+        sprites[5] = Resources.Load<Sprite>(path + "mr_cube");
+        sprites[6] = Resources.Load<Sprite>(path + "confusion");
+        sprites[7] = Resources.Load<Sprite>(path + "illusion");
+        sprites[8] = Resources.Load<Sprite>(path + "cubstacle");
+
+        //for (int i = 0; i < sprites.Length; ++i)
+        //    sprites[i] = UserData.customizables[i].transform.GetChild(0).GetComponent<Image>().sprite;
 
         return sprites;
     }

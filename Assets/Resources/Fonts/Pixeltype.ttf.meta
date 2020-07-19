@@ -12,7 +12,7 @@ TrueTypeFontImporter:
   fontNames:
   - Pixeltype
   fallbackFontReferences: []
-  customCharacters: abcdefghijklmnopqrstuvwxyz0123456789
+  customCharacters: 
   fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
