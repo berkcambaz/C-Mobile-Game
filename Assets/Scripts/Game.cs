@@ -17,10 +17,10 @@ public class Game : MonoBehaviour
     public GameObject settingsMenu;
 
     public GameObject background;
-    public GameObject levelContent;
+    public GameObject mapLevelContent;
 
+    public Text scoreText;
     public Text mapLevelText;
-    public Text levelText;
     public Text moneyText;
 
     public Text qualityText;
@@ -211,9 +211,9 @@ public class Game : MonoBehaviour
         if (!saveData.Checksum())   // If true, user has cheated
         {
             saveData.mapLevel = 1;
-            saveData.level = 1;
+            saveData.score = 0;
+            saveData.highScore = 0;
             saveData.money = 25;
-            saveData.exp = 0;
 
             for (int i = 0; i < 64; ++i)
             {
@@ -231,15 +231,15 @@ public class Game : MonoBehaviour
 
         // --- SETUP USERDATA --- //
         UserData.mapLevel = saveData.mapLevel;
-        UserData.level = saveData.level;
+        UserData.score = saveData.score;
+        UserData.highScore = saveData.highScore;
         UserData.money = saveData.money;
-        UserData.exp = saveData.exp;
 
         UserData.skins = saveData.skins;
         UserData.upgrades = saveData.upgrades;
 
-        UserData.customizables = GetCustomizables();
-        UserData.skinSprites = GetSkinSprites();
+        GetCustomizables();
+        GetSkinSprites();
 
         UserData.playerSkinIndex = saveData.playerSkinIndex;
         UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
@@ -265,10 +265,10 @@ public class Game : MonoBehaviour
         UI.settingsMenu = settingsMenu;
 
         UI.background = background;
-        UI.levelContent = levelContent;
+        UI.mapLevelContent = mapLevelContent;
 
+        UI.scoreText = scoreText;
         UI.mapLevelText = mapLevelText;
-        UI.levelText = levelText;
         UI.moneyText = moneyText;
 
         UI.qualityText = qualityText;
@@ -295,35 +295,20 @@ public class Game : MonoBehaviour
         /* - Init selected skin - */
     }
 
-    GameObject[] GetCustomizables()
+    void GetCustomizables()
     {
-        GameObject[] customizables = new GameObject[customizeContent.transform.childCount];
+        UserData.customizables = new GameObject[customizeContent.transform.childCount];
 
-        for (int i = 0; i < customizables.Length; ++i)
-            customizables[i] = customizeContent.transform.GetChild(i).gameObject;
-
-        return customizables;
+        for (int i = 0; i < UserData.customizables.Length; ++i)
+            UserData.customizables[i] = customizeContent.transform.GetChild(i).gameObject;
     }
 
-    Sprite[] GetSkinSprites()
+    void GetSkinSprites()
     {
-        Sprite[] sprites = new Sprite[UserData.customizables.Length];
+        UserData.skinSprites = new Sprite[UserData.customizables.Length];
 
-        string path = "Sprites/players/";
-        sprites[0] = Resources.Load<Sprite>(path + "default");
-        sprites[1] = Resources.Load<Sprite>(path + "rainbox");
-        sprites[2] = Resources.Load<Sprite>(path + "checkerboard");
-        sprites[3] = Resources.Load<Sprite>(path + "patterned");
-        sprites[4] = Resources.Load<Sprite>(path + "symmetry");
-        sprites[5] = Resources.Load<Sprite>(path + "mr_cube");
-        sprites[6] = Resources.Load<Sprite>(path + "confusion");
-        sprites[7] = Resources.Load<Sprite>(path + "illusion");
-        sprites[8] = Resources.Load<Sprite>(path + "cubstacle");
-
-        //for (int i = 0; i < sprites.Length; ++i)
-        //    sprites[i] = UserData.customizables[i].transform.GetChild(0).GetComponent<Image>().sprite;
-
-        return sprites;
+        for (int i = 0; i < UserData.skinSprites.Length; ++i)
+            UserData.skinSprites[i] = customizeContent.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite;
     }
 
     void Save()
@@ -332,9 +317,9 @@ public class Game : MonoBehaviour
 
         // --- UPDATE SAVEDATA --- //
         saveData.mapLevel = UserData.mapLevel;
-        saveData.level = UserData.level;
+        saveData.score = UserData.score;
+        saveData.highScore = UserData.highScore;
         saveData.money = UserData.money;
-        saveData.exp = UserData.exp;
 
         saveData.skins = UserData.skins;
         saveData.upgrades = UserData.upgrades;

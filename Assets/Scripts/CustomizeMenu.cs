@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.ComponentModel;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class CustomizeMenu : MonoBehaviour
@@ -23,8 +24,8 @@ public class CustomizeMenu : MonoBehaviour
     void Update()
     {
 #if RELEASE
-        // If received at least 1 touch
-        if (Input.touchCount > 0)
+        // If received only 1 touch
+        if (Input.touchCount == 1)
         {
             touch = Input.GetTouch(0);
             touchPos = touch.position;
@@ -170,6 +171,7 @@ public class CustomizeMenu : MonoBehaviour
         }
     }
 
+    /*
     public static void CheckSkinUnlockFromMapLevel()
     {
         int skinIndex = -1;
@@ -219,4 +221,5 @@ public class CustomizeMenu : MonoBehaviour
             UI.notification.SetActive(true);
         }
     }
+    */
 }

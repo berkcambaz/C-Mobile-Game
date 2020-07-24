@@ -4,9 +4,9 @@ public class UserData
 {
     // --- SAVE FILE STUFF --- //
     public static int mapLevel;
-    public static int level;
+    public static int score;
+    public static int highScore;
     public static int money;
-    public static int exp;
 
     public static bool[] skins = new bool[64];
     public static int[] upgrades = new int[64];
@@ -18,9 +18,7 @@ public class UserData
     public static bool isPlaying = false;
     public static bool isAlive = false;
     public static bool isQuitting = false;
-
-    public static bool leveledUp = false;
-    public static bool gainedExp = true;
+    public static bool resetProgressBar = false;
 
     public static bool isObstacleSetFinished = true;
 
@@ -40,9 +38,9 @@ public class SaveData
 {
     // --- SAVE FILE STUFF --- //
     public int mapLevel = 1;
-    public int level = 1;
+    public int score;
+    public int highScore;
     public int money = 25;
-    public int exp;
 
     public bool[] skins = new bool[64];
     public int[] upgrades = new int[64];
@@ -62,7 +60,7 @@ public class SaveData
         bool isEqual = false;
 
         // Calculate sum
-        int sum = mapLevel + level + money + exp + playerSkinIndex;
+        int sum = mapLevel + money + playerSkinIndex;
         for (int i = 0; i < 64; ++i)
             sum += (skins[i] ? 1 : 0) + upgrades[i];
 

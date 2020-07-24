@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6091392481739620803}
   - component: {fileID: 179414682261576800}
   m_Layer: 0
-  m_Name: Obstacle Set 5
+  m_Name: Obstacle Set 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +77,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -162,6 +173,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -336,6 +358,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -420,6 +453,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -506,6 +550,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -590,6 +645,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -676,6 +742,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -760,6 +837,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -846,6 +934,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -930,6 +1029,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -1016,6 +1126,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1100,6 +1221,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -1186,6 +1318,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1270,6 +1413,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -1356,6 +1510,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1440,6 +1605,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -1526,6 +1702,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1610,6 +1797,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -1696,6 +1894,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1780,6 +1989,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
@@ -1866,6 +2086,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1950,6 +2181,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ea530e069a10f7488f3729a9f855ee4,
+        type: 3}
+    - target: {fileID: 1664574006913533937, guid: fa495176e8f44084dba4ef423c480237,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1664574006913533938, guid: fa495176e8f44084dba4ef423c480237,
         type: 3}

@@ -6,7 +6,6 @@ public class Menu
     public static void PlayButton()
     {
         UI.background.SetActive(false);
-        UI.levelContent.SetActive(false);
         UI.mainMenu.SetActive(false);
 
         UI.pauseButton.SetActive(true);
@@ -98,7 +97,6 @@ public class Menu
 
     public static void BackToMenuButton()
     {
-        UI.hud.SetActive(true);
         UI.mainMenu.SetActive(true);
 
         UI.background.SetActive(false);

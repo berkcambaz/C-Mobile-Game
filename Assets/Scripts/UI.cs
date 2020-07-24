@@ -13,10 +13,10 @@ public class UI
     public static GameObject settingsMenu;
 
     public static GameObject background;
-    public static GameObject levelContent;
+    public static GameObject mapLevelContent;
 
+    public static Text scoreText;
     public static Text mapLevelText;
-    public static Text levelText;
     public static Text moneyText;
     public static Text expText;
 
@@ -54,14 +54,14 @@ public class UI
     public static void Update()
     {
         // Check if player has leveled up
-        if (UserData.exp >= UserData.level * UserData.level)
-        {
-            UserData.leveledUp = true;
-        }
+        //if (UserData.exp >= UserData.level * UserData.level)
+        //{
+        //    UserData.leveledUp = true;
+        //}
 
         // Refresh the texts
         mapLevelText.text = UserData.mapLevel.ToString();
-        levelText.text = UserData.level.ToString();
+        //levelText.text = UserData.level.ToString();
         moneyText.text = UserData.money.ToString();
     }
 
@@ -76,7 +76,7 @@ public class UI
         customizeButton.SetActive(true);
         mainMenu.SetActive(true);
 
-        levelContent.SetActive(true);
+        mapLevelContent.SetActive(true);
         Update();
     }
 

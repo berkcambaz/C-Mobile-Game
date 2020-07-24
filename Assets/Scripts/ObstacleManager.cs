@@ -11,6 +11,7 @@ public class ObstacleManager : MonoBehaviour
     private int obstacleSet = -1;
 
     public static float mapTimeLimit;   // Time until player finishes a level
+    public static float mapTimer;
     private float timer;
     private bool removeObstacles = false;
 
@@ -28,18 +29,16 @@ public class ObstacleManager : MonoBehaviour
             if (UserData.isAlive)
             {
                 // If player has finished the level
-                if (mapTimeLimit < 0f)
+                if (mapTimer < 0f)
                 {
                     if (!removeObstacles)
                     {
+                        UserData.resetProgressBar = true;
                         removeObstacles = true;
                         timer = 0.0f;
                         UserData.isObstacleSetFinished = true;
 
-                        UserData.exp += UserData.mapLevel;
                         ++UserData.mapLevel;
-
-                        UserData.gainedExp = true;
 
                         DeleteObstacles();  // Destroy obstacles when level is finished
                     }
@@ -51,7 +50,7 @@ public class ObstacleManager : MonoBehaviour
                         UserData.isPlaying = false; // Player is not playing anymore
 
                         // Update customizables 
-                        CustomizeMenu.CheckSkinUnlockFromMapLevel();
+                        //CustomizeMenu.CheckSkinUnlockFromMapLevel();
 
                         UI.LevelEnded();
                     }
@@ -60,7 +59,7 @@ public class ObstacleManager : MonoBehaviour
                 {
                     removeObstacles = false;
 
-                    mapTimeLimit -= Time.deltaTime;
+                    mapTimer -= Time.deltaTime;
 
                     // If current obstacle set is finished, generate new one
                     if (UserData.isObstacleSetFinished)
@@ -71,6 +70,7 @@ public class ObstacleManager : MonoBehaviour
             {
                 if (!removeObstacles)
                 {
+                    UserData.resetProgressBar = true;
                     removeObstacles = true;
                     timer = 0f;
                     UserData.isObstacleSetFinished = true;
@@ -119,6 +119,7 @@ public class ObstacleManager : MonoBehaviour
         // when map level is 50, time is 20 seconds
         float timeLimit = 15f + UserData.mapLevel * 0.1f;
         mapTimeLimit = (timeLimit > 20f) ? 20f : timeLimit;
+        mapTimer = mapTimeLimit;
     }
 
     void GenerateObstacleSet()

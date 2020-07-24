@@ -1,13 +1,35 @@
-﻿using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LevelController : MonoBehaviour
+public class MapLevelController : MonoBehaviour
 {
     private float destinationX;
-    private float currentX;
-    private float speed = 0.01f;
+    private float oldScaleX;
 
     void Update()
+    {
+        if (UserData.resetProgressBar)
+        {
+            float scaleX = transform.GetChild(1).transform.localScale.x;
+            if (oldScaleX == 0f)
+                oldScaleX = scaleX;
+
+            float newScaleX = Mathf.Clamp(scaleX - oldScaleX / 37.5f, 0f, 7.5f);
+            transform.GetChild(1).transform.localScale = new Vector3(newScaleX, 1.5f, 1f);
+            if (transform.GetChild(1).transform.localScale.x == 0f)
+            {
+                transform.GetChild(1).transform.localScale = new Vector3(0f, 1.5f, 1f);
+                oldScaleX = 0f;
+                UserData.resetProgressBar = false;
+            }
+        }
+        else if (UserData.isAlive)
+        {
+            destinationX = 7.5f - ObstacleManager.mapTimer / ObstacleManager.mapTimeLimit * 7.5f;
+            transform.GetChild(1).transform.localScale = new Vector3(destinationX, 1.5f, 1f);
+        }
+    }
+
+    /*void Process()
     {
         if (UserData.leveledUp)
         {
@@ -20,9 +42,9 @@ public class LevelController : MonoBehaviour
                 UserData.leveledUp = false;
 
                 // Decrease xp, increase money & level
-                UserData.exp -= UserData.level * UserData.level;
-                UserData.money += 10;
-                ++UserData.level;
+                //UserData.exp -= UserData.level * UserData.level;
+                //UserData.money += 10;
+                //++UserData.level;
 
                 // Re-update the UI
                 UI.Update();
@@ -38,7 +60,7 @@ public class LevelController : MonoBehaviour
         {
             // Update the level bar according to "exp"
             currentX = transform.GetChild(0).GetChild(0).transform.localScale.x;
-            destinationX = UserData.exp / (float)(UserData.level * UserData.level);
+            //destinationX = UserData.exp / (float)(UserData.level * UserData.level);
 
             transform.GetChild(0).GetChild(0).transform.localScale = new Vector3(Mathf.Clamp(currentX + speed, 0f, destinationX), 1f, 1f);
             speed = Mathf.Clamp(speed - 0.001f, 0.005f, 0.01f);
@@ -50,4 +72,5 @@ public class LevelController : MonoBehaviour
             }
         }
     }
+    */
 }

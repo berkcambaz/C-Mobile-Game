@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 #if RELEASE
-        // If received at least 1 touch
-        if (Input.touchCount > 0)
+        // If received only 1 touch
+        if (Input.touchCount == 1)
         {
             touch = Input.GetTouch(0);
             touchPos = Utility.camera.ScreenToWorldPoint(touch.position);
