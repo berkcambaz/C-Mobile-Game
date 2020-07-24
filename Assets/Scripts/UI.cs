@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.EventSystems;
 
 public class UI
@@ -53,12 +52,6 @@ public class UI
 
     public static void Update()
     {
-        // Check if player has leveled up
-        //if (UserData.exp >= UserData.level * UserData.level)
-        //{
-        //    UserData.leveledUp = true;
-        //}
-
         // Refresh the texts
         mapLevelText.text = UserData.mapLevel.ToString();
         //levelText.text = UserData.level.ToString();
@@ -76,7 +69,6 @@ public class UI
         customizeButton.SetActive(true);
         mainMenu.SetActive(true);
 
-        mapLevelContent.SetActive(true);
         Update();
     }
 

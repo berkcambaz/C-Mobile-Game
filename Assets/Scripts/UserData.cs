@@ -18,7 +18,6 @@ public class UserData
     public static bool isPlaying = false;
     public static bool isAlive = false;
     public static bool isQuitting = false;
-    public static bool resetProgressBar = false;
 
     public static bool isObstacleSetFinished = true;
 

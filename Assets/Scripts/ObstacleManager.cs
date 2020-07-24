@@ -33,7 +33,7 @@ public class ObstacleManager : MonoBehaviour
                 {
                     if (!removeObstacles)
                     {
-                        UserData.resetProgressBar = true;
+                        StartCoroutine(MapLevelController.instance.ResetProgressBar());
                         removeObstacles = true;
                         timer = 0.0f;
                         UserData.isObstacleSetFinished = true;
@@ -59,6 +59,7 @@ public class ObstacleManager : MonoBehaviour
                 {
                     removeObstacles = false;
 
+                    MapLevelController.instance.ProgressBar();  // Update progress bar
                     mapTimer -= Time.deltaTime;
 
                     // If current obstacle set is finished, generate new one
@@ -70,7 +71,7 @@ public class ObstacleManager : MonoBehaviour
             {
                 if (!removeObstacles)
                 {
-                    UserData.resetProgressBar = true;
+                    StartCoroutine(MapLevelController.instance.ResetProgressBar());
                     removeObstacles = true;
                     timer = 0f;
                     UserData.isObstacleSetFinished = true;
