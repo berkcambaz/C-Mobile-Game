@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
     public GameObject mapLevelContent;
 
     public Text scoreText;
+    public Text highScoreText;
     public Text mapLevelText;
     public Text moneyText;
 
@@ -183,7 +184,7 @@ public class Game : MonoBehaviour
         {
             ObstacleManager.SetupMapLevel();
             UserData.isAlive = true;
-            Instantiate(player);
+            Utility.player = Instantiate(player);
         }
     }
 
@@ -268,6 +269,7 @@ public class Game : MonoBehaviour
         UI.mapLevelContent = mapLevelContent;
 
         UI.scoreText = scoreText;
+        UI.highScoreText = highScoreText;
         UI.mapLevelText = mapLevelText;
         UI.moneyText = moneyText;
 

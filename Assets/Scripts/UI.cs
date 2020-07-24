@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class UI
 {
@@ -15,6 +16,7 @@ public class UI
     public static GameObject mapLevelContent;
 
     public static Text scoreText;
+    public static Text highScoreText;
     public static Text mapLevelText;
     public static Text moneyText;
     public static Text expText;
@@ -54,8 +56,16 @@ public class UI
     {
         // Refresh the texts
         mapLevelText.text = UserData.mapLevel.ToString();
-        //levelText.text = UserData.level.ToString();
+        scoreText.text = UserData.score.ToString();
+        highScoreText.text = UserData.highScore.ToString();
         moneyText.text = UserData.money.ToString();
+    }
+
+    public static void UpdateScore()
+    {
+        scoreText.text = UserData.score.ToString();
+        UserData.highScore = UserData.score;
+        highScoreText.text = UserData.highScore.ToString();
     }
 
     public static void LevelEnded()

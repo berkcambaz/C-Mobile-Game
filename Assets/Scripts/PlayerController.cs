@@ -43,12 +43,10 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        // TODO: Screen shake effect
-
         // When colliding with obstacle
         Destroy(gameObject);
 
-        // When colliding with power-up
+        // When colliding with power-up or coin
     }
 
     void OnDestroy()

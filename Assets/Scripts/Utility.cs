@@ -6,6 +6,7 @@ public class Utility
 {
     public static Camera camera = Camera.main;
     public static Vector2 screenSize = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera.transform.position.z));
+    public static GameObject player;
 
     public static ColorBlock ButtonColor(bool isPressed)
     {

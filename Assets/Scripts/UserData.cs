@@ -59,7 +59,7 @@ public class SaveData
         bool isEqual = false;
 
         // Calculate sum
-        int sum = mapLevel + money + playerSkinIndex;
+        int sum = mapLevel + score + highScore + money + playerSkinIndex;
         for (int i = 0; i < 64; ++i)
             sum += (skins[i] ? 1 : 0) + upgrades[i];
 
