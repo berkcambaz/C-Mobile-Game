@@ -82,6 +82,7 @@ public class ObstacleManager : MonoBehaviour
                 if (timer > 0.5f)  // Wait some time after the player is dead, then destroy obstacles
                 {
                     UserData.isPlaying = false; // Player is not playing anymore
+                    UserData.score = 0;         // Reset the score
 
                     DeleteObstacles();
 

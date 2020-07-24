@@ -12,9 +12,9 @@ public class ObstacleController : MonoBehaviour
     {
         transform.Translate(0f, -speed * Time.deltaTime, 0f);
 
-        if (!gaveScore && Utility.player.transform.position.y > transform.position.y)
+        if (Utility.player != null && !gaveScore && Utility.player.transform.position.y > transform.position.y)
         {
-            // TODO: +1 score animation
+            ScorePopUp.instance.PopupScore(transform.position);
             gaveScore = true;
             UserData.score += 1;
             UI.UpdateScore();

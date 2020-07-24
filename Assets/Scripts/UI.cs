@@ -64,7 +64,7 @@ public class UI
     public static void UpdateScore()
     {
         scoreText.text = UserData.score.ToString();
-        UserData.highScore = UserData.score;
+        UserData.highScore = UserData.score > UserData.highScore ? UserData.score : UserData.highScore;
         highScoreText.text = UserData.highScore.ToString();
     }
 
