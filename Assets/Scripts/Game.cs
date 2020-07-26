@@ -12,7 +12,7 @@ public class Game : MonoBehaviour
     public GameObject notification;
     public GameObject hud;
     public GameObject mainMenu;
-    public GameObject upgradesMenu;
+    public GameObject storeMenu;
     public GameObject customizeMenu;
     public GameObject settingsMenu;
 
@@ -29,7 +29,7 @@ public class Game : MonoBehaviour
     public Text fpsText;
 
     public GameObject playButton;
-    public GameObject upgradesButton;
+    public GameObject storeButton;
     public GameObject customizeButton;
     public GameObject settingsButton;
 
@@ -88,7 +88,7 @@ public class Game : MonoBehaviour
                 UI.backButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
 
                 UI.playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
-                UI.upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.storeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 UI.customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 UI.settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 break;
@@ -99,14 +99,14 @@ public class Game : MonoBehaviour
                 UI.backButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
 
                 UI.playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
-                UI.upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+                UI.storeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 UI.customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 UI.settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 break;
             case 11:    // Upgrades button
                 SoundManager.PlaySound("textButtonSelect");
                 durationLimit = 0.35f * Time.timeScale;
-                UI.upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
+                UI.storeButton.GetComponent<Button>().colors = Utility.ButtonColor(true);
 
                 UI.goBackButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
                 break;
@@ -165,7 +165,7 @@ public class Game : MonoBehaviour
                 Menu.PauseButton();
 
                 UI.playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
-                UI.settingsButton.transform.position = UI.upgradesButton.transform.position;
+                UI.settingsButton.transform.position = UI.storeButton.transform.position;
                 break;
             case 11:
                 Menu.UpgradesButton();
@@ -261,7 +261,7 @@ public class Game : MonoBehaviour
         UI.notification = notification;
         UI.hud = hud;
         UI.mainMenu = mainMenu;
-        UI.upgradesMenu = upgradesMenu;
+        UI.storeMenu = storeMenu;
         UI.customizeMenu = customizeMenu;
         UI.settingsMenu = settingsMenu;
 
@@ -278,7 +278,7 @@ public class Game : MonoBehaviour
         UI.fpsText = fpsText;
 
         UI.playButton = playButton;
-        UI.upgradesButton = upgradesButton;
+        UI.storeButton = storeButton;
         UI.customizeButton = customizeButton;
         UI.settingsButton = settingsButton;
 

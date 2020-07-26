@@ -102,7 +102,7 @@ public class Menu
         UI.background.SetActive(false);
         UI.goBackButton.SetActive(false);
 
-        UI.upgradesMenu.SetActive(false);
+        UI.storeMenu.SetActive(false);
         UI.customizeMenu.SetActive(false);
         UI.settingsMenu.SetActive(false);
     }
@@ -113,7 +113,7 @@ public class Menu
         Time.timeScale = 0f;
         UserData.isPlaying = false;
 
-        UI.upgradesButton.SetActive(false);
+        UI.storeMenu.SetActive(false);
         UI.customizeButton.SetActive(false);
 
         UI.mainMenu.SetActive(true);
@@ -126,7 +126,7 @@ public class Menu
         UI.background.SetActive(true);
         UI.goBackButton.SetActive(true);
 
-        UI.upgradesMenu.SetActive(true);
+        UI.storeMenu.SetActive(true);
     }
 
     public static void CustomizeButton()

@@ -8,7 +8,7 @@ public class UI
     public static GameObject notification;
     public static GameObject hud;
     public static GameObject mainMenu;
-    public static GameObject upgradesMenu;
+    public static GameObject storeMenu;
     public static GameObject customizeMenu;
     public static GameObject settingsMenu;
 
@@ -26,7 +26,7 @@ public class UI
     public static Text fpsText;
 
     public static GameObject playButton;
-    public static GameObject upgradesButton;
+    public static GameObject storeButton;
     public static GameObject customizeButton;
     public static GameObject settingsButton;
 
@@ -43,7 +43,7 @@ public class UI
         settingsButtonPos = settingsButton.transform.localPosition;  // Get settings button's start position
 
         playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
-        upgradesButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
+        storeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
         customizeButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
         settingsButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
 
@@ -75,7 +75,7 @@ public class UI
         playButton.GetComponent<Button>().colors = Utility.ButtonColor(false);
         settingsButton.transform.localPosition = settingsButtonPos; // Reset settings button's pos to original one
 
-        upgradesButton.SetActive(true);
+        storeButton.SetActive(true);
         customizeButton.SetActive(true);
         mainMenu.SetActive(true);
 
