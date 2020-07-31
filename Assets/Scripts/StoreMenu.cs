@@ -22,7 +22,6 @@ public class StoreMenu : MonoBehaviour
 
     private Vector2 dragStartPos;
     private bool isHeld = false;
-    private bool isMoved = false;
     private int pageIndex = 0;
 
     void Awake()
@@ -87,7 +86,6 @@ public class StoreMenu : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isHeld = false;
-            isMoved = false;
         }
 #endif
 
@@ -99,10 +97,6 @@ public class StoreMenu : MonoBehaviour
                 move = touchPos.x - dragStartPos.x;
             else if (touchPos.x < dragStartPos.x)
                 move = touchPos.x - dragStartPos.x;
-
-            if (move != 0f)
-                isMoved = true;
-
 
             if (!Mathf.Approximately(touchPos.x, touchPosOld.x))
             {
@@ -151,6 +145,20 @@ public class StoreMenu : MonoBehaviour
                 upgradeObj.GetChild(upgrade).GetComponent<Image>().sprite = buttons[(int)BUTTON.Upgrade];
                 upgradeObj.GetChild(upgrade).GetComponent<Button>().enabled = true;
             }
+
+            // Set the cost of potion
+            int[] cost = null;
+            switch (potionNum)
+            {
+                case 0:
+                    cost = new int[3] { 250, 500, 1000 };
+                    break;
+                case 1:
+                    cost = new int[3] { 250, 500, 1000 };
+                    break;
+            }
+            string potionCost = cost.Length == UserData.upgrades[potionNum] ? "max\nlevel" : "-Cost-\n" + cost[UserData.upgrades[potionNum]];
+            transform.GetChild(1).GetChild(potionNum).GetChild(2).GetComponent<Text>().text = potionCost;
         }
     }
 
