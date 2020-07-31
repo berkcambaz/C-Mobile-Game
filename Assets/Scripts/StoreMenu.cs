@@ -4,7 +4,15 @@ using UnityEngine.UI;
 
 public class StoreMenu : MonoBehaviour
 {
-    public StoreMenu instance;
+    public static StoreMenu instance;
+
+    public Sprite[] buttons = new Sprite[3];
+    private enum BUTTON
+    {
+        Upgrade,
+        Upgraded,
+        Not_Upgraded
+    }
 
     private Touch touch;
     private Vector3 touchPos;
@@ -17,9 +25,14 @@ public class StoreMenu : MonoBehaviour
     private bool isMoved = false;
     private int pageIndex = 0;
 
-    void Start()
+    void Awake()
     {
         instance = this;
+
+        // Load buttons' sprite's
+        buttons[(int)BUTTON.Upgrade] = Resources.Load<Sprite>("Sprites/upgrade");
+        buttons[(int)BUTTON.Upgraded] = Resources.Load<Sprite>("Sprites/upgraded");
+        buttons[(int)BUTTON.Not_Upgraded] = Resources.Load<Sprite>("Sprites/not_upgraded");
     }
 
     void Update()
@@ -118,11 +131,26 @@ public class StoreMenu : MonoBehaviour
 
     public void InitUpgrades()
     {
-        int upgradeCount = transform.GetChild(1).childCount;
+        int potionCount = transform.GetChild(1).childCount;
 
-        for (int i = 0; i < upgradeCount; ++i)
+        for (int potionNum = 0; potionNum < potionCount; ++potionNum)
         {
-            
+            Transform upgradeObj = transform.GetChild(1).GetChild(potionNum).GetChild(3);
+            int upgradeCount = upgradeObj.childCount;
+
+            int upgrade = 0;
+            for (; upgrade < UserData.upgrades[potionNum]; ++upgrade)
+            {
+                // If an upgrade is unlocked set it's sprite to "upgraded" 
+                upgradeObj.GetChild(upgrade).GetComponent<Image>().sprite = buttons[(int)BUTTON.Upgraded];
+            }
+
+            // Make the last button upgradeable
+            if (upgrade < upgradeCount)
+            {
+                upgradeObj.GetChild(upgrade).GetComponent<Image>().sprite = buttons[(int)BUTTON.Upgrade];
+                upgradeObj.GetChild(upgrade).GetComponent<Button>().enabled = true;
+            }
         }
     }
 
@@ -135,7 +163,7 @@ public class StoreMenu : MonoBehaviour
                     // TODO: Implement
                 break;
             case 1: // Buy with money
-                    // If player has enough money & all skins are not unlocked
+                // If player has enough money & all skins are not unlocked
                 if (UserData.money > 99 && UserData.unlockedSkinCount != UserData.skinSprites.Length)
                 {
                     UserData.money -= 100;
@@ -143,7 +171,50 @@ public class StoreMenu : MonoBehaviour
                     // TODO: Animation for money going to the button
                     StartCoroutine(BuyCharacter());
                 }
+                else    // If player doesn't have enough money to buy skin
+                {
+                    // TODO: Implement
+                }
                 break;
+        }
+    }
+
+    public void UpgradePotion(int potionNum)
+    {
+        UserData.money = 1000;
+        int[] cost = null;
+        switch (potionNum)
+        {
+            case 0: // Upgrade for strength potion
+                cost = new int[3] { 250, 500, 1000 };
+                break;
+            case 1: // Upgrade for small cube potion
+                cost = new int[3] { 250, 500, 1000 };
+                break;
+        }
+
+        UpgradePotion(potionNum, cost);
+        UI.Update();
+    }
+
+    private void UpgradePotion(int potionNum, int[] cost)
+    {
+        int upgradeCost = cost[UserData.upgrades[potionNum]];
+        string upgradeStr = UserData.upgrades[potionNum] == cost.Length - 1 ? "max\nlevel" : "-Cost-\n" + cost[UserData.upgrades[potionNum] + 1];
+
+        // If player has enough money to upgrade
+        if (UserData.money > upgradeCost - 1)
+        {
+            transform.GetChild(1).GetChild(potionNum).GetChild(3).GetChild(UserData.upgrades[potionNum]).GetComponent<Button>().enabled = false;
+            transform.GetChild(1).GetChild(potionNum).GetChild(3).GetChild(UserData.upgrades[potionNum]).GetComponent<Image>().sprite = buttons[(int)BUTTON.Upgraded];
+
+            if (++UserData.upgrades[potionNum] != transform.GetChild(1).GetChild(potionNum).GetChild(3).childCount)
+            {
+                transform.GetChild(1).GetChild(potionNum).GetChild(3).GetChild(UserData.upgrades[potionNum]).GetComponent<Button>().enabled = true;
+                transform.GetChild(1).GetChild(potionNum).GetChild(3).GetChild(UserData.upgrades[potionNum]).GetComponent<Image>().sprite = buttons[(int)BUTTON.Upgrade];
+            }
+
+            transform.GetChild(1).GetChild(potionNum).GetChild(2).GetComponent<Text>().text = upgradeStr;
         }
     }
 

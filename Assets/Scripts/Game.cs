@@ -294,6 +294,10 @@ public class Game : MonoBehaviour
         // Update UI with data from save file
         UI.Update();
 
+        /* - Init upgrades - */
+        StoreMenu.instance.InitUpgrades();
+        /* - Init upgrades - */
+
         /* - Init selected skin - */
         customizeMenu.transform.GetChild(0).GetComponent<CustomizeMenu>().InitSkins();
         /* - Init selected skin - */
