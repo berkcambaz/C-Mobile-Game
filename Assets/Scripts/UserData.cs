@@ -53,7 +53,7 @@ public class SaveData
     public int playerSkinIndex = 0;
 
     // --- SETTINGS --- //
-    public bool quality = true; // Quality of the game, false - low, true - high
+    public bool quality = false; // Quality of the game, false - low, true - high
     public int particles = 10;  // Number of particles, 10 - high, 5 - medium, 3 - low
     public int fps;
 
