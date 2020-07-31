@@ -11,8 +11,9 @@ public class UserData
     public static bool[] skins = new bool[64];
     public static int[] upgrades = new int[64];
 
+    public static int unlockedSkinCount;
+
     public static int playerSkinIndex;
-    public static int selectedSkinIndex = 0;
 
     // --- NON-SAVE FILE STUFF --- //
     public static bool isPlaying = false;
@@ -21,9 +22,12 @@ public class UserData
 
     public static bool isObstacleSetFinished = true;
 
+    public static bool isUnlockingCharacter = false;
+
     public static GameObject[] customizables;
     public static Sprite[] skinSprites;
 
+    public static int selectedSkinIndex = 0;
     public static int lastOpenedSkin;
 
     // --- SETTINGS --- //
@@ -43,6 +47,8 @@ public class SaveData
 
     public bool[] skins = new bool[64];
     public int[] upgrades = new int[64];
+
+    public int openedSkinCount = 1;
 
     public int playerSkinIndex = 0;
 
