@@ -168,7 +168,7 @@ public class Game : MonoBehaviour
                 UI.settingsButton.transform.position = UI.storeButton.transform.position;
                 break;
             case 11:
-                Menu.UpgradesButton();
+                Menu.StoreButton();
                 break;
             case 12:
                 Menu.CustomizeButton();
@@ -216,7 +216,7 @@ public class Game : MonoBehaviour
             saveData.mapLevel = 1;
             saveData.score = 0;
             saveData.highScore = 0;
-            saveData.money = 25;
+            saveData.money = 100;
             saveData.moneyToSpawn = 20;
 
             for (int i = 0; i < 64; ++i)
@@ -332,10 +332,12 @@ public class Game : MonoBehaviour
         saveData.score = UserData.score;
         saveData.highScore = UserData.highScore;
         saveData.money = UserData.money;
+        saveData.moneyToSpawn = UserData.moneyToSpawn;
 
         saveData.skins = UserData.skins;
         saveData.upgrades = UserData.upgrades;
 
+        saveData.unlockedSkinCount = UserData.unlockedSkinCount;
         saveData.playerSkinIndex = UserData.playerSkinIndex;
 
         saveData.quality = UserData.quality;

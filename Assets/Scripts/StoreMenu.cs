@@ -161,9 +161,9 @@ public class StoreMenu : MonoBehaviour
                 break;
             case 1: // Buy with money
                 // If player has enough money & all skins are not unlocked
-                if (UserData.money > 99 && UserData.unlockedSkinCount != UserData.skinSprites.Length)
+                if (UserData.money > 249 && UserData.unlockedSkinCount != UserData.skinSprites.Length)
                 {
-                    UserData.money -= 100;
+                    UserData.money -= 250;
                     UI.Update();
                     // TODO: Animation for money going to the button
                     StartCoroutine(BuyCharacter());
@@ -196,6 +196,15 @@ public class StoreMenu : MonoBehaviour
     private void UpgradePotion(int potionNum, int[] cost)
     {
         int upgradeCost = cost[UserData.upgrades[potionNum]];
+
+        // If player doesn't have enough money, return from the function
+        if (UserData.money < upgradeCost)
+            return;
+
+        // Decrease the score & update the UI
+        UserData.money -= upgradeCost;
+        UI.Update();
+
         string upgradeStr = UserData.upgrades[potionNum] == cost.Length - 1 ? "max\nlevel" : "-Cost-\n" + cost[UserData.upgrades[potionNum] + 1];
 
         // If player has enough money to upgrade
@@ -255,9 +264,13 @@ public class StoreMenu : MonoBehaviour
 
         UI.notification.SetActive(true);
 
-        UserData.customizables[randSelectedSkin].transform.GetChild(0).GetChild(2).gameObject.SetActive(true);  // Activates skin's description
+        // Activates skin's description
+        UserData.customizables[randSelectedSkin].transform.GetChild(2).gameObject.SetActive(true);
         // Replace question mark image with skin's sprite
-        UserData.customizables[randSelectedSkin].transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = UserData.skinSprites[randSelectedSkin];
+        UserData.customizables[randSelectedSkin].transform.GetChild(0).GetComponent<Image>().sprite = UserData.skinSprites[randSelectedSkin];
+        // Hide question marks on the skin's description
+        UserData.customizables[randSelectedSkin].transform.GetChild(3).gameObject.SetActive(false);
+
 
         UserData.isUnlockingCharacter = false;
     }

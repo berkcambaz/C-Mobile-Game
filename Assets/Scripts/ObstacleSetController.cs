@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class ObstacleSetController : MonoBehaviour
 {
@@ -6,8 +7,6 @@ public class ObstacleSetController : MonoBehaviour
     public Transform child;
 
     private const float speed = 5f;
-
-    private bool isReset = false;
 
     void Start()
     {
@@ -88,19 +87,21 @@ public class ObstacleSetController : MonoBehaviour
         }
 
         Rand.SetState(randState);       // Set the current state back
+
+        // Start to check if the obstacle set is finished
+        StartCoroutine(CheckSetFinished());
     }
 
     void Update()
     {
         transform.Translate(0f, -speed * Time.deltaTime, 0f);
+    }
 
-        if (!isReset && child != null)
-        {
-            if (child.position.y < 0)
-            {
-                UserData.isObstacleSetFinished = true;
-                isReset = true;
-            }
-        }
+    private IEnumerator CheckSetFinished()
+    {
+        while (child != null)
+            yield return null;
+            
+        UserData.isObstacleSetFinished = true;
     }
 }

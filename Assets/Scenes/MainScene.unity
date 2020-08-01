@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 120175476}
         m_MethodName: ButtonClick
         m_Mode: 3
         m_Arguments:
@@ -10396,7 +10396,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 120175476}
         m_MethodName: ButtonClick
         m_Mode: 3
         m_Arguments:

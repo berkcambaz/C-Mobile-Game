@@ -113,13 +113,13 @@ public class Menu
         Time.timeScale = 0f;
         UserData.isPlaying = false;
 
-        UI.storeMenu.SetActive(false);
+        UI.storeButton.SetActive(false);
         UI.customizeButton.SetActive(false);
 
         UI.mainMenu.SetActive(true);
     }
 
-    public static void UpgradesButton()
+    public static void StoreButton()
     {
         UI.mainMenu.SetActive(false);
 

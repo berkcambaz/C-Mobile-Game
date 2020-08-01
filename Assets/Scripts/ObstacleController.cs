@@ -39,7 +39,7 @@ public class ObstacleController : MonoBehaviour
         }
     }
 
-    // If obstacle & player are collided, destroy both of them
+    // If obstacle & player are collided
     void OnCollisionEnter2D(Collision2D col)
     {
         Destroy(gameObject);
