@@ -16,7 +16,6 @@ public class ObstacleSetController : MonoBehaviour
         int occupiedLocationCount = 0;
         bool[] location = new bool[locationCount];
         int randLocation;
-        bool foundLocation = false;
 
         for (int i = 0; i < UserData.potionNum && i < locationCount; ++i)
         {
@@ -29,6 +28,7 @@ public class ObstacleSetController : MonoBehaviour
                 // If location is occupied, try to find a empty location
                 if (location[randLocation])
                 {
+                    bool foundLocation = false;
                     for (int loc = randLocation; loc < locationCount; ++loc)    // Search forward
                         if (!location[loc]) // If found empty location, set it
                         {
@@ -52,7 +52,6 @@ public class ObstacleSetController : MonoBehaviour
 
         locationCount -= occupiedLocationCount;
         occupiedLocationCount = 0;
-        foundLocation = false;
 
         int moneyCount = Random.Range(0, (UserData.moneyToSpawn % 5) + 3);
 
