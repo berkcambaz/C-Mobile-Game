@@ -966,9 +966,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 4298ec5f4f2f46e4ea0199e2cab872fc, type: 3}
+  - {fileID: 21300000, guid: e27a4341e8690954dad31c2fbaae68a0, type: 3}
+  - {fileID: 21300000, guid: cfc0e0fd3f3f9c143bf743805ff92e0d, type: 3}
 --- !u!1 &121639747
 GameObject:
   m_ObjectHideFlags: 0

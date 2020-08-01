@@ -48,12 +48,12 @@ public class SaveData
     public int score;
     public int highScore;
     public int money = 25;
-    public  int moneyToSpawn = 10;
+    public int moneyToSpawn = 20;
 
     public bool[] skins = new bool[64];
     public int[] upgrades = new int[64];
 
-    public int openedSkinCount = 1;
+    public int unlockedSkinCount = 1;
 
     public int playerSkinIndex = 0;
 
@@ -70,7 +70,7 @@ public class SaveData
         bool isEqual = false;
 
         // Calculate sum
-        int sum = mapLevel + score + highScore + money + playerSkinIndex;
+        int sum = mapLevel + score + highScore + money + moneyToSpawn + unlockedSkinCount + playerSkinIndex;
         for (int i = 0; i < 64; ++i)
             sum += (skins[i] ? 1 : 0) + upgrades[i];
 

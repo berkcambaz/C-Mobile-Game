@@ -20,7 +20,7 @@ public class ObstacleSetController : MonoBehaviour
         for (int i = 0; i < UserData.potionNum && i < locationCount; ++i)
         {
             // If there is enogh chance to spawn the potion
-            if (Random.Range(0, 100) < UserData.upgrades[i] * 3)
+            if (Random.Range(0, 100) < UserData.upgrades[i] * 5)
             {
                 randLocation = Random.Range(0, 100);
                 randLocation %= locationCount;
@@ -53,7 +53,11 @@ public class ObstacleSetController : MonoBehaviour
         locationCount -= occupiedLocationCount;
         occupiedLocationCount = 0;
 
-        int moneyCount = Random.Range(0, (UserData.moneyToSpawn % 5) + 2);
+        int moneyCount = Random.Range(0, (UserData.moneyToSpawn % 5) + 3);
+
+        // Always generate some money for player to pick-up (at least generate 2 money)
+        if (moneyCount < 2 && UserData.moneyToSpawn > 0)
+            moneyCount = UserData.moneyToSpawn < 2 ? UserData.moneyToSpawn : 2;
 
         for (int i = 0; i < moneyCount && i < locationCount && i < UserData.moneyToSpawn; ++i)
         {
@@ -76,6 +80,8 @@ public class ObstacleSetController : MonoBehaviour
                         if (!location[loc]) // If found empty location, set it
                             randLocation = loc;
             }
+
+            location[randLocation] = true;  // Occupy the location
 
             // Place the coin
             Instantiate(ObstacleManager.instance.money, transform.GetChild(1).GetChild(randLocation).position, transform.rotation, transform);

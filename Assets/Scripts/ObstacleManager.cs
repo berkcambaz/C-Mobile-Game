@@ -44,7 +44,7 @@ public class ObstacleManager : MonoBehaviour
                         UserData.isObstacleSetFinished = true;
 
                         ++UserData.mapLevel;
-                        UserData.moneyToSpawn += 10;
+                        UserData.moneyToSpawn += 20;
 
                         DeleteObstacles();  // Destroy obstacles when level is finished
                     }

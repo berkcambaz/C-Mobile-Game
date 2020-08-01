@@ -56,6 +56,15 @@ public class PlayerController : MonoBehaviour
 
         if (col.transform.tag == "money")
         {
+            // Create particles
+            GameObject particleInstance = Instantiate(particle, transform.position, transform.rotation);
+
+            particleInstance.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(0, col.gameObject.GetComponent<SpriteRenderer>().sprite);
+
+            ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
+            psmain.maxParticles = UserData.particles;
+            psmain.startSize = 0.35f;
+
             Destroy(col.gameObject);
             --UserData.moneyToSpawn;
             ++UserData.money;
@@ -99,6 +108,7 @@ public class PlayerController : MonoBehaviour
 
             ParticleSystem.MainModule psmain = particleInstance.GetComponent<ParticleSystem>().main;
             psmain.maxParticles = UserData.particles;
+            psmain.startSize = 1f;
 
             UI.pauseButton.SetActive(false);    // Disable pause button when player is deleted
         }

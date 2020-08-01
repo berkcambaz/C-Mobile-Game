@@ -4,9 +4,7 @@ using UnityEngine.UI;
 
 public class StoreMenu : MonoBehaviour
 {
-    public static StoreMenu instance;
-
-    public Sprite[] buttons = new Sprite[3];
+    public Sprite[] buttons;
     private enum BUTTON
     {
         Upgrade,
@@ -23,16 +21,6 @@ public class StoreMenu : MonoBehaviour
     private Vector2 dragStartPos;
     private bool isHeld = false;
     private int pageIndex = 0;
-
-    void Start()
-    {
-        instance = this;
-
-        // Load buttons' sprite's
-        buttons[(int)BUTTON.Upgrade] = Resources.Load<Sprite>("Sprites/upgrade");
-        buttons[(int)BUTTON.Upgraded] = Resources.Load<Sprite>("Sprites/upgraded");
-        buttons[(int)BUTTON.Not_Upgraded] = Resources.Load<Sprite>("Sprites/not_upgraded");
-    }
 
     void Update()
     {

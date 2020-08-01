@@ -217,7 +217,7 @@ public class Game : MonoBehaviour
             saveData.score = 0;
             saveData.highScore = 0;
             saveData.money = 25;
-            saveData.moneyToSpawn = 10;
+            saveData.moneyToSpawn = 20;
 
             for (int i = 0; i < 64; ++i)
             {
@@ -225,7 +225,7 @@ public class Game : MonoBehaviour
                 saveData.upgrades[i] = 0;
             }
 
-            saveData.openedSkinCount = 1;
+            saveData.unlockedSkinCount = 1;
             saveData.playerSkinIndex = 0;
         }
         if (saveData.fps == 0)  // If first time opening the game, set fps to phone's refresh rate
@@ -247,7 +247,7 @@ public class Game : MonoBehaviour
         GetCustomizables();
         GetSkinSprites();
 
-        UserData.unlockedSkinCount = saveData.openedSkinCount;
+        UserData.unlockedSkinCount = saveData.unlockedSkinCount;
         UserData.playerSkinIndex = saveData.playerSkinIndex;
         UserData.selectedSkinIndex = saveData.playerSkinIndex;  // Set the selected skin
 
