@@ -51,7 +51,7 @@ public class ObstacleManager : MonoBehaviour
                     if (timer > 1.5f) // Wait some time after the level is finished, then destroy the player
                     {
                         SoundManager.PlaySound("playerExplosion");
-                        Destroy(GameObject.Find("Player(Clone)"));
+                        Destroy(Utility.player);
 
                         UserData.isPlaying = false; // Player is not playing anymore
 
