@@ -13,13 +13,14 @@ public class ObstacleSetController : MonoBehaviour
     {
         int[] randState = Rand.GetState();  // Get the current state
         int locationCount = transform.GetChild(1).childCount;
+        int occupiedLocationCount = 0;
         bool[] location = new bool[locationCount];
         int randLocation;
 
-        for (int i = 0; i < UserData.potionNum; ++i)
+        for (int i = 0; i < UserData.potionNum && i < locationCount; ++i)
         {
             // If there is enogh chance to spawn the potion
-            if (Random.Range(0, 100) < 10 * 3 + 1)
+            if (Random.Range(0, 100) < UserData.upgrades[i] * 3)
             {
                 randLocation = Random.Range(0, 100);
                 randLocation %= locationCount;
@@ -45,7 +46,39 @@ public class ObstacleSetController : MonoBehaviour
 
                 // Change the potions sprite & create the potion
                 Instantiate(ObstacleManager.instance.potions[i], transform.GetChild(1).GetChild(randLocation).position, transform.rotation, transform);
+                ++occupiedLocationCount;
             }
+        }
+
+        locationCount -= occupiedLocationCount;
+        occupiedLocationCount = 0;
+
+        int moneyCount = Random.Range(0, (UserData.moneyToSpawn % 5) + 2);
+
+        for (int i = 0; i < moneyCount && i < locationCount && i < UserData.moneyToSpawn; ++i)
+        {
+            randLocation = Random.Range(0, 100);
+            randLocation %= locationCount;
+
+            // If location is occupied, try to find a empty location
+            if (location[randLocation])
+            {
+                bool foundLocation = false;
+                for (int loc = randLocation; loc < locationCount; ++loc)    // Search forward
+                    if (!location[loc]) // If found empty location, set it
+                    {
+                        randLocation = loc;
+                        foundLocation = true;
+                    }
+
+                if (!foundLocation) // If couldn't find an empty location by searching forward,search backward
+                    for (int loc = randLocation; loc > locationCount; --loc)    // Search backward
+                        if (!location[loc]) // If found empty location, set it
+                            randLocation = loc;
+            }
+
+            // Place the coin
+            Instantiate(ObstacleManager.instance.money, transform.GetChild(1).GetChild(randLocation).position, transform.rotation, transform);
         }
 
         Rand.SetState(randState);       // Set the current state back

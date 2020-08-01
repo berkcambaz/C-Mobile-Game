@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
-  - Item
+  - pot0
+  - pot1
+  - money
   layers:
   - Default
   - TransparentFX

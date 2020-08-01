@@ -25,6 +25,8 @@ public class UserData
 
     public static bool isUnlockingCharacter = false;
 
+    public static bool isUndead = false;
+
     public static GameObject[] customizables;
     public static Sprite[] skinSprites;
 
@@ -46,7 +48,7 @@ public class SaveData
     public int score;
     public int highScore;
     public int money = 25;
-    public  int moneyToSpawn = 5;
+    public  int moneyToSpawn = 10;
 
     public bool[] skins = new bool[64];
     public int[] upgrades = new int[64];

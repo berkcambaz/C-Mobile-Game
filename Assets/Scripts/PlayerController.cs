@@ -45,17 +45,44 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         // When colliding with obstacle
-        if (col.transform.tag == "Obstacle")
+        if (col.transform.tag == "Obstacle" && !UserData.isUndead)
             Destroy(gameObject);
 
         // When colliding with power-up or coin
-        if (col.transform.tag == "Item")
-        {
+        if (col.transform.tag == "pot0")
+            StartCoroutine(StrengthPotion());
+        if (col.transform.tag == "pot1")
+            StartCoroutine(SmallCubePotion());
 
+        if (col.transform.tag == "money")
+        {
+            Destroy(col.gameObject);
+            --UserData.moneyToSpawn;
+            ++UserData.money;
+            UI.Update();
         }
     }
 
-    private IEnumerator UseItem()
+    private IEnumerator StrengthPotion()
+    {
+        UserData.isUndead = true;
+
+        // Wait for some seconds depending on the level of the upgrade
+        yield return new WaitForSeconds(UserData.upgrades[0] * 3f);
+
+        UserData.isUndead = false;
+    }
+    private IEnumerator SmallCubePotion()
+    {
+        // Make player smaller
+        Utility.player.transform.localScale = new Vector3(0.35f, 0.35f, 1f);
+
+        // Wait for some seconds depending on the level of the upgrade
+        yield return new WaitForSeconds(UserData.upgrades[1] * 3f);
+
+        // Make player bigger again
+        Utility.player.transform.localScale = new Vector3(0.65f, 0.65f, 1f);
+    }
 
     void OnDestroy()
     {

@@ -184,7 +184,9 @@ public class Game : MonoBehaviour
         {
             ObstacleManager.SetupMapLevel();
             UserData.isAlive = true;
+            UserData.isUndead = false;
             Utility.player = Instantiate(player);
+            Utility.player.transform.localScale = new Vector3(0.65f, 0.65f, 1f);
         }
     }
 
@@ -215,7 +217,7 @@ public class Game : MonoBehaviour
             saveData.score = 0;
             saveData.highScore = 0;
             saveData.money = 25;
-            saveData.moneyToSpawn = 5;
+            saveData.moneyToSpawn = 10;
 
             for (int i = 0; i < 64; ++i)
             {
