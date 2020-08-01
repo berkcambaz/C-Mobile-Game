@@ -47,7 +47,7 @@ public class SaveData
     public int mapLevel = 1;
     public int score;
     public int highScore;
-    public int money = 25;
+    public int money = 100;
     public int moneyToSpawn = 20;
 
     public bool[] skins = new bool[64];
