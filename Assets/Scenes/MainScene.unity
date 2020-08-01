@@ -950,7 +950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1920, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &120175476
@@ -1870,7 +1870,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 5443b6e6649bb8d09bb4f5f177adf2dc, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: def973e6cf9d3f7ad98f324e374d1d89, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -10382,7 +10382,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 5443b6e6649bb8d09bb4f5f177adf2dc, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: def973e6cf9d3f7ad98f324e374d1d89, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -12960,7 +12960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1033166171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18326,7 +18326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1796490288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18689,7 +18689,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 98d5d42cdcb6dd88bbdedad75189266c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5443b6e6649bb8d09bb4f5f177adf2dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20393,6 +20393,9 @@ MonoBehaviour:
   - {fileID: 7986122033117882836, guid: 2f77ba189d308e347b3a104808d939a3, type: 3}
   - {fileID: 875041639584058978, guid: 1ed8c96979b27034997d15f307aaf2c1, type: 3}
   - {fileID: 4023603861715728852, guid: 6a9c6a433343e94499bce2f32ba8063d, type: 3}
+  potions:
+  - {fileID: 8682763363468648701, guid: 867fdd1b4f17d593da8c6cea900c5809, type: 3}
+  - {fileID: 4206535783666350939, guid: 6b0e7f9786b4cc47e9b782151a475695, type: 3}
   particle: {fileID: 721331045885733163, guid: 7f1ce9fad25e8204ba0ecde12167222c, type: 3}
   money: {fileID: 8787465829358931127, guid: b3396bcf4aa309049a14f9362f851cf8, type: 3}
 --- !u!4 &8845367637024102653

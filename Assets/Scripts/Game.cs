@@ -215,6 +215,7 @@ public class Game : MonoBehaviour
             saveData.score = 0;
             saveData.highScore = 0;
             saveData.money = 25;
+            saveData.moneyToSpawn = 5;
 
             for (int i = 0; i < 64; ++i)
             {
@@ -236,6 +237,7 @@ public class Game : MonoBehaviour
         UserData.score = saveData.score;
         UserData.highScore = saveData.highScore;
         UserData.money = saveData.money;
+        UserData.moneyToSpawn = saveData.moneyToSpawn;
 
         UserData.skins = saveData.skins;
         UserData.upgrades = saveData.upgrades;
@@ -295,7 +297,7 @@ public class Game : MonoBehaviour
         UI.Update();
 
         /* - Init upgrades - */
-        StoreMenu.instance.InitUpgrades();
+        storeMenu.transform.GetComponentInChildren<StoreMenu>().InitUpgrades();
         /* - Init upgrades - */
 
         /* - Init selected skin - */

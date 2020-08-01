@@ -7,6 +7,7 @@ public class UserData
     public static int score;
     public static int highScore;
     public static int money;
+    public static int moneyToSpawn;
 
     public static bool[] skins = new bool[64];
     public static int[] upgrades = new int[64];
@@ -29,6 +30,7 @@ public class UserData
 
     public static int selectedSkinIndex = 0;
     public static int lastOpenedSkin;
+    public static int potionNum;
 
     // --- SETTINGS --- //
     public static bool quality;     // Quality of the game, false - low, true - high
@@ -44,6 +46,7 @@ public class SaveData
     public int score;
     public int highScore;
     public int money = 25;
+    public  int moneyToSpawn = 5;
 
     public bool[] skins = new bool[64];
     public int[] upgrades = new int[64];

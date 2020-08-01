@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 7383284280452242374}
+  potion: {fileID: 8682763363468648701, guid: 867fdd1b4f17d593da8c6cea900c5809, type: 3}
 --- !u!1 &1165890524424508623
 GameObject:
   m_ObjectHideFlags: 0

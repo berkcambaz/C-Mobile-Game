@@ -4,14 +4,11 @@ public class ObstacleController : MonoBehaviour
 {
     public GameObject particle;
 
-    private const float speed = 5f;
     private bool isKilledItself = false;
     private bool gaveScore = false;
 
     void Update()
     {
-        transform.Translate(0f, -speed * Time.deltaTime, 0f);
-
         if (Utility.player != null && !gaveScore && Utility.player.transform.position.y > transform.position.y)
         {
             ScorePopUp.instance.PopupScore(transform.position);

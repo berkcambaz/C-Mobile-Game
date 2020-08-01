@@ -2,7 +2,10 @@
 
 public class ObstacleManager : MonoBehaviour
 {
+    public static ObstacleManager instance;
+
     public GameObject[] obstacleSets;
+    public GameObject[] potions;
 
     public GameObject particle;
     public GameObject money;
@@ -17,6 +20,8 @@ public class ObstacleManager : MonoBehaviour
 
     void Start()
     {
+        instance = this;
+
         obstacleSetNumber = obstacleSets.Length;
     }
 
@@ -39,6 +44,7 @@ public class ObstacleManager : MonoBehaviour
                         UserData.isObstacleSetFinished = true;
 
                         ++UserData.mapLevel;
+                        UserData.moneyToSpawn += 10;
 
                         DeleteObstacles();  // Destroy obstacles when level is finished
                     }

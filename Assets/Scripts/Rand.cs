@@ -23,6 +23,17 @@ public class Rand
         seed = _seed;
     }
 
+    public static int[] GetState()
+    {
+        return new int[3] { seed, sign, number };
+    }
+
+    public static void SetState(int[] state){
+        seed = state[0];
+        sign = state[1];
+        number = state[2];
+    }
+
     public static float Range(float min, float max)
     {
         float result = Random.Range(min, max);

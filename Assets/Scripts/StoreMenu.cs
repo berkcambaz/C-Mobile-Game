@@ -24,7 +24,7 @@ public class StoreMenu : MonoBehaviour
     private bool isHeld = false;
     private int pageIndex = 0;
 
-    void Awake()
+    void Start()
     {
         instance = this;
 
@@ -125,9 +125,10 @@ public class StoreMenu : MonoBehaviour
 
     public void InitUpgrades()
     {
-        int potionCount = transform.GetChild(1).childCount;
 
-        for (int potionNum = 0; potionNum < potionCount; ++potionNum)
+        UserData.potionNum = transform.GetChild(1).childCount;
+
+        for (int potionNum = 0; potionNum < UserData.potionNum; ++potionNum)
         {
             Transform upgradeObj = transform.GetChild(1).GetChild(potionNum).GetChild(3);
             int upgradeCount = upgradeObj.childCount;
@@ -189,7 +190,6 @@ public class StoreMenu : MonoBehaviour
 
     public void UpgradePotion(int potionNum)
     {
-        UserData.money = 1000;
         int[] cost = null;
         switch (potionNum)
         {

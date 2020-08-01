@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -44,10 +45,17 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         // When colliding with obstacle
-        Destroy(gameObject);
+        if (col.transform.tag == "Obstacle")
+            Destroy(gameObject);
 
         // When colliding with power-up or coin
+        if (col.transform.tag == "Item")
+        {
+
+        }
     }
+
+    private IEnumerator UseItem()
 
     void OnDestroy()
     {
