@@ -7,6 +7,7 @@ public class Game : MonoBehaviour
     public GameObject player;
 
     public GameObject customizeContent;
+    public Sprite[] skinSprites;
 
     // --- UI STUFF --- //
     public GameObject notification;
@@ -238,7 +239,7 @@ public class Game : MonoBehaviour
         UserData.mapLevel = saveData.mapLevel;
         UserData.score = saveData.score;
         UserData.highScore = saveData.highScore;
-        UserData.money = saveData.money;
+        UserData.money = 1000;
         UserData.moneyToSpawn = saveData.moneyToSpawn;
 
         UserData.skins = saveData.skins;
@@ -317,10 +318,7 @@ public class Game : MonoBehaviour
 
     void GetSkinSprites()
     {
-        UserData.skinSprites = new Sprite[UserData.customizables.Length];
-
-        for (int i = 0; i < UserData.skinSprites.Length; ++i)
-            UserData.skinSprites[i] = customizeContent.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite;
+        UserData.skinSprites = skinSprites;
     }
 
     void Save()

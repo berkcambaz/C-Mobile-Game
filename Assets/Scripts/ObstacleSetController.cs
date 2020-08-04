@@ -99,7 +99,7 @@ public class ObstacleSetController : MonoBehaviour
 
     private IEnumerator CheckSetFinished()
     {
-        while (child != null)
+        while (child != null && child.position.y > 0)
             yield return null;
             
         UserData.isObstacleSetFinished = true;

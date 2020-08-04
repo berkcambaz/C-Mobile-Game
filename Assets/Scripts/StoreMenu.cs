@@ -97,7 +97,7 @@ public class StoreMenu : MonoBehaviour
 
     void SlideControl()
     {
-        pageIndex = Mathf.RoundToInt(transform.localPosition.x / -960f);
+        pageIndex = Mathf.RoundToInt(transform.localPosition.x / -480f);
 
         // Clamp the index
         if (pageIndex < 0)
