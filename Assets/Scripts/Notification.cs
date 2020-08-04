@@ -25,6 +25,7 @@ public class Notification : MonoBehaviour
         if (fadeTime <= 0f)
         {
             gameObject.SetActive(false);
+            UserData.isUnlockingCharacter = false;
         }
     }
 

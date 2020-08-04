@@ -97,7 +97,7 @@ public class StoreMenu : MonoBehaviour
 
     void SlideControl()
     {
-        pageIndex = Mathf.RoundToInt(transform.localPosition.x / -480f);
+        pageIndex = Mathf.RoundToInt(transform.localPosition.x / -960f);
 
         // Clamp the index
         if (pageIndex < 0)
@@ -153,14 +153,19 @@ public class StoreMenu : MonoBehaviour
 
     public void ButtonClick(int button)
     {
+        // If currently unlocking a skin, don't unlock 2 skin at once
+        if (UserData.isUnlockingCharacter)
+            return;
+
         UserData.isUnlockingCharacter = true;
+
         switch (button)
         {
             case 0: // Buy with ad
                     // TODO: Implement
                 break;
             case 1: // Buy with money
-                // If player has enough money & all skins are not unlocked
+                // If player has enough money & all skins are not unlocked & not unlocking a skin currently
                 if (UserData.money > 249 && UserData.unlockedSkinCount != UserData.skinSprites.Length)
                 {
                     UserData.money -= 250;
@@ -270,8 +275,5 @@ public class StoreMenu : MonoBehaviour
         UserData.customizables[randSelectedSkin].transform.GetChild(0).GetComponent<Image>().sprite = UserData.skinSprites[randSelectedSkin];
         // Hide question marks on the skin's description
         UserData.customizables[randSelectedSkin].transform.GetChild(3).gameObject.SetActive(false);
-
-
-        UserData.isUnlockingCharacter = false;
     }
 }
